@@ -1,7 +1,9 @@
-package com.example.henryye.floorshop;
+package com.example.henryye.floorshop.pages;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.henryye.floorshop.R;
 
 public class MainActivity extends AppCompatActivity {
 
