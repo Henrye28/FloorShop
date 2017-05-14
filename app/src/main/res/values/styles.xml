@@ -7,7 +7,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@color/white</item>
-        <!-- 窗口的背景颜色 -->
+        <!-- Window background corlor -->
         <item name="android:windowBackground">@android:color/white</item>
 
         <item name="android:windowActionBar">false</item>

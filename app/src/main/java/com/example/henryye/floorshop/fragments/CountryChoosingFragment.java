@@ -8,13 +8,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.henryye.floorshop.R;
+import com.example.henryye.floorshop.adapters.CountryCodeListAdapter;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by henryye on 5/14/17.
@@ -32,10 +34,13 @@ public class CountryChoosingFragment extends Fragment {
         back = (ImageView)view.findViewById(R.id.back);
         countryList = (ListView)view.findViewById(R.id.countryList);
         Resources res = getResources();
-
         String[] cCode = res.getStringArray(R.array.country_code_list_en);
-        countryList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1,cCode));
+        ArrayList<String> countriesCodes = new ArrayList<String>(Arrays.asList(cCode));
 
+        CountryCodeListAdapter adapter = new CountryCodeListAdapter(countriesCodes, getActivity());
+
+       // countryList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1,cCode));
+        countryList.setAdapter(adapter);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
