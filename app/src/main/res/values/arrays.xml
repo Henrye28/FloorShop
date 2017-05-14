@@ -206,6 +206,7 @@
         <item>Antigua and Barbuda        *1268 </item>
         <item>Australia                  *61   </item>
         <item>Austria                    *43   </item>
+        <item>Aruba                      *297 </item>
         <item>Azerbaijan                 *994  </item>
         <item>Bahamas                    *1242 </item>
         <item>Bahrain                    *973  </item>
@@ -227,6 +228,7 @@
         <item>Cameroon                   *237  </item>
         <item>Canada                     *1    </item>
         <item>Cayman Is.                 *1345 </item>
+        <item>Cape Verde                 *238 </item>
         <item>Central African Republic   *236  </item>
         <item>Chad                       *235  </item>
         <item>Chile                      *56   </item>
@@ -235,6 +237,7 @@
         <item>Congo                      *242  </item>
         <item>Cook Is.                   *682  </item>
         <item>Costa Rica                 *506  </item>
+        <item>Comoros                    *269 </item>
         <item>Cuba                       *53   </item>
         <item>Cyprus                     *357  </item>
         <item>Czech Republic             *420  </item>
@@ -244,6 +247,7 @@
         <item>Ecuador                    *593  </item>
         <item>Egypt                      *20   </item>
         <item>EISalvador                 *503  </item>
+        <item>Equatorial Guinea          *240 </item>
         <item>Estonia                    *372  </item>
         <item>Ethiopia                   *251  </item>
         <item>Fiji                       *679  </item>
@@ -256,7 +260,9 @@
         <item>Germany                    *49   </item>
         <item>Ghana                      *233  </item>
         <item>Gibraltar                  *350  </item>
+        <item>Guinea-Bissau              *245 </item>
         <item>Greece                     *30   </item>
+        <item>Greenland                  *299 </item>
         <item>Guam                       *1671 </item>
         <item>Guatemala                  *502  </item>
         <item>Guinea                     *224  </item>
@@ -275,6 +281,7 @@
         <item>Italy                      *39   </item>
         <item>IvoryCoast                 *225  </item>
         <item>Japan                      *81   </item>
+        <item>Jamaica                    *1876 </item>
         <item>Jordan                     *962  </item>
         <item>Kampuchea (Cambodia )      *855  </item>
         <item>Kenya                      *254  </item>
@@ -296,6 +303,7 @@
         <item>Maldives                   *960  </item>
         <item>Mali                       *223  </item>
         <item>Martinique                 *596  </item>
+        <item>Mauritania                 *222 </item>
         <item>Mauritius                  *230  </item>
         <item>Mexico                     *52   </item>
         <item>Moldova, Republic of       *373  </item>
@@ -328,6 +336,7 @@
         <item>Reunion                    *262  </item>
         <item>Romania                    *40   </item>
         <item>Russia                     *7    </item>
+        <item>Rwanda                     *250 </item>
         <item>Saint Lueia                *1758 </item>
         <item>Samoa Western              *685  </item>
         <item>Sao Tome and Principe      *239  </item>
@@ -355,6 +364,7 @@
         <item>Thailand                   *66   </item>
         <item>Togo                       *228  </item>
         <item>Tonga                      *676  </item>
+        <item>The Faroe Islands          *298 </item>
         <item>Tunisia                    *216  </item>
         <item>Turkey                     *90   </item>
         <item>Turkmenistan               *993  </item>
@@ -371,16 +381,7 @@
         <item>Zimbabwe                   *263  </item>
         <item>Zaire                      *243  </item>
         <item>Zambia                     *260  </item>
-        <item>Jamaica                    *1876 </item>
-        <item>Mauritania                 *222 </item>
-        <item>Cape Verde                 *238 </item>
-        <item>Equatorial Guinea          *240 </item>
-        <item>Guinea-Bissau              *245 </item>
-        <item>Rwanda                     *250 </item>
-        <item>Comoros                    *269 </item>
-        <item>Aruba                      *297 </item>
-        <item>The Faroe Islands          *298 </item>
-        <item>Greenland                  *299 </item>
+
     </string-array>
 
 </resources>

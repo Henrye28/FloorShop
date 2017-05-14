@@ -47,8 +47,6 @@ public class ToolBar extends Toolbar {
         setContentInsetsRelative(10,10);
 
 
-
-
         if(attrs !=null) {
             final TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
                     R.styleable.CNiaoToolBar, defStyleAttr, 0);
@@ -85,8 +83,6 @@ public class ToolBar extends Toolbar {
     }
 
     private void initView() {
-
-
         if(mView == null) {
 
             mInflater = LayoutInflater.from(getContext());
@@ -102,9 +98,6 @@ public class ToolBar extends Toolbar {
 
             addView(mView, lp);
         }
-
-
-
     }
 
 
