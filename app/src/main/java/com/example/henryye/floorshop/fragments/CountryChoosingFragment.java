@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.adapters.CountryCodeListAdapter;
@@ -41,6 +44,34 @@ public class CountryChoosingFragment extends Fragment {
 
        // countryList.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1,cCode));
         countryList.setAdapter(adapter);
+
+
+
+        countryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+              //  RelativeLayout item = (RelativeLayout)parent.getItemAtPosition(position);
+                String item = (String)parent.getItemAtPosition(position);
+                TextView txtCountry = (TextView)getActivity().findViewById(R.id.txtCountry);
+                EditText txtCountryCode = (EditText)getActivity().findViewById(R.id.txtCountryCode);
+                String[] divided = item.split(" ");
+                int len = divided.length;
+                String codes = item.split(" ")[len-1];
+                String countries = item.replace(" "+codes,"");
+
+                txtCountry.setText(countries);
+                txtCountryCode.setText(codes);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.fragment_slide_down_enter, R.anim.fragment_slide_up_exit);
+                fragmentTransaction.remove(CountryChoosingFragment.this).commit();
+
+            }
+        });
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

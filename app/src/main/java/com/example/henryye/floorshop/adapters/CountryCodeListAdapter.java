@@ -51,7 +51,6 @@ public class CountryCodeListAdapter extends BaseAdapter {
             String codes = countries_code.split(" ")[len-1];
             String countries = countries_code.replace(" "+codes,"");
 
-
             TextView place = (TextView) view.findViewById(R.id.place);
             TextView code = (TextView) view.findViewById(R.id.code);
             place.setText(countries);
