@@ -25,5 +25,6 @@
     <string name="create_order">填写订单</string>
     <string name="pay_result">支付结果</string>
     <string name="add_addresses">新建收件地址</string>
-
+    <string name="email_verify_resend">重发验证邮件</string>
+    <string name="email_verify_sned">发送验证</string>>
 </resources>

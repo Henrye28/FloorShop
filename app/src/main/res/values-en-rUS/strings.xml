@@ -24,9 +24,6 @@
     <string name="create_order">Fill up order</string>
     <string name="pay_result">Payment result</string>
     <string name="add_addresses">Recommended adress</string>
-
-
-
-
-
+    <string name="Cemail_verify_resend">Resend Email</string>
+    <string name="Cemail_verify_send">Send Email</string>
 </resources>
