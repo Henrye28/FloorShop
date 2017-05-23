@@ -5,8 +5,8 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -21,7 +21,7 @@ import com.example.henryye.floorshop.wigets.ToolBar;
 /**
  * Created by henryye on 5/10/17.
  */
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback  {
 
     private TextView country;
     private EditText countryCode;
@@ -70,15 +70,13 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-
         toolbar.setRightButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Test --" , " --- code " + mobileInput.getText().toString());
-                Log.d("Test --" , " --- pwd " + pwdInput.getText().toString());
                 if(!mobileInput.getText().toString().isEmpty() && !pwdInput.getText().toString().isEmpty()) {
 
-                    in.putExtra("userMobile", codeInput.getText().toString() + " " + mobileInput.getText().toString());
+                   // in.putExtra("userMobile", codeInput.getText().toString().trim() + " " + mobileInput.getText().toString());
+                    in.putExtra("userMobile", mobileInput.getText().toString());
                     in.putExtra("userPwd", pwdInput.getText().toString());
                     startActivity(in);
                 }else{
@@ -122,5 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+
+
 
 }
