@@ -42,5 +42,4 @@ public class User extends BmobUser {
         this.mobile = mobile;
     }
 
-
 }

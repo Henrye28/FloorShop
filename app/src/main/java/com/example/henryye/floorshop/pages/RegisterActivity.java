@@ -76,9 +76,11 @@ public class RegisterActivity extends AppCompatActivity implements ActivityCompa
                 if(!mobileInput.getText().toString().isEmpty() && !pwdInput.getText().toString().isEmpty()) {
 
                    // in.putExtra("userMobile", codeInput.getText().toString().trim() + " " + mobileInput.getText().toString());
-                    in.putExtra("userMobile", mobileInput.getText().toString());
-                    in.putExtra("userPwd", pwdInput.getText().toString());
-                    startActivity(in);
+                   if(mobileInput.getText().toString() != null && pwdInput.getText().toString() != null) {
+                       in.putExtra("userMobile", mobileInput.getText().toString());
+                       in.putExtra("userPwd", pwdInput.getText().toString());
+                       startActivity(in);
+                   }
                 }else{
                     Toast.makeText(RegisterActivity.this,"Mobile or password should not be empty",Toast.LENGTH_SHORT).show();
                 }
@@ -118,9 +120,6 @@ public class RegisterActivity extends AppCompatActivity implements ActivityCompa
             }
         });
 
-
     }
-
-
 
 }

@@ -86,7 +86,7 @@ public class ToolBar extends Toolbar {
         if(mView == null) {
 
             mInflater = LayoutInflater.from(getContext());
-            mView = mInflater.inflate(R.layout.toolbar, null);
+            mView = mInflater.inflate(R.layout.widget_toolbar, null);
 
 
             mTextTitle = (TextView) mView.findViewById(R.id.toolbar_title);

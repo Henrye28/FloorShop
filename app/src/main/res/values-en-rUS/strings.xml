@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CNiao5Shop</string>
+    <string name="app_name">FloorShop</string>
 
     <string name="action_settings">Settings</string>
 
+    <string name="AlertBox_title_Login">Login failed, Please check password and phone number</string>
+    <string name="AlertBox_title">Reminder</string>
     <string name="home">Homepage</string>
     <string name="hot">Hot</string>
     <string name="catagory">Classification</string>

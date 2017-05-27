@@ -22,6 +22,8 @@ import cn.bmob.sms.BmobSMS;
 import cn.bmob.sms.exception.BmobException;
 import cn.bmob.sms.listener.RequestSMSCodeListener;
 import cn.bmob.sms.listener.VerifySMSCodeListener;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Created by henryye on 5/17/17.
@@ -36,6 +38,7 @@ public class RegisterSecondActivity extends AppCompatActivity {
     private String code;
     private String mobile;
     private String pwd;
+    private User user;
 
 
     @Override
@@ -58,7 +61,10 @@ public class RegisterSecondActivity extends AppCompatActivity {
         pwd = in.getStringExtra("userPwd");
         code = codeInput.getText().toString();
 
-        User u = new User(mobile, pwd);
+        user = new User(mobile, pwd);
+
+
+
 
         countDownButton.setOnClickListener(countDownButton);
 
@@ -84,7 +90,12 @@ public class RegisterSecondActivity extends AppCompatActivity {
         toolbar.setRightButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                codeVerifying();
+                try {
+                    codeVerifying();
+                }catch (Exception e){
+
+                }
+
             }
         });
     }
@@ -95,25 +106,31 @@ public class RegisterSecondActivity extends AppCompatActivity {
         BmobSMS.requestSMSCode(this, number, "Test1", new RequestSMSCodeListener() {
             @Override
             public void done(Integer smsId, BmobException ex) {
-                Log.d("Testing" , " ----- sent");
-                Log.d("Testing" , " ----- number " + number);
                 // TODO Auto-generated method stub
                 if (ex == null) {
-                    Log.d("Testing" , " ----- 2 sent");
                     Log.i("bmob", "SMS ID ：" + smsId);
                 }else{
-                    Log.d("Testing" , " ----- 3 sent");
                     ex.printStackTrace();
                 }
             }
         });
     }
 
-    private void codeVerifying(){
+    private void codeVerifying (){
         BmobSMS.verifySmsCode(this, mobile, code, new VerifySMSCodeListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
+                    user.signUp(new SaveListener<BmobUser>() {
+                        @Override
+                        public void done(BmobUser bmobUser, cn.bmob.v3.exception.BmobException e) {
+                            if(e == null){
+                                    //Jump to login page
+                            }else{
+                                    //Jump to register fail page
+                            }
+                        }
+                    });
                 } else {
                     Toast.makeText(mContext, "Incorrect verifying code", Toast.LENGTH_SHORT).show();
                 }
