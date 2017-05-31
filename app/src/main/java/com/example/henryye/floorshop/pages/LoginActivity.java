@@ -1,7 +1,9 @@
 package com.example.henryye.floorshop.pages;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.bean.User;
@@ -34,12 +38,16 @@ public class LoginActivity  extends AppCompatActivity {
     private LoadingViewWithText loadingView;
     private RelativeLayout rootView;
     private LinearLayout loadingBackground;
+    private TextView signUp;
+    private TextView forgotPwd;
+    private Intent in;
+    private Context mContext;
 
     /**
      * Login page
      *
      * @author Henry
-     * @param loadingBackGround this is the translucent background when loading box is loading
+     * loadingbackGround this is the translucent background when loading box is loading
      *
      */
 
@@ -49,10 +57,13 @@ public class LoginActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-
+        in = new Intent(this,RegisterActivity.class);
         mobile = (ClearEditText)findViewById(R.id.etxt_phone);
         pwd = (ClearEditText)findViewById(R.id.etxt_pwd);
         login_btn = (Button)findViewById(R.id.btn_login);
+
+        signUp = (TextView)findViewById(R.id.txt_signUp);
+        forgotPwd = (TextView)findViewById(R.id.txt_forgetPwd);
 
         loadingBackground = (LinearLayout)findViewById(R.id.loading_background);
         builder = new AlertBox.Builder(this);;
@@ -60,6 +71,8 @@ public class LoginActivity  extends AppCompatActivity {
 
         loadingView = new LoadingViewWithText(this);
         rootView = (RelativeLayout) ((ViewGroup)findViewById(android.R.id.content)).getChildAt(0);
+
+        mContext = this;
 
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,23 +84,45 @@ public class LoginActivity  extends AppCompatActivity {
                 login();
             }
         });
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Jump to register page
+                startActivity(in);
+            }
+        });
+
+        forgotPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Jump to password reset page
+
+            }
+        });
     }
 
 
 
 
     public void login(){
+        user = new User();
+        user.setMobile(mobile.getText().toString());
+        user.setPassword(pwd.getText().toString());
+        //Need to set username correct, or wont be able to login
+        user.setUsername(mobile.getText().toString());
 
-        user = new User(mobile.getText().toString(),pwd.getText().toString());
         user.login( new SaveListener<BmobUser>() {
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
                 if(e==null){
                     rootView.removeView(loadingView);
+                    Toast.makeText(mContext,"Login done",Toast.LENGTH_SHORT).show();
                     //Jump to stores page
                     //通过BmobUser user = BmobUser.getCurrentUser()获取登录成功后的本地用户信息
                     //如果是自定义用户对象MyUser，可通过MyUser user = BmobUser.getCurrentUser(MyUser.class)获取自定义用户
                 }else{
+
                     rootView.removeView(loadingView);
                     rootView.setEnabled(true);
                     loadingBackground.setBackgroundColor(getResources().getColor(R.color.transparent));

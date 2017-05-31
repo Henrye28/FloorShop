@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            app:navigationIcon="@drawable/icon_back_32px"
+            app:navigationIcon="@drawable/icon_back_32"
             app:title="FloorShop Login"
             />
 
@@ -77,7 +77,7 @@
             android:padding="@dimen/largePadding">
 
             <TextView
-                android:id="@+id/txt_toReg"
+                android:id="@+id/txt_signUp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -89,6 +89,7 @@
                 />
 
             <TextView
+                android:id="@+id/txt_forgetPwd"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

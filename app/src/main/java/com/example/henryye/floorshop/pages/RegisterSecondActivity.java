@@ -22,7 +22,6 @@ import cn.bmob.sms.BmobSMS;
 import cn.bmob.sms.exception.BmobException;
 import cn.bmob.sms.listener.RequestSMSCodeListener;
 import cn.bmob.sms.listener.VerifySMSCodeListener;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.SaveListener;
 
 /**
@@ -56,18 +55,17 @@ public class RegisterSecondActivity extends AppCompatActivity {
 
 
         // Design a countdown button
-        Intent in = getIntent();
+        in = getIntent();
         mobile = in.getStringExtra("userMobile");
         pwd = in.getStringExtra("userPwd");
-        code = codeInput.getText().toString();
-
-        user = new User(mobile, pwd);
 
 
-
+        user = new User();
+        user.setUsername(mobile);
+        user.setMobile(mobile);
+        user.setPassword(pwd);
 
         countDownButton.setOnClickListener(countDownButton);
-
 
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
 
@@ -91,9 +89,10 @@ public class RegisterSecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    code = codeInput.getText().toString();
                     codeVerifying();
                 }catch (Exception e){
-
+                    Log.d("Verifying enter "," ----------------enter error"+e.getMessage() );
                 }
 
             }
@@ -120,19 +119,26 @@ public class RegisterSecondActivity extends AppCompatActivity {
         BmobSMS.verifySmsCode(this, mobile, code, new VerifySMSCodeListener() {
             @Override
             public void done(BmobException e) {
+
                 if (e == null) {
-                    user.signUp(new SaveListener<BmobUser>() {
+                    user.signUp(new SaveListener<User>() {
                         @Override
-                        public void done(BmobUser bmobUser, cn.bmob.v3.exception.BmobException e) {
+                        public void done(User bmobUser, cn.bmob.v3.exception.BmobException e) {
                             if(e == null){
-                                    //Jump to login page
+                                    //Jump to homepage
+                                Toast.makeText(mContext,"Register successfully",Toast.LENGTH_SHORT).show();
+                                in = new Intent(mContext,LoginActivity.class);
+                                startActivity(in);
+
                             }else{
+                                Toast.makeText(mContext,"Wrong verifying code",Toast.LENGTH_SHORT).show();
                                     //Jump to register fail page
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(mContext, "Incorrect verifying code", Toast.LENGTH_SHORT).show();
+                    Log.d("Register "," -----------fail" + e.getMessage());
+                    // THE ERROR IS HERE !!!!!!!!!!!!!!!!
                 }
             }
         });

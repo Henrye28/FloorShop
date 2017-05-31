@@ -3,11 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="cniao5.com.cniao5shop.RegSecondActivity"
     android:orientation="vertical"
     android:background="@color/bg_color">
-
-
 
     <com.example.henryye.floorshop.wigets.ToolBar
         android:id="@id/toolbar"
@@ -15,8 +12,7 @@
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        app:navigationIcon="@drawable/icon_back_32px"
+        app:navigationIcon="@drawable/icon_back_32"
         app:title="Sign up(2/2)"
         app:rightButtonText="Complete"
         />
@@ -40,7 +36,6 @@
         android:padding="@dimen/largePadding"
         android:orientation="vertical"
         android:background="@color/white"
-
         >
 
 
@@ -48,8 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
-
-
             >
 
             <com.example.henryye.floorshop.wigets.ClearEditText
@@ -60,7 +53,7 @@
                 style="@style/editText_base"
                 android:hint="Verifying code"
                 android:inputType="number"
-                android:maxLength="4"/>
+                android:maxLength="6"/>
 
 
             <com.example.henryye.floorshop.wigets.CountDownButton

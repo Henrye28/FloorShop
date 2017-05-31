@@ -1,7 +1,9 @@
 package com.example.henryye.floorshop.pages;
 
+import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -11,10 +13,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.henryye.floorshop.GlobalFunctions;
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.fragments.CountryChoosingFragment;
+import com.example.henryye.floorshop.wigets.AlertBox;
 import com.example.henryye.floorshop.wigets.ClearEditText;
 import com.example.henryye.floorshop.wigets.ToolBar;
 
@@ -34,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity implements ActivityCompa
     private ClearEditText mobileInput;
     private ClearEditText pwdInput;
     private EditText codeInput;
+    private AlertBox.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +52,13 @@ public class RegisterActivity extends AppCompatActivity implements ActivityCompa
         codeInput = (EditText)findViewById(R.id.txtCountryCode);
 
         in = new Intent(this,RegisterSecondActivity.class);
-
+        builder = new AlertBox.Builder(this);
         ccf = new CountryChoosingFragment();
 
         Resources res = getResources();
         array = res.getStringArray(R.array.country_code_list_en);
         codes = new String[array.length];
         countries = new String[array.length];
-
 
         // get digits from countries array
         int i = 0;
@@ -69,12 +72,10 @@ public class RegisterActivity extends AppCompatActivity implements ActivityCompa
         }
 
 
-
         toolbar.setRightButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!mobileInput.getText().toString().isEmpty() && !pwdInput.getText().toString().isEmpty()) {
-
+                if(GlobalFunctions.isMobileNO(mobileInput.getText().toString()) && GlobalFunctions.isRightPwd(pwdInput.getText().toString())){
                    // in.putExtra("userMobile", codeInput.getText().toString().trim() + " " + mobileInput.getText().toString());
                    if(mobileInput.getText().toString() != null && pwdInput.getText().toString() != null) {
                        in.putExtra("userMobile", mobileInput.getText().toString());
@@ -82,7 +83,19 @@ public class RegisterActivity extends AppCompatActivity implements ActivityCompa
                        startActivity(in);
                    }
                 }else{
-                    Toast.makeText(RegisterActivity.this,"Mobile or password should not be empty",Toast.LENGTH_SHORT).show();
+                    builder.setTitle("Reminder");
+                    builder.setMessage("Please Check your phone number and password format \n password should contains both character and number");
+                    builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new Dialog.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.create().show();
                 }
             }
         });
