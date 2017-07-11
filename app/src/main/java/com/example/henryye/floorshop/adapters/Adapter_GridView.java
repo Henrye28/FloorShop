@@ -1,13 +1,14 @@
 package com.example.henryye.floorshop.adapters;
 
-import com.jarvis.mytaobaotest.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
+import com.example.henryye.floorshop.R;
+
 
 public class Adapter_GridView extends BaseAdapter {
 private Context context;
@@ -39,7 +40,7 @@ private int[] data;
 		HolderView holderView=null;
 		if (currentView==null) {
 			holderView=new HolderView();
-			currentView= LayoutInflater.from(context).inflate(R.layout.adapter_grid_home, null);
+			currentView= LayoutInflater.from(context).inflate(R.layout.adapter_grid_homepage, null);
 			holderView.iv_pic=(ImageView) currentView.findViewById(R.id.iv_adapter_grid_pic);
 			currentView.setTag(holderView);
 		}else {

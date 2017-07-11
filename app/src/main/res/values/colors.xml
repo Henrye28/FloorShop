@@ -118,6 +118,8 @@
     <color name="fuchsia">#ff00ff</color>
     <!-- 紫红色 -->
     <color name="magenta">#ff00ff</color>
+    <!-- 黑色 -->
+    <color name="tv_Black">#000000</color>
     <!-- 红紫色 -->
     <color name="red">#ff0000</color>
     <!-- 红色 -->
@@ -180,7 +182,8 @@
     <color name="thistle">#d8bfd8</color>
     <!-- 蓟色 -->
     <color name="lightgray">#d3d3d3</color>
-
+    <!--背景灰-->
+    <color name="bg_Gray">#CCCCCC</color>
     <!-- 亮灰色 -->
     <color name="tan">#d2b48c</color>
     <!-- 茶色 -->

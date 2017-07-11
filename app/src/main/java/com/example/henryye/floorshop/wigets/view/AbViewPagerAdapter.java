@@ -1,19 +1,14 @@
 package com.example.henryye.floorshop.wigets.view;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-/**
- * 
- * ��ƣ�AbViewPagerAdapter.java 
- * ������һ��ͨ�õ�ViewPager������
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+
 @SuppressLint("UseSparseArrays")
 @SuppressWarnings("unused")
 public class AbViewPagerAdapter extends PagerAdapter {
@@ -40,7 +35,6 @@ public class AbViewPagerAdapter extends PagerAdapter {
 	}
 
 	/**
-	 * ��������ȡ����.
 	 *
 	 * @return the count
 	 * @see android.support.v4.view.PagerAdapter#getCount()
@@ -51,7 +45,6 @@ public class AbViewPagerAdapter extends PagerAdapter {
 	}
 
 	/**
-	 * ������Object�Ƿ��Ӧ���View.
 	 *
 	 * @param arg0 the arg0
 	 * @param arg1 the arg1
@@ -64,7 +57,6 @@ public class AbViewPagerAdapter extends PagerAdapter {
 	}
 
 	/**
-	 * ��������ʾView.
 	 *
 	 * @param container the container
 	 * @param position the position
@@ -79,7 +71,6 @@ public class AbViewPagerAdapter extends PagerAdapter {
 	}
 
 	/**
-	 * �������Ƴ�View.
 	 *
 	 * @param container the container
 	 * @param position the position
@@ -92,7 +83,6 @@ public class AbViewPagerAdapter extends PagerAdapter {
 	}
 
 	/**
-	 * ����������Ҫ��������notifyDataSetChanged.
 	 *
 	 * @param object the object
 	 * @return the item position

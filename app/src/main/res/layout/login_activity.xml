@@ -84,8 +84,6 @@
                 android:text="sign up"
                 android:textColor="@color/blue"
                 android:textSize="12sp"
-
-
                 />
 
             <TextView
@@ -97,7 +95,6 @@
                 android:text="forget password"
                 android:textColor="@color/blue"
                 android:textSize="12sp"
-
                 />
         </LinearLayout>
     </LinearLayout>

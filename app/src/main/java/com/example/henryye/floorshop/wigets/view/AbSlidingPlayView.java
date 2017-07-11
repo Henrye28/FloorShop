@@ -1,11 +1,6 @@
 
 package com.example.henryye.floorshop.wigets.view;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -28,14 +23,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * ��ƣ�AbPlayView �������ɲ�����ʾ��View.
- * 
- * @author tans
- * @date 2014-09-26
- * @version
- */
+
 @SuppressLint("HandlerLeak")
 public class AbSlidingPlayView extends LinearLayout {
 
@@ -44,7 +37,7 @@ public class AbSlidingPlayView extends LinearLayout {
 
 	/** The Constant D. */
 	@SuppressWarnings("unused")
-	private  final boolean D = AbAppData.DEBUG;
+	private  final boolean D = false;
 
 	/** The context. */
 	private Context context;
@@ -56,7 +49,7 @@ public class AbSlidingPlayView extends LinearLayout {
 	private LinearLayout pageLineLayout;
 
 	/** The layout params pageLine. */
-	public LinearLayout.LayoutParams pageLineLayoutParams = null;
+	public LayoutParams pageLineLayoutParams = null;
 
 	/** The i. */
 	private int count, position;
@@ -77,13 +70,13 @@ public class AbSlidingPlayView extends LinearLayout {
 	private AbOnTouchListener mAbOnTouchListener;
 
 	/** The layout params ff. */
-	public LinearLayout.LayoutParams layoutParamsFF = null;
+	public LayoutParams layoutParamsFF = null;
 
 	/** The layout params fw. */
-	public LinearLayout.LayoutParams layoutParamsFW = null;
+	public LayoutParams layoutParamsFW = null;
 
 	/** The layout params wf. */
-	public LinearLayout.LayoutParams layoutParamsWF = null;
+	public LayoutParams layoutParamsWF = null;
 
 	/** The m list views. */
 	private ArrayList<View> mListViews = null;
@@ -91,74 +84,50 @@ public class AbSlidingPlayView extends LinearLayout {
 	/** The m ab view pager adapter. */
 	private AbViewPagerAdapter mAbViewPagerAdapter = null;
 
-	/** �����ĵ㸸View */
 	private LinearLayout mPageLineLayoutParent = null;
 
-	/** The page line horizontal gravity. */
 	private int pageLineHorizontalGravity = Gravity.RIGHT;
 
-	/** ���ŵķ��� */
 	private int playingDirection = 0;
 
-	/** ���ŵĿ��� */
 	private boolean play = false;
-	/** ���ŵļ��ʱ�� */
+
 	private int sleepTime = 5000;
-	/** ���ŷ���ʽ��1˳�򲥷ź�0���ز��ţ� */
+
 	private int playType = 1;
 
-	/**
-	 * ����һ��AbSlidingPlayView
-	 *
-	 * @param context
-	 */
 	public AbSlidingPlayView(Context context) {
 		super(context);
 		initView(context);
 	}
 
-	/**
-	 * ��xml��ʼ����AbSlidingPlayView
-	 *
-	 * @param context
-	 *            the context
-	 * @param attrs
-	 *            the attrs
-	 */
 	public AbSlidingPlayView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
 	}
 
 
-	/**
-	 *
-	 * ��������ʼ�����View
-	 *
-	 * @param context
-	 * @throws
-	 */
 	public void initView(Context context) {
 		this.context = context;
-		layoutParamsFF = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		layoutParamsFW = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		layoutParamsWF = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-		pageLineLayoutParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		layoutParamsFF = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		layoutParamsFW = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		layoutParamsWF = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+		pageLineLayoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		this.setOrientation(LinearLayout.VERTICAL);
 		this.setBackgroundColor(Color.rgb(255, 255, 255));
 
 		RelativeLayout mRelativeLayout = new RelativeLayout(context);
 
 		mViewPager = new AbInnerViewPager(context);
-		// �ֶ�������ViewPager,�����fragment�������setId()��������һ��id
+
 		mViewPager.setId(1985);
-		// �����ĵ�
+
 		mPageLineLayoutParent = new LinearLayout(context);
 		mPageLineLayoutParent.setPadding(0, 5, 0, 5);
 		pageLineLayout = new LinearLayout(context);
 		pageLineLayout.setPadding(15, 1, 15, 1);
 		pageLineLayout.setVisibility(View.INVISIBLE);
-		mPageLineLayoutParent.addView(pageLineLayout, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		mPageLineLayoutParent.addView(pageLineLayout, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
 		RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		lp1.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
@@ -200,11 +169,6 @@ public class AbSlidingPlayView extends LinearLayout {
 
 	}
 	
-	/**
-	 * �õ���ȡͼƬ
-	 * @param name ͼƬ������
-	 * @return
-	 */
 	private Bitmap getBitmapFormSrc(String name){
 		Bitmap bitmap=null;
 		
@@ -217,9 +181,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		return bitmap;
 	}
 
-	/**
-	 * ����������.
-	 */
 	public void creatIndex() {
 		// ��ʾ����ĵ�
 		pageLineLayout.removeAllViews();
@@ -240,9 +201,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		}
 	}
 
-	/**
-	 * ��λ���λ��.
-	 */
 	public void makesurePosition() {
 		position = mViewPager.getCurrentItem();
 		for (int j = 0; j < count; j++) {
@@ -254,12 +212,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		}
 	}
 
-	/**
-	 * ��������ӿɲ�����ͼ.
-	 * 
-	 * @param view
-	 *            the view
-	 */
 	public void addView(View view) {
 		mListViews.add(view);
 		if (view instanceof AbsListView) {
@@ -289,12 +241,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		creatIndex();
 	}
 
-	/**
-	 * ��������ӿɲ�����ͼ�б�.
-	 * 
-	 * @param views
-	 *            the views
-	 */
 	public void addViews(List<View> views) {
 		mListViews.addAll(views);
 		for (View view : views) {
@@ -323,10 +269,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		creatIndex();
 	}
 
-	/**
-	 * ������ɾ��ɲ�����ͼ.
-	 * 
-	 */
 	@Override
 	public void removeAllViews() {
 		mListViews.clear();
@@ -334,12 +276,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		creatIndex();
 	}
 
-	/**
-	 * ����������ҳ���л��¼�.
-	 * 
-	 * @param position
-	 *            the position
-	 */
 	private void onPageScrolledCallBack(int position) {
 		if (mAbScrolledListener != null) {
 			mAbScrolledListener.onScroll(position);
@@ -347,12 +283,6 @@ public class AbSlidingPlayView extends LinearLayout {
 
 	}
 
-	/**
-	 * ����������ҳ���л��¼�.
-	 * 
-	 * @param position
-	 *            the position
-	 */
 	private void onPageSelectedCallBack(int position) {
 		if (mAbChangeListener != null) {
 			mAbChangeListener.onChange(position);
@@ -360,7 +290,6 @@ public class AbSlidingPlayView extends LinearLayout {
 
 	}
 
-	/** �����ֻ��� handler. */
 	private Handler handler = new Handler() {
 
 		@Override
@@ -376,7 +305,6 @@ public class AbSlidingPlayView extends LinearLayout {
 
 	};
 
-	/** �����ֲ����߳�. */
 	private Runnable runnable = new Runnable() {
 		public void run() {
 			if (mViewPager != null) {
@@ -385,9 +313,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		}
 	};
 
-	/**
-	 * �������Զ��ֲ�. sleepTime ���ŵļ��ʱ��
-	 */
 	public void startPlay() {
 		if (handler != null) {
 			play = true;
@@ -395,9 +320,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		}
 	}
 
-	/**
-	 * �������Զ��ֲ�.
-	 */
 	public void stopPlay() {
 		if (handler != null) {
 			play = false;
@@ -405,55 +327,22 @@ public class AbSlidingPlayView extends LinearLayout {
 		}
 	}
 
-	/**
-	 * ���õ���¼�����.
-	 * 
-	 * @param onItemClickListener
-	 *            the new on item click listener
-	 */
 	public void setOnItemClickListener(AbOnItemClickListener onItemClickListener) {
 		mOnItemClickListener = onItemClickListener;
 	}
 
-	/**
-	 * ����������ҳ���л��ļ�����.
-	 * 
-	 * @param abChangeListener
-	 *            the new on page change listener
-	 */
 	public void setOnPageChangeListener(AbOnChangeListener abChangeListener) {
 		mAbChangeListener = abChangeListener;
 	}
 
-	/**
-	 * ����������ҳ�滬���ļ�����.
-	 * 
-	 * @param abScrolledListener
-	 *            the new on page scrolled listener
-	 */
 	public void setOnPageScrolledListener(AbOnScrollListener abScrolledListener) {
 		mAbScrolledListener = abScrolledListener;
 	}
 
-	/**
-	 * 
-	 * ����������ҳ��Touch�ļ�����.
-	 * 
-	 * @param abOnTouchListener
-	 * @throws
-	 */
 	public void setOnTouchListener(AbOnTouchListener abOnTouchListener) {
 		mAbOnTouchListener = abOnTouchListener;
 	}
 
-	/**
-	 * Sets the page line image.
-	 * 
-	 * @param displayImage
-	 *            the display image
-	 * @param hideImage
-	 *            the hide image
-	 */
 	public void setPageLineImage(Bitmap displayImage, Bitmap hideImage) {
 		this.displayImage = displayImage;
 		this.hideImage = hideImage;
@@ -461,93 +350,44 @@ public class AbSlidingPlayView extends LinearLayout {
 
 	}
 
-	/**
-	 * ��������ȡ���������ViewPager��.
-	 * 
-	 * @return the view pager
-	 */
 	public ViewPager getViewPager() {
 		return mViewPager;
 	}
 
-	/**
-	 * ��������ȡ��ǰ��View������.
-	 * 
-	 * @return the count
-	 */
 	public int getCount() {
 		return mListViews.size();
 	}
 
-	/**
-	 * ����������ҳ��ʾ����λ��,��AddViewǰ����.
-	 * 
-	 * @param horizontalGravity
-	 *            the new page line horizontal gravity
-	 */
 	public void setPageLineHorizontalGravity(int horizontalGravity) {
 		pageLineHorizontalGravity = horizontalGravity;
 	}
 
-	/**
-	 * ��������ScrollView��Ҫ����.
-	 * 
-	 * @param parentScrollView
-	 *            the new parent scroll view
-	 */
 	public void setParentScrollView(ScrollView parentScrollView) {
 		this.mViewPager.setParentScrollView(parentScrollView);
 	}
 
-	/**
-	 * ��������ListView��Ҫ����.
-	 * 
-	 * @param parentListView
-	 *            the new parent list view
-	 */
 	public void setParentListView(ListView parentListView) {
 		this.mViewPager.setParentListView(parentListView);
 	}
 
-	/**
-	 * 
-	 * ���������õ�����ı���
-	 * 
-	 * @param resid
-	 * @throws
-	 */
 	public void setPageLineLayoutBackground(int resid) {
 		pageLineLayout.setBackgroundResource(resid);
 	}
 
-	/**
-	 * ���������ò��ŵļ��ʱ��
-	 * @param sleepTime  ���ʱ�䵥λ�Ǻ���
-	 */
 	public void setSleepTime(int sleepTime) {
 		this.sleepTime = sleepTime;
 	}
 
-	/**
-	 *  ���������ò��ŷ���ķ�ʽ��1˳�򲥷ź�0���ز��ţ� playType 
-	 * @param playType    Ϊ0��ʾ���ز��ţ�Ϊ1��ʾ˳�򲥷�
-	 */
 	public void setPlayType(int playType) {
 		this.playType = playType;
 	}
 
 
-	/**
-	 * ������������ʾ���棨1˳�򲥷ź�0���ز��ţ� playType Ϊ0��ʾ���ز��ţ�Ϊ1��ʾ˳�򲥷�
-	 */
 	public void ShowPlay() {
-		//��ҳ��
 		int count = mListViews.size();
-		// ��ǰ��ʾ��ҳ��
 		int i = mViewPager.getCurrentItem();
 		switch (playType) {
 		case 0:
-			// ���ز���
 			if (playingDirection == 0) {
 				if (i == count - 1) {
 					playingDirection = -1;
@@ -565,7 +405,6 @@ public class AbSlidingPlayView extends LinearLayout {
 			}
 			break;
 		case 1:
-			// ˳�򲥷�
 			if (i == count - 1) {
 				i = 0;
 			} else {
@@ -577,7 +416,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		default:
 			break;
 		}
-		// ������ʾ�ڼ�ҳ
 		mViewPager.setCurrentItem(i, true);
 	}
 
