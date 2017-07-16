@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/henryye/FloorShop/app/build/intermediates/res/merged/debug/menu/menu_new_order.xml",
+        "source": "/Users/henryye/FloorShop/app/src/main/res/menu/menu_new_order.xml"
+    },
+    {
+        "merged": "/Users/henryye/FloorShop/app/build/intermediates/res/merged/debug/menu/menu_main.xml",
+        "source": "/Users/henryye/FloorShop/app/src/main/res/menu/menu_main.xml"
+    },
+    {
+        "merged": "/Users/henryye/FloorShop/app/build/intermediates/res/merged/debug/menu/menu_reg.xml",
+        "source": "/Users/henryye/FloorShop/app/src/main/res/menu/menu_reg.xml"
+    }
+]

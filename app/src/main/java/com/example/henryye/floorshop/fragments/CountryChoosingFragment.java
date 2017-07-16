@@ -33,7 +33,7 @@ public class CountryChoosingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.country_choosing_activity, container, false);
+        view = inflater.inflate(R.layout.country_choosing_page, container, false);
         back = (ImageView)view.findViewById(R.id.back);
         countryList = (ListView)view.findViewById(R.id.countryList);
         Resources res = getResources();

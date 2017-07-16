@@ -1,0 +1,520 @@
+[
+    {
+        "outputFile": "/Users/henryye/FloorShop/app/build/intermediates/res/merged/debug/values-bo-rCN/values-bo-rCN.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 45,
+                    "endOffset": 96
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 276,
+                        "endColumn": 45,
+                        "endOffset": 317
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 101,
+                    "endColumn": 65,
+                    "endOffset": 162
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 210,
+                        "endColumn": 65,
+                        "endOffset": 271
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 167,
+                    "endColumn": 44,
+                    "endOffset": 207
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 157,
+                        "endColumn": 52,
+                        "endOffset": 205
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 212,
+                    "endColumn": 52,
+                    "endOffset": 260
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 103,
+                        "endColumn": 52,
+                        "endOffset": 151
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 265,
+                    "endColumn": 48,
+                    "endOffset": 309
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 1184,
+                        "endColumn": 48,
+                        "endOffset": 1228
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 314,
+                    "endColumn": 46,
+                    "endOffset": 356
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 46,
+                        "endOffset": 97
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 361,
+                    "endColumn": 36,
+                    "endOffset": 393
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 433,
+                        "endColumn": 36,
+                        "endOffset": 465
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 398,
+                    "endColumn": 39,
+                    "endOffset": 433
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 393,
+                        "endColumn": 39,
+                        "endOffset": 428
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 438,
+                    "endColumn": 45,
+                    "endOffset": 479
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 1094,
+                        "endColumn": 45,
+                        "endOffset": 1135
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 484,
+                    "endColumn": 54,
+                    "endOffset": 534
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 1233,
+                        "endColumn": 54,
+                        "endOffset": 1283
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 539,
+                    "endColumn": 50,
+                    "endOffset": 585
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 30,
+                        "startColumn": 4,
+                        "startOffset": 1288,
+                        "endColumn": 50,
+                        "endOffset": 1334
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 590,
+                    "endColumn": 35,
+                    "endOffset": 621
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 322,
+                        "endColumn": 35,
+                        "endOffset": 353
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 626,
+                    "endColumn": 34,
+                    "endOffset": 656
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 358,
+                        "endColumn": 34,
+                        "endOffset": 388
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 661,
+                    "endColumn": 39,
+                    "endOffset": 696
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 832,
+                        "endColumn": 39,
+                        "endOffset": 867
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 701,
+                    "endColumn": 35,
+                    "endOffset": 732
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 470,
+                        "endColumn": 35,
+                        "endOffset": 501
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 737,
+                    "endColumn": 45,
+                    "endOffset": 778
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 746,
+                        "endColumn": 45,
+                        "endOffset": 787
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 783,
+                    "endColumn": 44,
+                    "endOffset": 823
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 660,
+                        "endColumn": 44,
+                        "endOffset": 700
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 828,
+                    "endColumn": 40,
+                    "endOffset": 864
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 705,
+                        "endColumn": 40,
+                        "endOffset": 741
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 869,
+                    "endColumn": 39,
+                    "endOffset": 904
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 792,
+                        "endColumn": 39,
+                        "endOffset": 827
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 909,
+                    "endColumn": 42,
+                    "endOffset": 947
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 617,
+                        "endColumn": 42,
+                        "endOffset": 655
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 952,
+                    "endColumn": 43,
+                    "endOffset": 991
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 1140,
+                        "endColumn": 43,
+                        "endOffset": 1179
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 996,
+                    "endColumn": 36,
+                    "endOffset": 1028
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 580,
+                        "endColumn": 36,
+                        "endOffset": 612
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 1033,
+                    "endColumn": 69,
+                    "endOffset": 1098
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 965,
+                        "endColumn": 69,
+                        "endOffset": 1030
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 1103,
+                    "endColumn": 58,
+                    "endOffset": 1157
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 1035,
+                        "endColumn": 58,
+                        "endOffset": 1089
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 1162,
+                    "endColumn": 73,
+                    "endOffset": 1231
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 506,
+                        "endColumn": 73,
+                        "endOffset": 575
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 1236,
+                    "endColumn": 41,
+                    "endOffset": 1273
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 872,
+                        "endColumn": 41,
+                        "endOffset": 909
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 28,
+                    "startColumn": 4,
+                    "startOffset": 1278,
+                    "endColumn": 50,
+                    "endOffset": 1324
+                },
+                "from": {
+                    "file": "/Users/henryye/FloorShop/app/src/main/res/values-bo-rCN/strings.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 914,
+                        "endColumn": 50,
+                        "endOffset": 960
+                    }
+                }
+            }
+        ]
+    }
+]

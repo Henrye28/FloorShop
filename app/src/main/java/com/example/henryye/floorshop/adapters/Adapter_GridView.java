@@ -40,7 +40,7 @@ private int[] data;
 		HolderView holderView=null;
 		if (currentView==null) {
 			holderView=new HolderView();
-			currentView= LayoutInflater.from(context).inflate(R.layout.adapter_grid_homepage, null);
+			currentView= LayoutInflater.from(context).inflate(R.layout.widget_adapter_grid_homepage, null);
 			holderView.iv_pic=(ImageView) currentView.findViewById(R.id.iv_adapter_grid_pic);
 			currentView.setTag(holderView);
 		}else {

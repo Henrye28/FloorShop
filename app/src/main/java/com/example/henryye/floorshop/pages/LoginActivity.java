@@ -55,7 +55,7 @@ public class LoginActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.login_page);
 
         in = new Intent(this,RegisterActivity.class);
         mobile = (ClearEditText)findViewById(R.id.etxt_phone);

@@ -32,8 +32,7 @@ public class Homepage_Tab extends Fragment {
     private int[] viewPagerResID = {R.drawable.viewpager_market1, R.drawable.viewpager_market2, R.drawable.viewpager_market3};
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.homepage, null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.homepage_tab, null);
         initView(view);
         return view;
     }
@@ -61,7 +60,6 @@ public class Homepage_Tab extends Fragment {
         initViewPager();
     }
 
-
     private void initViewPager() {
 
         if (allListView != null) {
@@ -72,12 +70,11 @@ public class Homepage_Tab extends Fragment {
 
 
         for (int i = 0; i < viewPagerResID.length; i++) {
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.viewpager_pics, null);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.widget_viewpager_pics, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.pic_item);
             imageView.setImageResource(viewPagerResID[i]);
             allListView.add(view);
         }
-
 
         viewPager.addViews(allListView);
         viewPager.startPlay();
@@ -89,8 +86,5 @@ public class Homepage_Tab extends Fragment {
             }
         });
     }
-
-
-
 
 }
