@@ -13,10 +13,6 @@ import android.widget.TextView;
 
 import com.example.henryye.floorshop.R;
 
-/**
- * Universal Loading View , it
- * Created by aliouswang on 15/5/6.
- */
 public class LoadingViewWithText extends ViewGroup{
 
     private static final String LOADING_TIP = "Loading...";

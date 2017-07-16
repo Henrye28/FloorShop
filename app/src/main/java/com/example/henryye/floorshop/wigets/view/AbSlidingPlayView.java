@@ -140,7 +140,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		mRelativeLayout.addView(mPageLineLayoutParent, lp2);
 		addView(mRelativeLayout, layoutParamsFW);
 		
-		//�õ��������ͼƬ��Դ�ļ�
 		displayImage =getBitmapFormSrc("play_display.png");
 		hideImage =getBitmapFormSrc("play_hide.png");
 
@@ -182,7 +181,6 @@ public class AbSlidingPlayView extends LinearLayout {
 	}
 
 	public void creatIndex() {
-		// ��ʾ����ĵ�
 		pageLineLayout.removeAllViews();
 		mPageLineLayoutParent.setHorizontalGravity(pageLineHorizontalGravity);
 		pageLineLayout.setGravity(Gravity.CENTER);
@@ -295,7 +293,6 @@ public class AbSlidingPlayView extends LinearLayout {
 		@Override
 		public void handleMessage(Message msg) {
 			if (msg.what == 0) {
-				//��ʾ���ŵ�ҳ��
 				ShowPlay();
 				if (play) {
 					handler.postDelayed(runnable, sleepTime);

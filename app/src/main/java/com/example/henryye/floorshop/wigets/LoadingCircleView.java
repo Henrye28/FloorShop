@@ -16,10 +16,6 @@ import android.view.View;
 
 import com.example.henryye.floorshop.R;
 
-
-/**
- * Created by aliouswang on 15/5/6.
- */
 public class LoadingCircleView extends View {
 
     private boolean bGradient;

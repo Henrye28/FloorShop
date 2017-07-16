@@ -23,7 +23,7 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
     private int[] select_on = { R.drawable.homepagetab, R.drawable.storetab, R.drawable.carttab, R.drawable.myselftab };
     private int[] select_off = { R.drawable.homepagetab, R.drawable.storetab, R.drawable.carttab, R.drawable.myselftab };
 
-    private Homepage home_F;
+    private Homepage_Tab home_F;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +46,7 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
     private void initView() {
 
         if (home_F == null) {
-            home_F = new Homepage();
+            home_F = new Homepage_Tab();
             addFragment(home_F);
             showFragment(home_F);
         } else {
@@ -60,7 +60,7 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
         switch (v.getId()) {
             case R.id.home_tab:
                 if (home_F == null) {
-                    home_F = new Homepage();
+                    home_F = new Homepage_Tab();
                     addFragment(home_F);
                     showFragment(home_F);
                 } else {
@@ -142,7 +142,7 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
     @Override
     public void transferMsg() {
         if (home_F == null) {
-            home_F = new Homepage();
+            home_F = new Homepage_Tab();
             addFragment(home_F);
             showFragment(home_F);
         } else {
