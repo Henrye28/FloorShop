@@ -17,21 +17,21 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".pages.MainPage">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity android:name=".pages.LoginActivity">
 
         </activity>
 
-
+        <activity android:name=".pages.ItemsPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".pages.RegisterActivity">
-
-
         </activity>
 
         <activity android:name=".pages.RegisterSecondActivity">
