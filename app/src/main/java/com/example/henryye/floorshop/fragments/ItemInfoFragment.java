@@ -111,6 +111,7 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
 
 
     private void setConvenientBannerPics(){
+
         convenientBannerPics.add(getResId("detail_applewatch", R.drawable.class));
         convenientBannerPics.add(getResId("detail_applewatch2", R.drawable.class));
         convenientBannerPics.add(getResId("detail_applewatch3", R.drawable.class));
@@ -172,7 +173,6 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()) {
             //OnClick logic for includeItemTab layout
         }
-
     }
 
 }
