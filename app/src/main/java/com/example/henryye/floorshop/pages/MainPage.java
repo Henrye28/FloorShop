@@ -13,8 +13,11 @@ import android.widget.ImageView;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.interfaces.IBtnCallListener;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.HashMap;
+
+import cn.bmob.v3.Bmob;
 
 public class MainPage extends FragmentActivity implements OnClickListener,IBtnCallListener {
 
@@ -28,6 +31,8 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
+        Bmob.initialize(this, "ee80fab0407209723c93996bff00b101");
+        Fresco.initialize(this);
         getSaveData();
         initView();
     }
