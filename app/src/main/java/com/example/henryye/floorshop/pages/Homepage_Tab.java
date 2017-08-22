@@ -62,7 +62,7 @@ public class Homepage_Tab extends Fragment {
 
     public void initHotItemsBlock(View view) {
         hotItem0 = (SimpleDraweeView)view.findViewById(R.id.hotItem0);
-        hotItem1 = (SimpleDragit weeView)view.findViewById(R.id.hotItem1);
+        hotItem1 = (SimpleDraweeView)view.findViewById(R.id.hotItem1);
         hotItem2 = (SimpleDraweeView)view.findViewById(R.id.hotItem2);
         hotItem3 = (SimpleDraweeView)view.findViewById(R.id.hotItem3);
 
