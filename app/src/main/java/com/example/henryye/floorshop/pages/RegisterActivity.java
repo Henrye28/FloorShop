@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity implements ActivityCompa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_activity);
+        setContentView(R.layout.register_page);
 
         countryCode = (EditText)findViewById(R.id.txtCountryCode);
         country = (TextView)findViewById(R.id.txtCountry);
