@@ -62,7 +62,7 @@ public class RegisterSecondActivity extends AppCompatActivity {
 
         user = new User();
         user.setUsername(mobile);
-        user.setMobile(mobile);
+        user.setMobilePhoneNumber(mobile);
         user.setPassword(pwd);
 
         countDownButton.setOnClickListener(countDownButton);

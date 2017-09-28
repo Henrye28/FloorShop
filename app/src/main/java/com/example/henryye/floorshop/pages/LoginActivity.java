@@ -107,7 +107,7 @@ public class LoginActivity  extends AppCompatActivity {
 
     public void login(){
         user = new User();
-        user.setMobile(mobile.getText().toString());
+        user.setMobilePhoneNumber(mobile.getText().toString());
         user.setPassword(pwd.getText().toString());
         //Need to set username correct, or wont be able to login
         user.setUsername(mobile.getText().toString());

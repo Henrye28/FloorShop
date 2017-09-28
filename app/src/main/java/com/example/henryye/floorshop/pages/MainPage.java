@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -62,6 +63,7 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
 
     @Override
     public void onClick(View v) {
+        Log.d("test", "--------- enter");
         switch (v.getId()) {
             case R.id.home_tab:
                 if (home_F == null) {
