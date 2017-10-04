@@ -152,7 +152,7 @@
                         android:alpha="0.4"
                         android:background="#dddddd" />
 
-                    <!-- 用户点评 -->
+                    <!-- comments -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"

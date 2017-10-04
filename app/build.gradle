@@ -53,5 +53,6 @@ dependencies {
     compile 'com.daimajia.androidanimations:library:1.0.3@aar'
     compile 'com.facebook.fresco:animated-webp:0.10.0'
     compile 'com.facebook.fresco:animated-gif:0.10.0'
+    compile 'com.github.allan1st:JellyRefreshLayout:2.0'
 
 }

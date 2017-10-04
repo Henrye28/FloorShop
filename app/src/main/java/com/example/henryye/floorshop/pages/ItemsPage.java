@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.adapters.ItemTitlePagerAdapter;
+import com.example.henryye.floorshop.fragments.ItemCommentFragment;
 import com.example.henryye.floorshop.fragments.ItemInfoFragment;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.gxz.PagerSlidingTabStrip;
@@ -27,7 +28,7 @@ public class ItemsPage extends AppCompatActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
     private ItemInfoFragment goodsInfoFragment;
     private ItemInfoFragment goodsDetailFragment;
-    private ItemInfoFragment goodsCommentFragment;
+    private ItemCommentFragment goodsCommentFragment;
     private ViewPager vp_content;
     private TextView tv_title;
 
@@ -45,7 +46,7 @@ public class ItemsPage extends AppCompatActivity {
 
         fragmentList.add(goodsInfoFragment = new ItemInfoFragment());
         fragmentList.add(goodsDetailFragment = new ItemInfoFragment());
-        fragmentList.add(goodsCommentFragment = new ItemInfoFragment());
+        fragmentList.add(goodsCommentFragment = new ItemCommentFragment());
         vp_content.setAdapter(new ItemTitlePagerAdapter(getSupportFragmentManager(),
                 fragmentList, new String[]{"Goods", "Detail", "Comment"}));
         vp_content.setOffscreenPageLimit(3);

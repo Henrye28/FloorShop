@@ -10,7 +10,6 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -60,7 +59,6 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
     public TextView commentContentTv, commentUserTv, commentTimeTv, commentCountTv, commentEmptyTv;
 
     public TextView itemPriceTv, itemNameTv;
-    private List<TextView> tabTextList;
     public ItemsPage activity;
     private SliderLayout viewPager;
     private LinearLayout itemAttributeSelection;
@@ -138,7 +136,6 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.mInflater = inflater;
         View rootView = inflater.inflate(R.layout.fragment_item_info, null);
-
 
         initView(rootView);
         initViewPager(rootView);
@@ -238,7 +235,6 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
                     commentUser = list.get(0).getUser().getUsername();
                     commentTime = list.get(0).getCreatedAt();
                     commentContent = list.get(0).getContent();
-                     Log.d(" ----   ", " user " + commentUser + " time " + commentTime + " content " + commentContent);
                     Message itemDetailInitiated = new Message();
                     itemDetailInitiated.obj = COMMENT_INITIATED;
                     handler.sendMessage(itemDetailInitiated);
