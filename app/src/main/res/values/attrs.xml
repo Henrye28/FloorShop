@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="CNiaoToolBar">
-
-        <attr name="rightButtonIcon" format="reference"/>
-        <attr name="isShowSearchView" format="boolean"/>
-        <attr name="rightButtonText" format="string"/>
-
+    <declare-styleable name="PageTopBar">
+        <attr name="searchButton" format="reference"/>
+        <attr name="homepageTitle" format="string"/>
     </declare-styleable>
 
     <declare-styleable name="MaterialCircleView">
-
         <attr name="bGradient" format="boolean"></attr>
         <attr name="circleColor" format="color"></attr>
         <attr name="circleWidth" format="dimension"></attr>
@@ -18,10 +14,15 @@
     </declare-styleable>
 
     <declare-styleable name="UniversalLoadingView">
-
         <attr name="bg_transparent" format="boolean"></attr>
         <attr name="bg_alpha" format="integer"></attr>
-
     </declare-styleable>
 
+    <declare-styleable name="Search_View">
+        <attr name="textSizeSearch" format="dimension"  />
+        <attr name="textColorSearch" format="color" />
+        <attr name="textHintSearch" format="string" />
+        <attr name="searchBlockHeight" format="integer" />
+        <attr name="searchBlockColor" format="color" />
+    </declare-styleable>
 </resources>

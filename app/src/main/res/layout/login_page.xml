@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.henryye.floorshop.wigets.ToolBar
+        <com.example.henryye.floorshop.widgets.ToolBar
             android:id="@id/toolbar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:padding="@dimen/largePadding">
 
 
-            <com.example.henryye.floorshop.wigets.ClearEditText
+            <com.example.henryye.floorshop.widgets.ClearEditText
                 android:id="@+id/etxt_phone"
                 style="@style/editText_base"
                 android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             <View style="@style/line_vertical" />
 
 
-            <com.example.henryye.floorshop.wigets.ClearEditText
+            <com.example.henryye.floorshop.widgets.ClearEditText
                 android:id="@+id/etxt_pwd"
                 style="@style/editText_base"
                 android:layout_width="match_parent"

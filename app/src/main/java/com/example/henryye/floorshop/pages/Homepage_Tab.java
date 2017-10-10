@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +17,8 @@ import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.adapters.Adapter_GridView;
 import com.example.henryye.floorshop.bean.HomePageBanner;
 import com.example.henryye.floorshop.bean.HomePageHotItems;
-import com.example.henryye.floorshop.wigets.MyGridView;
-import com.example.henryye.floorshop.wigets.ToolBar;
+import com.example.henryye.floorshop.widgets.MyGridView;
+import com.example.henryye.floorshop.widgets.PageTopBar;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hss01248.slider.Animations.DescriptionAnimation;
 import com.hss01248.slider.SliderLayout;
@@ -38,16 +39,16 @@ public class Homepage_Tab extends Fragment {
 
     private Adapter_GridView gradViewAdapter;
     private MyGridView myGridView;
-    private ToolBar toolbar;
+    private PageTopBar topbar;
     private ArrayList<View> allListView;
     private SliderLayout viewPager ;
+    private DrawerLayout mDrawerLayout;
     private ExecutorService threadPool = Executors.newFixedThreadPool(5);
 
     private ImageView hotItem0;
     private ImageView hotItem1;
     private ImageView hotItem2;
     private ImageView hotItem3;
-
 
     private int[] gridViewPics = { R.drawable.catogeries, R.drawable.picshare, R.drawable.saletab, R.drawable.hkmarket};
     private int[] viewPagerResID = {R.drawable.viewpager_market1, R.drawable.viewpager_market2, R.drawable.viewpager_market3};
@@ -85,7 +86,6 @@ public class Homepage_Tab extends Fragment {
         });
     };
 
-
     private void initViewPager(final View view){
         viewPager = (SliderLayout)view.findViewById(R.id.view_pager);
         BmobQuery<HomePageBanner> query = new BmobQuery<HomePageBanner>();
@@ -114,17 +114,15 @@ public class Homepage_Tab extends Fragment {
         viewPager.setDuration(3000);
     }
 
-
-
     private void initView(View view) {
-        toolbar = (ToolBar)view.findViewById(R.id.toolbar);
+        topbar = (PageTopBar)view.findViewById(R.id.pageTopBar);
         myGridView = (MyGridView) view.findViewById(R.id.my_gridview);
+        mDrawerLayout = (DrawerLayout) view.findViewById(R.id.drawer_search);
         myGridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
         gradViewAdapter = new Adapter_GridView(getActivity(), gridViewPics);
         myGridView.setAdapter(gradViewAdapter);
 
-        toolbar.showSearchView();
-
+        topbar.showHomepageView();
 
         myGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

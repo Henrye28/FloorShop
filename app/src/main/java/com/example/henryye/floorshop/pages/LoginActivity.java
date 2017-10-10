@@ -16,9 +16,9 @@ import android.widget.Toast;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.bean.User;
-import com.example.henryye.floorshop.wigets.AlertBox;
-import com.example.henryye.floorshop.wigets.ClearEditText;
-import com.example.henryye.floorshop.wigets.LoadingViewWithText;
+import com.example.henryye.floorshop.widgets.AlertBox;
+import com.example.henryye.floorshop.widgets.ClearEditText;
+import com.example.henryye.floorshop.widgets.LoadingViewWithText;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;

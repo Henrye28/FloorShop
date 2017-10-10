@@ -1,4 +1,4 @@
-package com.example.henryye.floorshop.wigets;
+package com.example.henryye.floorshop.widgets;
 
 import android.content.Context;
 import android.os.Handler;

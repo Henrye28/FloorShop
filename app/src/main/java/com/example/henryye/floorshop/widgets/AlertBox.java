@@ -1,4 +1,4 @@
-package com.example.henryye.floorshop.wigets;
+package com.example.henryye.floorshop.widgets;
 
 /**
  * Created by henryye on 5/26/17.

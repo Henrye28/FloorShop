@@ -14,9 +14,8 @@ import android.widget.Toast;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.bean.User;
-import com.example.henryye.floorshop.wigets.ClearEditText;
-import com.example.henryye.floorshop.wigets.CountDownButton;
-import com.example.henryye.floorshop.wigets.ToolBar;
+import com.example.henryye.floorshop.widgets.ClearEditText;
+import com.example.henryye.floorshop.widgets.CountDownButton;
 
 import cn.bmob.sms.BmobSMS;
 import cn.bmob.sms.exception.BmobException;
@@ -31,7 +30,7 @@ public class RegisterSecondActivity extends AppCompatActivity {
 
     private CountDownButton countDownButton;
     private Intent in;
-    private ToolBar toolbar;
+//    private ToolBar toolbar;
     private ClearEditText codeInput;
     private Context mContext;
     private String code;
@@ -49,7 +48,7 @@ public class RegisterSecondActivity extends AppCompatActivity {
 
         mContext = this;
 
-        toolbar = (ToolBar) findViewById(R.id.toolbar);
+//        toolbar = (ToolBar) findViewById(R.id.toolbar);
         countDownButton = (CountDownButton) findViewById(R.id.btn_reSend);
         codeInput = (ClearEditText) findViewById(R.id.edittxt_code);
 
@@ -85,18 +84,18 @@ public class RegisterSecondActivity extends AppCompatActivity {
             }
         });
 
-        toolbar.setRightButtonOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    code = codeInput.getText().toString();
-                    codeVerifying();
-                }catch (Exception e){
-                    Log.d("Verifying enter "," ----------------enter error"+e.getMessage() );
-                }
-
-            }
-        });
+//        toolbar.setRightButtonOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    code = codeInput.getText().toString();
+//                    codeVerifying();
+//                }catch (Exception e){
+//                    Log.d("Verifying enter "," ----------------enter error"+e.getMessage() );
+//                }
+//
+//            }
+//        });
     }
 
     private void codeSending() {

@@ -131,7 +131,6 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
         startActivity(intent);
     }
 
-
     @SuppressWarnings("unused")
     private IBtnCallListener btnCallListener;
 

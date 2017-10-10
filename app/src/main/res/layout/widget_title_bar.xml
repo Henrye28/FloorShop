@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="44dp"
-    android:orientation="vertical"
-    tools:context=".BaseActivity">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
