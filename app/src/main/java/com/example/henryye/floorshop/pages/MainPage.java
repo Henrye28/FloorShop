@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.interfaces.IBtnCallListener;
+import com.example.henryye.floorshop.widgets.DrawerView;
+import com.example.henryye.floorshop.widgets.PageTopBar;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.HashMap;
@@ -27,6 +30,9 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
     private int[] select_off = { R.drawable.homepagetab, R.drawable.storetab, R.drawable.carttab, R.drawable.myselftab };
 
     private Homepage_Tab home_F;
+    private PageTopBar topbar;
+    private DrawerView mDrawer;
+    private ImageView top_search;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +55,9 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
     }
 
     private void initView() {
+        topbar = (PageTopBar) findViewById(R.id.pageTopBar);
+        mDrawer = (DrawerView) findViewById(R.id.drawer_search);
+        top_search = (ImageView) findViewById(R.id.topbar_search);
 
         if (home_F == null) {
             home_F = new Homepage_Tab();
@@ -58,6 +67,14 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
             showFragment(home_F);
         }
 
+        topbar.showHomepageView();
+
+        top_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawer.openDrawer(GravityCompat.START);
+            }
+        });
     }
 
     @Override

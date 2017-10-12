@@ -1,170 +1,149 @@
-<com.example.henryye.floorshop.widgets.DrawerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_search"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".Tao_F">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:fresco="http://schemas.android.com/apk/res-auto"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        tools:context=".Tao_F">
+        android:layout_height="match_parent" >
 
-        <com.example.henryye.floorshop.widgets.PageTopBar
-            android:id="@+id/pageTopBar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <com.hss01248.slider.SliderLayout
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                />
+
+            <com.example.henryye.floorshop.widgets.MyGridView
+                android:id="@+id/my_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:horizontalSpacing="10dp"
+                android:numColumns="4"
+                android:verticalSpacing="10dp"
             />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/bg_Gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" >
+                android:layout_height="200dp"
+                android:orientation="horizontal" >
 
-                <com.hss01248.slider.SliderLayout
-                    android:id="@+id/view_pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    />
-
-                <com.example.henryye.floorshop.widgets.MyGridView
-                    android:id="@+id/my_gridview"
-                    android:layout_width="match_parent"
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/hotItem0"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:horizontalSpacing="10dp"
-                    android:numColumns="4"
-                    android:verticalSpacing="10dp"
-                />
+                    android:layout_weight="0.7"
+                    android:scaleType="fitXY"
+                    fresco:placeholderImage="@drawable/icon_add"/>
 
                 <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
                     android:background="@color/bg_Gray" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:orientation="horizontal" >
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
 
                     <com.facebook.drawee.view.SimpleDraweeView
-                        android:id="@+id/hotItem0"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.7"
+                        android:id="@+id/hotItem1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
                         android:scaleType="fitXY"
                         fresco:placeholderImage="@drawable/icon_add"/>
 
                     <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:background="@color/bg_Gray" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:orientation="vertical" >
+                        android:orientation="horizontal" >
 
                         <com.facebook.drawee.view.SimpleDraweeView
-                            android:id="@+id/hotItem1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                            android:id="@+id/hotItem2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:scaleType="fitXY"
                             fresco:placeholderImage="@drawable/icon_add"/>
 
                         <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
                             android:background="@color/bg_Gray" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:id="@+id/hotItem3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:orientation="horizontal" >
+                            android:scaleType="fitXY"
+                            fresco:placeholderImage="@drawable/icon_add" />
 
-                            <com.facebook.drawee.view.SimpleDraweeView
-                                android:id="@+id/hotItem2"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:scaleType="fitXY"
-                                fresco:placeholderImage="@drawable/icon_add"/>
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="match_parent"
-                                android:background="@color/bg_Gray" />
-
-                            <com.facebook.drawee.view.SimpleDraweeView
-                                android:id="@+id/hotItem3"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:scaleType="fitXY"
-                                fresco:placeholderImage="@drawable/icon_add" />
-
-                            <!--<ImageView-->
-                                <!--android:id="@+id/hotItem3"-->
-                                <!--android:layout_width="0dp"-->
-                                <!--android:layout_height="match_parent"-->
-                                <!--android:layout_weight="1"-->
-                                <!--android:scaleType="fitXY"-->
-                                <!--android:src="@drawable/menu_1_3" />-->
-                        </LinearLayout>
+                        <!--<ImageView-->
+                            <!--android:id="@+id/hotItem3"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:scaleType="fitXY"-->
+                            <!--android:src="@drawable/menu_1_3" />-->
                     </LinearLayout>
                 </LinearLayout>
+            </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:background="@color/bg_Gray" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/bg_Gray" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:background="@color/bg_Gray" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/bg_Gray" />
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:padding="10dp"
+                    android:text="Hot Items"
+                    android:textColor="@color/tv_Black"
+                    android:textSize="20sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Hot Items"
-                        android:textColor="@color/tv_Black"
-                        android:textSize="20sp" />
-
-                    <GridView
-                        android:id="@+id/my_gridview_hot"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:horizontalSpacing="5dp"
-                        android:numColumns="3"
-                        android:verticalSpacing="5dp" >
-                    </GridView>
-                </LinearLayout>
+                <GridView
+                    android:id="@+id/my_gridview_hot"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="3"
+                    android:verticalSpacing="5dp" >
+                </GridView>
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start">
-
-        <include layout="@layout/fragment_drawer"/>
-    </FrameLayout>
-</com.example.henryye.floorshop.widgets.DrawerView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

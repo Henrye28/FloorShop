@@ -29,7 +29,6 @@ public class PageTopBar extends Toolbar {
     private ImageView searchButton;
     private TextView title;
     private Typeface typeFace;
-//    private ImageView messageButton;
 
     public PageTopBar(Context context) {
         this(context, null);

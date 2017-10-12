@@ -2,9 +2,12 @@ package com.example.henryye.floorshop.pages;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,10 +42,8 @@ public class Homepage_Tab extends Fragment {
 
     private Adapter_GridView gradViewAdapter;
     private MyGridView myGridView;
-    private PageTopBar topbar;
     private ArrayList<View> allListView;
     private SliderLayout viewPager ;
-    private DrawerLayout mDrawerLayout;
     private ExecutorService threadPool = Executors.newFixedThreadPool(5);
 
     private ImageView hotItem0;
@@ -115,14 +116,11 @@ public class Homepage_Tab extends Fragment {
     }
 
     private void initView(View view) {
-        topbar = (PageTopBar)view.findViewById(R.id.pageTopBar);
         myGridView = (MyGridView) view.findViewById(R.id.my_gridview);
-        mDrawerLayout = (DrawerLayout) view.findViewById(R.id.drawer_search);
+
         myGridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
         gradViewAdapter = new Adapter_GridView(getActivity(), gridViewPics);
         myGridView.setAdapter(gradViewAdapter);
-
-        topbar.showHomepageView();
 
         myGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
