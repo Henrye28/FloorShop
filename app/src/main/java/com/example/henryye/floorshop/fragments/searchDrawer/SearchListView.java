@@ -21,7 +21,6 @@ public class SearchListView extends ListView {
         super(context, attrs, defStyle);
     }
 
-    //通过复写其onMeasure方法、达到对ScrollView适配的效果
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,

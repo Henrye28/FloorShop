@@ -5,16 +5,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.interfaces.IBtnCallListener;
-import com.example.henryye.floorshop.widgets.DrawerView;
+import com.example.henryye.floorshop.fragments.searchDrawer.DrawerView;
 import com.example.henryye.floorshop.widgets.PageTopBar;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 import cn.bmob.v3.Bmob;
 
-public class MainPage extends FragmentActivity implements OnClickListener,IBtnCallListener {
+public class MainPage extends AppCompatActivity implements OnClickListener,IBtnCallListener {
 
     private ImageView[] bt_menu = new ImageView[5];
     private int[] bt_menu_id = { R.id.home_tab, R.id.store_tab, R.id.cart_tab, R.id.myself_tab};
@@ -34,6 +34,7 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
     private DrawerView mDrawer;
     private ImageView top_search;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
@@ -59,6 +60,9 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
         mDrawer = (DrawerView) findViewById(R.id.drawer_search);
         top_search = (ImageView) findViewById(R.id.topbar_search);
 
+        setSupportActionBar(topbar);
+        topbar.showHomepageView();
+
         if (home_F == null) {
             home_F = new Homepage_Tab();
             addFragment(home_F);
@@ -66,8 +70,6 @@ public class MainPage extends FragmentActivity implements OnClickListener,IBtnCa
         } else {
             showFragment(home_F);
         }
-
-        topbar.showHomepageView();
 
         top_search.setOnClickListener(new View.OnClickListener() {
             @Override
