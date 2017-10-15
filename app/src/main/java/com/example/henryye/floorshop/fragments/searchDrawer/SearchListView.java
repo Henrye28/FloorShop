@@ -19,6 +19,7 @@ public class SearchListView extends ListView {
 
     public SearchListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
     }
 
     @Override

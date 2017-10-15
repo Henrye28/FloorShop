@@ -1,6 +1,7 @@
 package com.example.henryye.floorshop.fragments.searchDrawer;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -35,6 +36,7 @@ public class EditText_Clear extends android.support.v7.widget.AppCompatEditText 
         clearDrawable = getResources().getDrawable(R.drawable.icon_cross);
         searchDrawable = getResources().getDrawable(R.drawable.icon_searchbtn);
 
+        setTextColor(Color.BLACK);
         setCompoundDrawablesWithIntrinsicBounds(searchDrawable, null,
                 null, null);
     }

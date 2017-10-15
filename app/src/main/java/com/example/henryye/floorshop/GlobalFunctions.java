@@ -21,6 +21,4 @@ public class GlobalFunctions {
         Matcher m = p.matcher(mobiles);
         return m.matches();
     }
-
-
 }

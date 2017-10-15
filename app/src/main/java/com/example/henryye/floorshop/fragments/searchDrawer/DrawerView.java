@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,7 +13,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,10 +36,13 @@ public class DrawerView extends DrawerLayout {
     private ImageView searchBack;
 
     private SearchListView listView;
-    private BaseAdapter adapter;
+    private SimpleCursorAdapter adapter;
 
     private RecordSQLiteOpenHelper helper ;
     private SQLiteDatabase db;
+
+    private  ICallBack mCallBack;
+    private  bCallBack bCallBack;
 
     private Float textSizeSearch;
     private int textColorSearch;
@@ -83,8 +86,7 @@ public class DrawerView extends DrawerLayout {
 
         textSizeSearch = typedArray.getDimension(R.styleable.Search_View_textSizeSearch, 20);
 
-        int defaultColor = context.getResources().getColor(R.color.defaultTextColor);
-        textColorSearch = typedArray.getColor(R.styleable.Search_View_textColorSearch, defaultColor);
+        textColorSearch = typedArray.getColor(R.styleable.Search_View_textColorSearch, Color.BLACK);
 
         textHintSearch = typedArray.getString(R.styleable.Search_View_textHintSearch);
 
@@ -117,7 +119,11 @@ public class DrawerView extends DrawerLayout {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
 
-                    Toast.makeText(context, "需要搜索的是" + et_search.getText(), Toast.LENGTH_SHORT).show();
+                    if (!(mCallBack == null)){
+                        mCallBack.SearchAciton(et_search.getText().toString());
+                    }
+
+                    Toast.makeText(context, "Searching" + et_search.getText(), Toast.LENGTH_SHORT).show();
 
                     boolean hasData = hasData(et_search.getText().toString().trim());
                     if (!hasData) {
@@ -162,8 +168,11 @@ public class DrawerView extends DrawerLayout {
         searchBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!(bCallBack == null)){
+                    bCallBack.BackAciton();
+                }
 
-                Toast.makeText(context, "返回到上一页", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Back", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -197,10 +206,19 @@ public class DrawerView extends DrawerLayout {
                 "select id as _id,name from records where name like '%" + tempName + "%' order by id desc ", null);
         adapter = new SimpleCursorAdapter(context, android.R.layout.simple_list_item_1, cursor, new String[] { "name" },
                 new int[] { android.R.id.text1 }, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        adapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                TextView row = (TextView) view;
+                row.setTextColor(Color.BLACK);
+                return false;
+            }
+        });
+
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        System.out.println(cursor.getCount());
         if (tempName.equals("") && cursor.getCount() != 0){
             tv_clear.setVisibility(VISIBLE);
         }
@@ -227,5 +245,14 @@ public class DrawerView extends DrawerLayout {
         db = helper.getWritableDatabase();
         db.execSQL("insert into records(name) values('" + tempName + "')");
         db.close();
+    }
+
+    public void setOnClickSearch(ICallBack mCallBack){
+        this.mCallBack = mCallBack;
+
+    }
+
+    public void setOnClickBack(bCallBack bCallBack){
+        this.bCallBack = bCallBack;
     }
 }

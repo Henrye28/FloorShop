@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.henryye.floorshop.R;
@@ -27,8 +28,15 @@ public class PageTopBar extends Toolbar {
 
     private View mView;
     private ImageView searchButton;
-    private TextView title;
-    private Typeface typeFace;
+    private TextView homepageTitle;
+    private LinearLayout communityLayout;
+    private TextView communityFollow;
+    private TextView communityDiscovery;
+    private ImageView commentButton;
+    private ImageView meShareButton;
+    private TextView meTitle;
+    private Typeface homeTypeFace;
+    private Typeface communityTypeFace;
 
     public PageTopBar(Context context) {
         this(context, null);
@@ -41,7 +49,8 @@ public class PageTopBar extends Toolbar {
     public PageTopBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        typeFace = Typeface.createFromAsset(context.getAssets(),"fonts/billabong.ttf");
+        homeTypeFace = Typeface.createFromAsset(context.getAssets(),"fonts/billabong.ttf");
+        communityTypeFace = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Condensed.ttf");
         initView();
         setContentInsetsRelative(0, 0);
 
@@ -59,6 +68,30 @@ public class PageTopBar extends Toolbar {
                 setHomepageTitle(homepageTitle);
             }
 
+            final CharSequence communityFollow = a.getText(R.styleable.PageTopBar_communityFollow);
+            if (communityFollow != null) {
+                setCommunityFollow(communityFollow);
+            }
+
+            final CharSequence communityDiscovery = a.getText(R.styleable.PageTopBar_communityDiscovery);
+            if (communityDiscovery != null) {
+                setCommunityDiscovery(communityDiscovery);
+            }
+
+            final Drawable communityComment = a.getDrawable(R.styleable.PageTopBar_communityComment);
+            if (communityComment != null) {
+                setCommentButton(communityComment);
+            }
+
+            final Drawable meShare = a.getDrawable(R.styleable.PageTopBar_meShare);
+            if (meShare != null) {
+                setMeShareButton(meShare);
+            }
+
+            final CharSequence meTitle = a.getText(R.styleable.PageTopBar_meTitle);
+            if (meTitle != null) {
+                setMeTitle(meTitle);
+            }
             a.recycle();
         }
     }
@@ -69,8 +102,17 @@ public class PageTopBar extends Toolbar {
             mView = mInflater.inflate(R.layout.widget_topbar, null);
 
             searchButton = (ImageView) mView.findViewById(R.id.topbar_search);
-            title = (TextView) mView.findViewById(R.id.topbar_homepage_title);
-            title.setTypeface(typeFace);
+            homepageTitle = (TextView) mView.findViewById(R.id.topbar_homepage_title);
+            homepageTitle.setTypeface(homeTypeFace);
+            communityLayout = (LinearLayout) mView.findViewById(R.id.topbar_community_title);
+            communityFollow = (TextView) mView.findViewById(R.id.topbar_community_follow);
+            communityFollow.setTypeface(communityTypeFace);
+            communityDiscovery = (TextView) mView.findViewById(R.id.topbar_community_discovery);
+            communityDiscovery.setTypeface(communityTypeFace);
+            commentButton = (ImageView) mView.findViewById(R.id.topbar_comment);
+            meShareButton = (ImageView) mView.findViewById(R.id.topbar_me_share);
+            meTitle = (TextView) mView.findViewById(R.id.topbar_me_title);
+            meTitle.setTypeface(homeTypeFace);
 
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
             addView(mView, lp);
@@ -78,7 +120,7 @@ public class PageTopBar extends Toolbar {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setSearchButtonIcon(Drawable icon){
+    public void setSearchButtonIcon(Drawable icon) {
 
         if(searchButton !=null){
             searchButton.setBackground(icon);
@@ -87,11 +129,56 @@ public class PageTopBar extends Toolbar {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setHomepageTitle(CharSequence text){
+    public void setHomepageTitle(CharSequence text) {
 
-        if(title !=null){
-            title.setText(text);
-            searchButton.setVisibility(VISIBLE);
+        if(homepageTitle !=null){
+            homepageTitle.setText(text);
+            homepageTitle.setVisibility(VISIBLE);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void setCommunityFollow(CharSequence text) {
+
+        if (communityFollow != null) {
+            communityFollow.setText(text);
+            communityFollow.setVisibility(VISIBLE);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void setCommunityDiscovery(CharSequence text) {
+
+        if (communityDiscovery != null) {
+            communityDiscovery.setText(text);
+            communityDiscovery.setVisibility(VISIBLE);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void setCommentButton(Drawable icon) {
+
+        if (commentButton != null) {
+            commentButton.setBackground(icon);
+            commentButton.setVisibility(VISIBLE);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void setMeShareButton(Drawable icon) {
+
+        if (meShareButton != null) {
+            meShareButton.setBackground(icon);
+            meShareButton.setVisibility(VISIBLE);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void setMeTitle(CharSequence text) {
+
+        if (meTitle != null) {
+            meTitle.setText(text);
+            meTitle.setVisibility(VISIBLE);
         }
     }
 
@@ -99,7 +186,31 @@ public class PageTopBar extends Toolbar {
         if (searchButton != null)
             searchButton.setVisibility(VISIBLE);
 
-        if (title != null)
-            title.setVisibility(VISIBLE);
+        if (homepageTitle != null)
+            homepageTitle.setVisibility(VISIBLE);
     }
+
+    public void showCommunityView() {
+        if (searchButton != null)
+            searchButton.setVisibility(VISIBLE);
+
+        if (communityLayout != null)
+            communityLayout.setVisibility(VISIBLE);
+
+        if (commentButton != null)
+            commentButton.setVisibility(VISIBLE);
+    }
+
+    public void showMeView() {
+        if (meShareButton != null)
+            meShareButton.setVisibility(VISIBLE);
+
+        if (meTitle != null)
+            meTitle.setVisibility(VISIBLE);
+
+        if (commentButton != null) {
+            commentButton.setVisibility(VISIBLE);
+        }
+    }
+
 }

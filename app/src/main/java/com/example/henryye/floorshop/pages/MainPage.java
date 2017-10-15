@@ -13,8 +13,10 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
 import com.example.henryye.floorshop.R;
-import com.example.henryye.floorshop.interfaces.IBtnCallListener;
 import com.example.henryye.floorshop.fragments.searchDrawer.DrawerView;
+import com.example.henryye.floorshop.fragments.searchDrawer.ICallBack;
+import com.example.henryye.floorshop.fragments.searchDrawer.bCallBack;
+import com.example.henryye.floorshop.interfaces.IBtnCallListener;
 import com.example.henryye.floorshop.widgets.PageTopBar;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
@@ -32,7 +34,7 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
     private Homepage_Tab home_F;
     private PageTopBar topbar;
     private DrawerView mDrawer;
-    private ImageView top_search;
+    private ImageView topbar_search;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,11 +59,13 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
 
     private void initView() {
         topbar = (PageTopBar) findViewById(R.id.pageTopBar);
-        mDrawer = (DrawerView) findViewById(R.id.drawer_search);
-        top_search = (ImageView) findViewById(R.id.topbar_search);
+        mDrawer = (DrawerView) findViewById(R.id.drawer_view);
+        topbar_search = (ImageView) findViewById(R.id.topbar_search);
 
         setSupportActionBar(topbar);
         topbar.showHomepageView();
+//        topbar.showCommunityView();
+//        topbar.showMeView();
 
         if (home_F == null) {
             home_F = new Homepage_Tab();
@@ -71,10 +75,24 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
             showFragment(home_F);
         }
 
-        top_search.setOnClickListener(new View.OnClickListener() {
+        topbar_search.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDrawer.openDrawer(GravityCompat.START);
+            }
+        });
+
+        mDrawer.setOnClickSearch(new ICallBack() {
+            @Override
+            public void SearchAciton(String string) {
+
+            }
+        });
+
+        mDrawer.setOnClickBack(new bCallBack() {
+            @Override
+            public void BackAciton() {
+                mDrawer.closeDrawer(mDrawer);
             }
         });
     }
