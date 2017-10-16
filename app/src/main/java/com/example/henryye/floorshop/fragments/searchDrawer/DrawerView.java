@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,7 +27,7 @@ import com.example.henryye.floorshop.R;
 /**
  * Created by dan on 17/9/11.
  */
-public class DrawerView extends DrawerLayout {
+public class DrawerView extends LinearLayout {
 
     private Context context;
 
@@ -165,21 +166,23 @@ public class DrawerView extends DrawerLayout {
             }
         });
 
-        searchBack.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!(bCallBack == null)){
-                    bCallBack.BackAciton();
-                }
-
-                Toast.makeText(context, "Back", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        searchBack.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (!(bCallBack == null)){
+//                    bCallBack.BackAciton();
+//                }
+//
+//                Toast.makeText(context, "Back", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void initView(){
 
         LayoutInflater.from(context).inflate(R.layout.fragment_drawer,this);
+//        inflate(context, R.layout.fragment_dr this);
+//        inflate(context, R.layout.fragment_drawer, this);
 
         et_search = (EditText) findViewById(R.id.et_search);
         et_search.setTextSize(textSizeSearch);

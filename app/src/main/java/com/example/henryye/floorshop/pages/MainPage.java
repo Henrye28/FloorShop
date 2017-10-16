@@ -3,14 +3,17 @@ package com.example.henryye.floorshop.pages;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.fragments.searchDrawer.DrawerView;
@@ -33,8 +36,10 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
 
     private Homepage_Tab home_F;
     private PageTopBar topbar;
-    private DrawerView mDrawer;
+    private DrawerLayout mainView;
     private ImageView topbar_search;
+    private LinearLayout drawer_view;
+    private ImageView drawer_back;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,8 +64,10 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
 
     private void initView() {
         topbar = (PageTopBar) findViewById(R.id.pageTopBar);
-        mDrawer = (DrawerView) findViewById(R.id.drawer_view);
+        mainView = (DrawerLayout) findViewById(R.id.main_view);
         topbar_search = (ImageView) findViewById(R.id.topbar_search);
+        drawer_view = (LinearLayout) findViewById(R.id.);
+        drawer_back = (ImageView) findViewById(R.id.search_back);
 
         setSupportActionBar(topbar);
         topbar.showHomepageView();
@@ -78,23 +85,29 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
         topbar_search.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDrawer.openDrawer(GravityCompat.START);
+                mainView.openDrawer(GravityCompat.START);
             }
         });
 
-        mDrawer.setOnClickSearch(new ICallBack() {
+        drawer_back.setOnClickListener(new OnClickListener() {
             @Override
-            public void SearchAciton(String string) {
-
+            public void onClick(View v) {
+                mainView.closeDrawers();
             }
         });
-
-        mDrawer.setOnClickBack(new bCallBack() {
-            @Override
-            public void BackAciton() {
-                mDrawer.closeDrawer(mDrawer);
-            }
-        });
+//        mainView.setOnClickSearch(new ICallBack() {
+//            @Override
+//            public void SearchAciton(String string) {
+//
+//            }
+//        });
+//
+//        mainView.setOnClickBack(new bCallBack() {
+//            @Override
+//            public void BackAciton() {
+//                mainView.closeDrawer(mainView);
+//            }
+//        });
     }
 
     @Override
