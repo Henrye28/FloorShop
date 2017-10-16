@@ -3,7 +3,6 @@ package com.example.henryye.floorshop.pages;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -13,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.fragments.searchDrawer.DrawerView;
@@ -38,8 +36,7 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
     private PageTopBar topbar;
     private DrawerLayout mainView;
     private ImageView topbar_search;
-    private LinearLayout drawer_view;
-    private ImageView drawer_back;
+    private DrawerView drawer_view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,8 +63,7 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
         topbar = (PageTopBar) findViewById(R.id.pageTopBar);
         mainView = (DrawerLayout) findViewById(R.id.main_view);
         topbar_search = (ImageView) findViewById(R.id.topbar_search);
-        drawer_view = (LinearLayout) findViewById(R.id.);
-        drawer_back = (ImageView) findViewById(R.id.search_back);
+        drawer_view = (DrawerView) findViewById(R.id.drawer_view);
 
         setSupportActionBar(topbar);
         topbar.showHomepageView();
@@ -89,25 +85,19 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
             }
         });
 
-        drawer_back.setOnClickListener(new OnClickListener() {
+        drawer_view.setOnClickSearch(new ICallBack() {
             @Override
-            public void onClick(View v) {
-                mainView.closeDrawers();
+            public void SearchAciton(String string) {
+
             }
         });
-//        mainView.setOnClickSearch(new ICallBack() {
-//            @Override
-//            public void SearchAciton(String string) {
-//
-//            }
-//        });
-//
-//        mainView.setOnClickBack(new bCallBack() {
-//            @Override
-//            public void BackAciton() {
-//                mainView.closeDrawer(mainView);
-//            }
-//        });
+
+        drawer_view.setOnClickBack(new bCallBack() {
+            @Override
+            public void BackAciton() {
+                mainView.closeDrawer(drawer_view);
+            }
+        });
     }
 
     @Override

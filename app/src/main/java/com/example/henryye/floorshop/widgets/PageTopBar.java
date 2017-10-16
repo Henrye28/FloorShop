@@ -114,7 +114,7 @@ public class PageTopBar extends Toolbar {
             meTitle = (TextView) mView.findViewById(R.id.topbar_me_title);
             meTitle.setTypeface(homeTypeFace);
 
-            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
+            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
             addView(mView, lp);
         }
     }

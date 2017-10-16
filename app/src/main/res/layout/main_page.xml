@@ -101,13 +101,12 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <FrameLayout
+    <com.example.henryye.floorshop.fragments.searchDrawer.DrawerView
+        android:id="@+id/drawer_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginRight="-65dp"
         android:layout_gravity="start">
-
-        <include layout="@layout/fragment_drawer"/>
-    </FrameLayout>
+    </com.example.henryye.floorshop.fragments.searchDrawer.DrawerView>
 
 </android.support.v4.widget.DrawerLayout>
