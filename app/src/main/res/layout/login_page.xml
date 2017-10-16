@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.henryye.floorshop.widgets.ToolBar
+        <com.example.henryye.floorshop.wigets.ToolBar
             android:id="@id/toolbar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -22,50 +23,59 @@
             />
 
 
+        <!--android:background="@drawable/selector_view_block"-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="@drawable/selector_view_block"
             android:orientation="vertical"
             android:padding="@dimen/largePadding">
 
-
-            <com.example.henryye.floorshop.widgets.ClearEditText
-                android:id="@+id/etxt_phone"
-                style="@style/editText_base"
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_telphone_32"
-                android:drawablePadding="20dp"
-                android:hint="phone number"
-                android:inputType="phone" />
+                android:hint="ACCOUNT"
+                app:met_floatingLabelTextColor="#000000"
+                app:met_floatingLabelTextSize="20sp"
+                app:met_floatingLabel="normal"
+                app:met_primaryColor="#EB4F38"
+                app:met_errorColor="#ddaa00"
+                app:met_floatingLabelText="ACCOUNT" />
 
-            <View style="@style/line_vertical" />
 
-
-            <com.example.henryye.floorshop.widgets.ClearEditText
-                android:id="@+id/etxt_pwd"
-                style="@style/editText_base"
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/password"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_lock"
-                android:drawablePadding="20dp"
-                android:hint="password"
-                android:inputType="textPassword" />
+                android:hint="PASSWORD"
+                app:met_floatingLabelTextSize="20sp"
+                android:inputType="textPassword"
+                app:met_floatingLabelTextColor="#000000"
+                app:met_primaryColor="#EB4F38"
+                app:met_floatingLabel="normal"
+                app:met_errorColor="#ddaa00"
+                app:met_floatingLabelText="PASSWORD"/>
 
 
         </LinearLayout>
 
-
-        <Button
-            android:id="@+id/btn_login"
-            style="@style/bigRedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <com.dd.processbutton.iml.ActionProcessButton
+            android:id="@+id/login_button"
             android:layout_margin="20dp"
-            android:layout_marginTop="30dp"
-            android:text="Login" />
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            android:text="Sign in"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            custom:pb_colorComplete="@color/colorPrimary"
+            custom:pb_colorNormal="@color/colorPrimary"
+            custom:pb_colorPressed="@color/colorButtonClicked"
+            custom:pb_colorProgress="@color/blue_normal"
+            custom:pb_textComplete="Success"
+            custom:pb_textProgress="Loading"/>
 
 
         <LinearLayout
@@ -82,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="sign up"
-                android:textColor="@color/blue"
+                android:textColor="@color/skyblue"
                 android:textSize="12sp"
                 />
 
@@ -93,18 +103,11 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="forget password"
-                android:textColor="@color/blue"
+                android:textColor="@color/skyblue"
                 android:textSize="12sp"
                 />
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/loading_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#00000000">
-    </LinearLayout>
 
 </RelativeLayout>

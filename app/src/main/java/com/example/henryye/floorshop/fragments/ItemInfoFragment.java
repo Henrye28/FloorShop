@@ -1,166 +1,301 @@
 package com.example.henryye.floorshop.fragments;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Paint;
+import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
+import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
-import com.bigkoo.convenientbanner.holder.Holder;
 import com.example.henryye.floorshop.R;
+import com.example.henryye.floorshop.bean.Comments;
+import com.example.henryye.floorshop.bean.ItemPics;
+import com.example.henryye.floorshop.bean.Items;
+import com.example.henryye.floorshop.bean.Stores;
 import com.example.henryye.floorshop.pages.ItemsPage;
+import com.example.henryye.floorshop.wigets.itemAttributeTag.Attribute;
+import com.example.henryye.floorshop.wigets.itemAttributeTag.FlowLayout;
+import com.example.henryye.floorshop.wigets.itemAttributeTag.TagAdapter;
+import com.example.henryye.floorshop.wigets.itemAttributeTag.TagFlowLayout;
+import com.hss01248.slider.Animations.DescriptionAnimation;
+import com.hss01248.slider.SliderLayout;
+import com.hss01248.slider.SliderTypes.BaseSliderView;
+import com.hss01248.slider.SliderTypes.TextSliderView;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobPointer;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 public class ItemInfoFragment extends Fragment implements View.OnClickListener{
 
+    private final static String ITEM_INITIATED = "itemInitiated";
+    private final static String COMMENT_INITIATED = "commentInitiated";
+
     private ScrollView sv_goods_info;
-    public ConvenientBanner vp_item_goods_img, vp_recommend;
     private TextView tv_goods_detail, tv_goods_config;
     private View v_tab_cursor;
     public FrameLayout fl_content;
-    public LinearLayout ll_current_goods, ll_activity, ll_comment, ll_recommend, ll_pull_up;
-    public TextView tv_goods_title, tv_new_price, tv_old_price, tv_current_goods, tv_comment_count, tv_good_comment;
+    public LinearLayout  commentLayout, noCommentLayout, ll_recommend, ll_pull_up;
+    public TextView commentContentTv, commentUserTv, commentTimeTv, commentCountTv, commentEmptyTv;
 
-    private List<TextView> tabTextList;
-    private List<Integer> convenientBannerPics = new ArrayList<Integer>();
-    private FragmentTransaction fragmentTransaction;
+    public TextView itemPriceTv, itemNameTv;
     public ItemsPage activity;
-    private LayoutInflater inflater;
+    private SliderLayout viewPager;
+    private LinearLayout itemAttributeSelection;
+
+    private List<String> mSizeData;//大小属性数据
+    private List<String> mColorData;//颜色属性数据
+    // private List<String> mFailureSkuDate;//无库存或不能选的所有组合sku
+    private List<String> mAllSkuDate;//所有的组合sku
+    private LayoutInflater mInflater;
+
+    private Attribute SizeAtt = new Attribute();
+    private Attribute ColorAtt = new Attribute();
+    private TextView itemAttributeColorText;
+
+    private int DefaultColor;//临时记录的颜色
+    private int DefaultSize;//临时记录的大小
+
+    //Item details
+    private double itemPrice;
+    private String itemName;
+    private String itemDescription;
+    private Stores itemStore;
+    private String itemColor;
+    private String itemSize;
+    private String itemClassification;
+    private List<String> itemSizeList;
+    private List<String> itemColorList;
+
+    //Comment details
+    private String commentContent;
+    private String commentUser;
+    private String commentTime;
+    private String commentCount;
+
+
+    private int Color;
+    private int Size;
+    private String ColorStr;
+    private String SizeStr;
+    private String Sku;
+
+
+
+    //ItemID is passed in by other activity(depends on which item you just clicked)
+    private String itemID;
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         activity = (ItemsPage) context;
+        Intent intent = this.getActivity().getIntent();
+        itemID = intent.getStringExtra("itemID");
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        vp_item_goods_img.startTurning(4000);
-    }
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.obj.toString()) {
+                case ITEM_INITIATED:
+                    setItemsDetailData();
+                    initialColorSizeData(itemSizeList,itemColorList);
+                    break;
+                case COMMENT_INITIATED:
+                    setCommentDetailData();
+                    break;
+            }
+        }
+    };
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        vp_item_goods_img.stopTurning();
-    }
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        this.inflater = inflater;
+        this.mInflater = inflater;
         View rootView = inflater.inflate(R.layout.fragment_item_info, null);
+
         initView(rootView);
+        initViewPager(rootView);
         initListener();
-        initData();
+        initialItemDetail(rootView);
+        initCommentsDetails();
         return rootView;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.itemAttributeSelection :
+                CommodityAttribute mCommodityAttribute = new CommodityAttribute(getActivity());
+                mCommodityAttribute.showAtLocation(itemAttributeColorText, Gravity.BOTTOM, 0, 0);
+
+        }
+    }
+
+
+
     private void initListener() {
-        ll_current_goods.setOnClickListener(this);
-        ll_activity.setOnClickListener(this);
-        ll_comment.setOnClickListener(this);
+        itemAttributeSelection.setOnClickListener(this);
         ll_pull_up.setOnClickListener(this);
     }
 
     private void initView(View rootView) {
+        itemAttributeSelection = (LinearLayout)rootView.findViewById(R.id.itemAttributeSelection);
+        itemAttributeColorText = (TextView)rootView.findViewById(R.id.itemAttributeColorText);
 
+        //Comment block
+        commentLayout = (LinearLayout)rootView.findViewById(R.id.comment_layout);
+        noCommentLayout = (LinearLayout)rootView.findViewById(R.id.no_comment_layout);
+        commentContentTv = (TextView)rootView.findViewById(R.id.comment_content);
+        commentTimeTv = (TextView)rootView.findViewById(R.id.comment_time);
+        commentUserTv = (TextView)rootView.findViewById(R.id.comment_user);
+        commentCountTv = (TextView)rootView.findViewById(R.id.comment_count);
+        commentEmptyTv = (TextView)rootView.findViewById(R.id.comment_empty);
+
+        viewPager = (SliderLayout)rootView.findViewById(R.id.view_pager);
+        itemNameTv = (TextView)rootView.findViewById(R.id.item_name);
+        itemPriceTv = (TextView) rootView.findViewById(R.id.item_price);
         sv_goods_info = (ScrollView) rootView.findViewById(R.id.sv_goods_info);
         v_tab_cursor = rootView.findViewById(R.id.v_tab_cursor);
-        vp_item_goods_img = (ConvenientBanner) rootView.findViewById(R.id.vp_item_goods_img);
-        vp_recommend = (ConvenientBanner) rootView.findViewById(R.id.vp_recommend);
         fl_content = (FrameLayout) rootView.findViewById(R.id.fl_content);
-        ll_current_goods = (LinearLayout) rootView.findViewById(R.id.ll_current_goods);
-        ll_activity = (LinearLayout) rootView.findViewById(R.id.ll_activity);
-        ll_comment = (LinearLayout) rootView.findViewById(R.id.ll_comment);
         ll_recommend = (LinearLayout) rootView.findViewById(R.id.ll_recommend);
         ll_pull_up = (LinearLayout) rootView.findViewById(R.id.ll_pull_up);
         tv_goods_detail = (TextView) rootView.findViewById(R.id.tv_goods_detail);
         tv_goods_config = (TextView) rootView.findViewById(R.id.tv_goods_config);
-        tv_goods_title = (TextView) rootView.findViewById(R.id.tv_goods_title);
-        tv_new_price = (TextView) rootView.findViewById(R.id.tv_new_price);
-        tv_old_price = (TextView) rootView.findViewById(R.id.tv_old_price);
-        tv_current_goods = (TextView) rootView.findViewById(R.id.tv_current_goods);
-        tv_comment_count = (TextView) rootView.findViewById(R.id.tv_comment_count);
-        tv_good_comment = (TextView) rootView.findViewById(R.id.tv_good_comment);
         setRecommendGoods();
-        setConvenientBannerPics();
 
-        //Line Between texts
-        tv_old_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-
-        //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
-        vp_item_goods_img.setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
-        vp_recommend.setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
     }
 
-
-    private void setConvenientBannerPics(){
-
-        convenientBannerPics.add(getResId("detail_applewatch", R.drawable.class));
-        convenientBannerPics.add(getResId("detail_applewatch2", R.drawable.class));
-        convenientBannerPics.add(getResId("detail_applewatch3", R.drawable.class));
-        Log.d("test", " ------------" + convenientBannerPics);
-
-        vp_item_goods_img.setPages(new CBViewHolderCreator() {
+    //getting pics from ItemPics table based on itemId
+    private void initViewPager(final View view) {
+        viewPager = (SliderLayout) view.findViewById(R.id.view_pager);
+        BmobQuery<ItemPics> query = new BmobQuery<ItemPics>();
+        Items item = new Items();
+        item.setObjectId(itemID);
+        query.addWhereEqualTo("item", new BmobPointer(item));
+        query.findObjects(new FindListener<ItemPics>() {
             @Override
-            public Object createHolder() {
-                return new LocalImageHolderView();
+            public void done(List<ItemPics> list, BmobException e) {
+                if (e == null) {
+                    for (ItemPics pics : list) {
+                        TextSliderView textSliderView = new TextSliderView(view.getContext());
+                        textSliderView
+                                .image(pics.getPic().getUrl())
+                                .setScaleType(BaseSliderView.ScaleType.Fit);
+                        viewPager.addSlider(textSliderView);
+                    }
+                }else{
+                    e.printStackTrace();
+                }
             }
-        }, convenientBannerPics)
-                .setPointViewVisible(true)
-                .startTurning(2000);
+        });
+        //Set viewPager transform animation
+        viewPager.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
+        viewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        viewPager.setCustomAnimation(new DescriptionAnimation());
+        viewPager.setDuration(3000);
     }
 
-    public static int getResId(String variableName, Class<?> c) {
-        try {
-            Field idField = c.getDeclaredField(variableName);
-            return idField.getInt(idField);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
+    private void initCommentsDetails(){
+        BmobQuery<Comments> query = new BmobQuery<Comments>();
+        Items item = new Items();
+        item.setObjectId(itemID);
+        query.addWhereEqualTo("item", new BmobPointer(item));
+        query.include("user,post.author");
+        query.order("createdAt");
+        query.findObjects(new FindListener<Comments>() {
+            @Override
+            public void done(List<Comments> list, BmobException e) {
+                if (e == null) {
+                    commentCount = "(" + list.size() + ")";
+                    commentUser = list.get(0).getUser().getUsername();
+                    commentTime = list.get(0).getCreatedAt();
+                    commentContent = list.get(0).getContent();
+                    Message itemDetailInitiated = new Message();
+                    itemDetailInitiated.obj = COMMENT_INITIATED;
+                    handler.sendMessage(itemDetailInitiated);
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    private void initialItemDetail(final View view){
+        BmobQuery<Items> query = new BmobQuery<Items>();
+        query.addWhereEqualTo("objectId", itemID);
+        query.findObjects(new FindListener<Items>() {
+            @Override
+            public void done(List<Items> list, BmobException e) {
+                if (e == null) {
+                    for (Items item : list) {
+                        itemPrice = item.getPrice();
+                        itemDescription = item.getDescription();
+                        itemName = item.getName();
+                        itemClassification = item.getClassification();
+                        String attributes = item.getAttributes();
+                        String[] splitedAttribute = attributes.split("\\|");
+                        itemSize = splitedAttribute[0];
+                        itemColor = splitedAttribute[1];
+                        Message itemDetailInitiated = new Message();
+                        itemDetailInitiated.obj = ITEM_INITIATED;
+                        handler.sendMessage(itemDetailInitiated);
+                    }
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void setCommentDetailData(){
+        if(commentCount.equals("(0)")){
+            noCommentLayout.setVisibility(View.VISIBLE);
+            commentEmptyTv.setText(" NO COMMENTS ");
+        }else {
+            noCommentLayout.setVisibility(View.INVISIBLE);
+            commentLayout.setVisibility(View.VISIBLE);
         }
+
+        commentUserTv.setText(commentUser);
+        commentContentTv.setText(commentContent);
+        commentTimeTv.setText(commentTime);
+        commentCountTv.setText(commentCount);
     }
 
-    private class LocalImageHolderView implements Holder<Integer> {
-        private ImageView imageView;
-
-        @Override
-        public View createView(Context context) {
-            //For ConveientBanner, can be any object, here we use imageView
-            imageView = new ImageView(context);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            return imageView;
-        }
-
-        @Override
-        public void UpdateUI(Context context, int position, Integer data) {
-            imageView.setImageResource(data);
-        }
+    private void setItemsDetailData() {
+        StringBuilder itemNameAndDescrip = new StringBuilder(itemName + " | ");
+        itemNameAndDescrip.append(itemDescription);
+        itemNameTv.setText(itemNameAndDescrip);
+        itemPriceTv.setText(itemPrice + "");
+        itemSizeList = Arrays.asList(itemSize.split(","));
+        itemColorList = Arrays.asList(itemColor.split(","));
     }
-
-
-    private void initData() {
-        tabTextList = new ArrayList<>();
-        tabTextList.add(tv_goods_detail);
-        tabTextList.add(tv_goods_config);
-    }
-
 
     /**
      * Recommandation part, hot sales part
@@ -168,11 +303,224 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
     public void setRecommendGoods() {
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            //OnClick logic for includeItemTab layout
+
+    public class CommodityAttribute extends PopupWindow {
+        private View CommodityAttributeView;
+        private TagFlowLayout mTfSize;
+        private TagFlowLayout mTfColor;
+        private TextView mTvOk;
+        private final mTagAdapter mSizeAdapter;
+        private final mTagAdapter mColorAdapter;
+
+        public CommodityAttribute(Activity context) {
+            super(context);
+            //Select(Sku);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            CommodityAttributeView = inflater.inflate(R.layout.item_attribute_selection, null);
+            mTfSize = (TagFlowLayout) CommodityAttributeView.findViewById(R.id.tf_size);
+            mTfColor = (TagFlowLayout) CommodityAttributeView.findViewById(R.id.tf_color);
+            mTvOk = (TextView) CommodityAttributeView.findViewById(R.id.popupwind_ok);
+
+
+            mColorAdapter = new mTagAdapter(ColorAtt);
+            mTfColor.setAdapter(mColorAdapter);
+            mColorAdapter.setSelectedList(Color);
+            ColorStr = mColorData.get(Color);
+
+            mSizeAdapter = new mTagAdapter(SizeAtt);
+            mTfSize.setAdapter(mSizeAdapter);
+            mSizeAdapter.setSelectedList(Size);
+            SizeStr = mSizeData.get(Size);
+
+            //颜色属性标签点击事件
+            mTfColor.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+                boolean is;
+
+                @Override
+                public boolean onTagClick(View view, int position, FlowLayout parent) {
+
+                    if (position == DefaultColor) {
+                        DefaultColor = -1;
+                        ColorStr = "";
+                        SizeAtt.FailureAliasName.clear();
+                        TagAdapNotify(mSizeAdapter, DefaultSize);
+                        return true;
+                    } else {
+                        DefaultColor = position;
+                        ColorStr = mColorData.get(position);
+                    }
+                    TagAdapNotify(mSizeAdapter, DefaultSize);
+                    return true;
+                }
+            });
+
+
+            //大小属性标签点击事件
+            mTfSize.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+                boolean is;
+
+                @Override
+                public boolean onTagClick(View view, int position, FlowLayout parent) {
+                    if (position == DefaultSize) {
+                        DefaultSize = -1;
+                        SizeStr = "";
+                        ColorAtt.FailureAliasName.clear();
+                        TagAdapNotify(mColorAdapter, DefaultColor);
+                        return true;
+                    } else {
+                        DefaultSize = position;
+                        SizeStr = mSizeData.get(position);
+                    }
+                    TagAdapNotify(mColorAdapter, DefaultColor);
+                    return true;
+                }
+            });
+
+
+            mTvOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (DefaultColor == -1 || DefaultSize == -1) {
+                        return;
+                    }
+
+                    itemAttributeColorText.setText(ColorStr + "\t" + SizeStr);
+                    Sku = ColorStr + ":" + SizeStr;
+                    Size = DefaultSize;
+                    Color = DefaultColor;
+                    dismiss();
+                }
+            });
+
+
+            this.setContentView(CommodityAttributeView);
+            // 设置SelectPicPopupWindow弹出窗体的宽
+            this.setWidth(ViewPager.LayoutParams.MATCH_PARENT);
+            // 设置SelectPicPopupWindow弹出窗体的高
+            this.setHeight(ViewPager.LayoutParams.WRAP_CONTENT);
+            // 在PopupWindow里面就加上下面两句代码，让键盘弹出时，不会挡住pop窗口。
+            this.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+            this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+            // 设置popupWindow以外可以触摸
+            this.setOutsideTouchable(true);
+            // 以下两个设置点击空白处时，隐藏掉pop窗口
+            this.setFocusable(true);
+            this.setBackgroundDrawable(new BitmapDrawable());
+            // 设置popupWindow以外为半透明0-1 0为全黑,1为全白
+            backgroundAlpha(0.3f);
+            // 添加pop窗口关闭事件
+            this.setOnDismissListener(new poponDismissListener());
+            // mMenuView添加OnTouchListener监听判断获取触屏位置如果在选择框外面则销毁弹出框
+            CommodityAttributeView.setOnTouchListener(new View.OnTouchListener() {
+
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    int height = CommodityAttributeView.findViewById(R.id.pop_layout)
+                            .getTop();
+                    int y = (int) event.getY();
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (y < height) {
+
+                            dismiss();
+                        }
+                    }
+                    return true;
+                }
+            });
+        }
+
+    }
+
+
+
+    /**
+     * PopouWindow设置添加屏幕的背景透明度
+     *
+     * @param bgAlpha
+     */
+    public void backgroundAlpha(float bgAlpha) {
+        WindowManager.LayoutParams lp = this.getActivity().getWindow().getAttributes();
+        lp.alpha = bgAlpha;
+        this.getActivity().getWindow().setAttributes(lp);
+
+    }
+
+
+    public void TagAdapNotify(mTagAdapter Adapter, int CcInt) {
+        Adapter.getPreCheckedList().clear();
+        if (CcInt != -1) {
+            Adapter.setSelectedList(CcInt);
+        }
+        Adapter.notifyDataChanged();
+    }
+
+
+    class mTagAdapter extends TagAdapter<String> {
+
+        private TextView tv;
+
+        public mTagAdapter(Attribute ab) {
+            super(ab);
+        }
+
+        @Override
+        public View getView(FlowLayout parent, int position, Attribute t) {
+            boolean is = false;
+            //两个布局,一个是可点击的布局，一个是不可点击的布局
+            List<String> st = t.FailureAliasName;
+            if (st != null) {
+                for (int i = 0; i < st.size(); i++) {
+                    if (st.get(i).equals(t.aliasName.get(position))) {
+                        is = true;
+                    }
+                }
+            }
+            if (!is) {
+                tv = (TextView) mInflater.inflate(R.layout.item_attribute_tag_available, parent, false);
+                tv.setText(t.aliasName.get(position));
+            } else {
+                tv = (TextView) mInflater.inflate(R.layout.item_attribute_tag_unavailable, parent, false);
+                tv.setText(t.aliasName.get(position));
+            }
+
+            return tv;
         }
     }
+
+    /**
+     * PopouWindow添加新笔记时弹出的popWin关闭的事件，主要是为了将背景透明度改回来
+     *
+     * @author cg
+     */
+    class poponDismissListener implements PopupWindow.OnDismissListener {
+
+        @Override
+        public void onDismiss() {
+            backgroundAlpha(1f);
+        }
+    }
+
+    public void initialColorSizeData(List<String> itemSizeList,List<String> itemColorList ) {
+        //大小属性
+        mSizeData = new ArrayList<>();
+        mSizeData.addAll(itemSizeList);
+        SizeAtt.aliasName.addAll(mSizeData);
+        //颜色属性
+        mColorData = new ArrayList<>();
+        mColorData.addAll(itemColorList);
+        ColorAtt.aliasName.addAll(mColorData);
+
+        //所有的Sku
+        mAllSkuDate = new ArrayList<>();
+        for (int i = 0; i < mColorData.size(); i++) {
+            String Colorstr = mColorData.get(i);
+            for (int j = 0; j < mSizeData.size(); j++) {
+                String s = mSizeData.get(j);
+                mAllSkuDate.add(Colorstr + ":" + s);
+            }
+        }
+    }
+
+
 
 }

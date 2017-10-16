@@ -6,6 +6,30 @@
         <item name="colorPrimaryDark">#f8f8f8</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
+
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:listDivider">@drawable/list_divider</item>
+    </style>
+
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="search_view">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+
+        <item name="android:background">@drawable/selector_search_view</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingLeft">4dp</item>
+
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="line">
@@ -47,6 +71,7 @@
         <item name="android:minHeight">@dimen/smallButtonHeight</item>
     </style>
 
+<<<<<<< HEAD
     <style name="smallGreenButton" parent="@style/smallButton">
         <item name="android:background">@drawable/bg_btn_style_green</item>
     </style>
@@ -62,10 +87,15 @@
 
 
     <style name="bigGreenButton" parent="@style/bigButton">
+=======
+
+    <style name="countdownButton" parent="@style/smallButton">
+>>>>>>> a42381f73108fba518541366e46c3616ae9d5b13
         <item name="android:background">@drawable/bg_btn_style_green</item>
     </style>
 
 
+<<<<<<< HEAD
     <style name="bigRedButton" parent="@style/bigButton">
         <item name="android:background">@drawable/bg_btn_style_red</item>
     </style>
@@ -91,6 +121,9 @@
         <item name="android:textSize">22sp</item>
 
     </style>
+=======
+
+>>>>>>> a42381f73108fba518541366e46c3616ae9d5b13
 
     <style name="editText_base">
         <item name="android:textSize">16sp</item>
@@ -107,6 +140,7 @@
         <item name="android:background">@drawable/selector_edittext</item>
     </style>
 
+<<<<<<< HEAD
     <!-- For Widget Alert box-->
     <style name="text_18_ffffff">
         <item name="android:textSize">18.0dip</item>
@@ -148,5 +182,9 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+=======
+
+
+>>>>>>> a42381f73108fba518541366e46c3616ae9d5b13
 
 </resources>

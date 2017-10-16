@@ -25,16 +25,15 @@
 
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="203dp"
+                        android:layout_height="200dp"
                         android:background="@color/white">
 
                         <!-- Third party automatically scroll view pager-->
-                        <com.bigkoo.convenientbanner.ConvenientBanner xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/vp_item_goods_img"
+                        <com.hss01248.slider.SliderLayout
+                            android:id="@+id/view_pager"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="#ffffff"
-                            app:canLoop="true" />
+                            android:layout_height="200dp"
+                            />
                     </FrameLayout>
 
                     <View
@@ -52,13 +51,12 @@
                         android:paddingTop="15dp">
 
                         <TextView
-                            android:id="@+id/tv_goods_title"
+                            android:id="@+id/item_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="22dp"
                             android:ellipsize="end"
                             android:maxLines="2"
-                            android:text="Aplle watch | Machine gun"
                             android:textColor="#222222"
                             android:textSize="15sp" />
 
@@ -81,24 +79,23 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/tv_new_price"
+                                android:id="@+id/item_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="3dp"
-                                android:text="599"
                                 android:textColor="#ec0f38"
                                 android:textSize="21sp"
                                 android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/tv_old_price"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="7dp"
-                                android:gravity="center_vertical"
-                                android:text="￥799"
-                                android:textColor="#888888"
-                                android:textSize="13sp" />
+                            <!--<TextView-->
+                                <!--android:id="@+id/tv_old_price"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginLeft="7dp"-->
+                                <!--android:gravity="center_vertical"-->
+                                <!--android:text="￥799"-->
+                                <!--android:textColor="#888888"-->
+                                <!--android:textSize="13sp" />-->
 
                         </LinearLayout>
 
@@ -125,9 +122,8 @@
                         android:alpha="0.4"
                         android:background="#dddddd" />
 
-                    <!-- 当前已选的商品 -->
                     <LinearLayout
-                        android:id="@+id/ll_current_goods"
+                        android:id="@+id/itemAttributeSelection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
@@ -137,22 +133,12 @@
                         android:paddingTop="15dp">
 
                         <TextView
+                            android:id="@+id/itemAttributeColorText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Black"
                             android:textColor="#888888"
                             android:textSize="13sp" />
-
-                        <TextView
-                            android:id="@+id/tv_current_goods"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_weight="1"
-                            android:text="C"
-                            android:textColor="#222222"
-                            android:textSize="14sp" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -166,18 +152,7 @@
                         android:alpha="0.4"
                         android:background="#dddddd" />
 
-                    <!-- 商品保障图 -->
-                    <!--<ImageView-->
-                        <!--android:id="@+id/iv_ensure"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="44dp"-->
-                        <!--android:layout_gravity="center_horizontal"-->
-                        <!--android:layout_marginBottom="10dp"-->
-                        <!--android:layout_marginTop="10dp"-->
-                        <!--android:background="#ffffff"-->
-                        <!--android:src="@mipmap/item_goods_ensure" />-->
-
-                    <!-- 用户点评 -->
+                    <!-- comments -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
@@ -185,7 +160,6 @@
                         android:background="#dddddd" />
 
                     <LinearLayout
-                        android:id="@+id/ll_comment"
                         android:layout_width="match_parent"
                         android:layout_height="44dp"
                         android:background="@color/white"
@@ -208,11 +182,10 @@
                                 android:textSize="13dp" />
 
                             <TextView
-                                android:id="@+id/tv_comment_count"
+                                android:id="@+id/comment_count"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:text="(0)"
                                 android:textColor="#222222"
                                 android:textSize="13dp" />
                         </LinearLayout>
@@ -253,23 +226,84 @@
                         android:layout_height="1px"
                         android:alpha="0.4"
                         android:background="#dddddd" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_empty_comment"
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="123dp"
                         android:background="#ffffff"
                         android:gravity="center"
                         android:visibility="visible">
-
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/comment_layout"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="No Comments"
-                            android:textColor="#888888"
-                            android:textSize="13dp" />
-                    </LinearLayout>
+                            android:background="@android:color/white"
+                            android:orientation="vertical">
 
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingLeft="12dp"
+                                android:paddingRight="12dp">
+
+                                <ImageView
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:paddingTop="16dp"
+                                    android:src="@mipmap/default_icon" />
+
+                                <TextView
+                                    android:id="@+id/comment_user"
+                                    android:textColor="#000000"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="25.5dp"
+                                    android:text="153******27"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/comment_content"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:textColor="#000000"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:orientation="horizontal"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp">
+
+                                <TextView
+                                    android:id="@+id/comment_time"
+                                    android:textColor="#d3d3d3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/no_comment_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="123dp"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/comment_empty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#888888"
+                                android:textSize="13dp" />
+                        </LinearLayout>
+                    </FrameLayout>
                     <!-- Big data Recomandation -->
                     <LinearLayout
                         android:id="@+id/ll_recommend"

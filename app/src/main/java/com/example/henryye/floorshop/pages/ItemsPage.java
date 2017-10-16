@@ -9,11 +9,15 @@ import android.widget.TextView;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.adapters.ItemTitlePagerAdapter;
+import com.example.henryye.floorshop.fragments.ItemCommentFragment;
 import com.example.henryye.floorshop.fragments.ItemInfoFragment;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.gxz.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.Bmob;
 
 public class ItemsPage extends AppCompatActivity {
     private ViewPager viewPager;
@@ -24,28 +28,37 @@ public class ItemsPage extends AppCompatActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
     private ItemInfoFragment goodsInfoFragment;
     private ItemInfoFragment goodsDetailFragment;
-    private ItemInfoFragment goodsCommentFragment;
-    public ViewPager vp_content;
-    public TextView tv_title;
+    private ItemCommentFragment goodsCommentFragment;
+    private ViewPager vp_content;
+    private TextView tv_title;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_detail_page);
-
+        Bmob.initialize(this, "ee80fab0407209723c93996bff00b101");
+        Fresco.initialize(this);
         pagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.psts_tabs);
+
         vp_content = (ViewPager) findViewById(R.id.vp_content);
         tv_title = (TextView) findViewById(R.id.tv_title);
 
         fragmentList.add(goodsInfoFragment = new ItemInfoFragment());
         fragmentList.add(goodsDetailFragment = new ItemInfoFragment());
-        fragmentList.add(goodsCommentFragment = new ItemInfoFragment());
+        fragmentList.add(goodsCommentFragment = new ItemCommentFragment());
         vp_content.setAdapter(new ItemTitlePagerAdapter(getSupportFragmentManager(),
                 fragmentList, new String[]{"Goods", "Detail", "Comment"}));
         vp_content.setOffscreenPageLimit(3);
         pagerSlidingTabStrip.setViewPager(vp_content);
 
+
     }
+
+
+
+
+
 
 
 }

@@ -33,10 +33,13 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
     private int[] select_off = { R.drawable.homepagetab, R.drawable.storetab, R.drawable.carttab, R.drawable.myselftab };
 
     private Homepage_Tab home_F;
+
     private PageTopBar topbar;
     private DrawerLayout mainView;
     private ImageView topbar_search;
     private DrawerView drawer_view;
+
+    private MyInfo_Tab myInfo_tab;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

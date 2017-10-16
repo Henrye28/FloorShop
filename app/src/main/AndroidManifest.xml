@@ -24,10 +24,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".pages.LoginActivity"></activity>
         <activity android:name=".pages.ItemsPage"></activity>
         <activity android:name=".pages.RegisterActivity"></activity>
         <activity android:name=".pages.RegisterSecondActivity"></activity>
+        <activity android:name=".pages.LoginActivity"></activity>
+        <activity android:name=".pages.ItemsPage"></activity>
+        <activity android:name=".pages.RegisterMobileActivity"></activity>
+        <activity android:name=".pages.WelcomeActivity"></activity>
+
     </application>
 
 </manifest>
