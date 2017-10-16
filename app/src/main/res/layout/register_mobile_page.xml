@@ -76,9 +76,9 @@
                     android:orientation="horizontal"
                     >
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txtCountryCode"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="+86 "
                         android:textColor="@color/black"
@@ -86,19 +86,18 @@
                         android:layout_marginRight="10dp"
                         />
 
-                    <View
-                        style="@style/line_horizontal"/>
-
-                    <com.example.henryye.floorshop.wigets.ClearEditText
-                        android:id="@+id/edittxt_phone"
-                        android:layout_width="0dp"
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/mobile_txt"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/editText_base"
-                        android:hint="Username"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10dp"
-                        android:inputType="phone"/>
+                        android:hint="Mobile"
+                        android:maxLength="11"
+                        app:met_primaryColor="#EB4F38"
+                        app:met_errorColor="#ddaa00" />
+
+
                 </LinearLayout>
+
 
                 <View
                     style="@style/line_vertical"
@@ -114,7 +113,7 @@
                     >
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="Password"
                         android:textColor="@color/black"
@@ -122,18 +121,45 @@
                         android:layout_marginRight="10dp"
                         />
 
-                    <View
-                        style="@style/line_horizontal"/>
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/password_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        app:met_primaryColor="#EB4F38"
+                        app:met_errorColor="#ddaa00" />
+                </LinearLayout>
 
-                    <com.example.henryye.floorshop.wigets.ClearEditText
-                        android:id="@+id/edittxt_pwd"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/largePadding"
+                    android:paddingBottom="@dimen/largePadding"
+                    android:orientation="horizontal"
+                    >
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/verify_code_txt"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:hint="verify code"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        app:met_primaryColor="#EB4F38"
+                        app:met_errorColor="#ddaa00" />
+
+                    <com.example.henryye.floorshop.wigets.CountDownButton
+                        android:id="@+id/btn_reSend"
+                        android:layout_weight="3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        style="@style/editText_base"
-                        android:hint="password"
-                        android:layout_weight="1"
                         android:layout_marginLeft="10dp"
-                        android:inputType="textPassword"/>
+                        android:text="Send verify code"
+                        style="@style/countdownButton"
+                        />
+
+
                 </LinearLayout>
 
 

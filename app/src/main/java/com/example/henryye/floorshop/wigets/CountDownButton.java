@@ -66,10 +66,10 @@ public class CountDownButton extends Button implements View.OnClickListener{
         if (mOnClickListener != null) {
             mOnClickListener.onClick(view);
         }
-        startTimer();
+        //startTimer();
     }
 
-    private void startTimer() {
+    public void startTimer() {
         temp_duration = duration;
         CountDownButton.this.setEnabled(false);
         mTimer = new Timer();
@@ -82,14 +82,10 @@ public class CountDownButton extends Button implements View.OnClickListener{
         mTimer.schedule(mTask, 0, 1000);
     }
 
-    private void stopTimer(){
+    public void stopTimer(){
         if (mTask != null) {
             mTask.cancel();
             mTask = null;
         }
-//        if (mTimer != null) {
-//            mTimer.cancel();
-//            mTimer = null;
-//        }
     }
 }

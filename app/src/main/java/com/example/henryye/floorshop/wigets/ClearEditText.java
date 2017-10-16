@@ -44,7 +44,6 @@ public class ClearEditText extends AppCompatEditText implements View.OnTouchList
         DrawableCompat.setTint(wrappedDrawable, getCurrentHintTextColor());
         mClearTextIcon = wrappedDrawable;
 
-//        mClearTextIcon= context.getResources().getDrawable(R.drawable.icon_delete_32);
         mClearTextIcon.setBounds(0, 0, mClearTextIcon.getIntrinsicHeight(), mClearTextIcon.getIntrinsicHeight());
         setClearIconVisible(false);
         super.setOnTouchListener(this);

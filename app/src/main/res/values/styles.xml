@@ -84,54 +84,12 @@
     </style>
 
 
-    <style name="smallGreenButton" parent="@style/smallButton">
-        <item name="android:background">@drawable/bg_btn_style_green</item>
-    </style>
-
-    <style name="smallGreyButton" parent="@style/smallButton">
-        <item name="android:textColor">@color/grey_btn_text_color</item>
-        <item name="android:background">@drawable/bg_btn_style_grey</item>
-    </style>
-
-    <style name="smallRedButton" parent="@style/smallButton">
-        <item name="android:background">@drawable/bg_btn_style_red</item>
-    </style>
-
-
-    <style name="bigGreenButton" parent="@style/bigButton">
+    <style name="countdownButton" parent="@style/smallButton">
         <item name="android:background">@drawable/bg_btn_style_green</item>
     </style>
 
 
-    <style name="bigRedButton" parent="@style/bigButton">
-        <item name="android:background">@drawable/bg_btn_style_red</item>
-    </style>
 
-    <style name="bigGreyButton" parent="@style/bigButton">
-        <item name="android:textColor">@color/grey_btn_text_color</item>
-        <item name="android:background">@drawable/bg_btn_style_grey</item>
-    </style>
-
-
-    <style name="customCheckbox" parent="@android:style/Widget.CompoundButton.CheckBox">
-        <item name="android:button">@drawable/selector_checkbox</item>
-    </style>
-
-
-
-
-    <style name="ware_title">
-
-        <item name="android:textColor">@color/gray</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:maxLines">3</item>
-    </style>
-
-    <style name="ware_price">
-        <item name="android:textColor">@color/crimson</item>
-        <item name="android:textSize">22sp</item>
-
-    </style>
 
     <style name="editText_base">
         <item name="android:textSize">16sp</item>
@@ -152,47 +110,5 @@
 
 
 
-
-    <!-- For Widget Alert box-->
-    <style name="text_18_ffffff">
-        <item name="android:textSize">18.0dip</item>
-        <item name="android:textColor">#ffffffff</item>
-    </style>
-
-    <style name="text_16_666666">
-        <item name="android:textSize">16.0dip</item>
-        <item name="android:textColor">#ff666666</item>
-    </style>
-
-    <style name="sdw_white">
-        <item name="android:shadowColor">#7fffffff</item>
-        <item name="android:shadowDx">0.0</item>
-        <item name="android:shadowDy">0.65</item>
-        <item name="android:shadowRadius">1.0</item>
-    </style>
-
-    <style name="sdw_79351b">
-        <item name="android:shadowColor">#ff79351b</item>
-        <item name="android:shadowDx">0.0</item>
-        <item name="android:shadowDy">1.0</item>
-        <item name="android:shadowRadius">1.0</item>
-    </style>
-
-    <style name="text_15_ffffff_sdw" parent="@style/sdw_79351b">
-        <item name="android:textSize">15.0dip</item>
-        <item name="android:textColor">#ffffffff</item>
-    </style>
-
-    <style name="text_15_666666_sdw" parent="@style/sdw_white">
-        <item name="android:textSize">15.0dip</item>
-        <item name="android:textColor">#ff666666</item>
-    </style>
-
-    <style name="Dialog" parent="android:style/Theme.Dialog">
-        <item name="android:background">#00000000</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-    </style>
 
 </resources>

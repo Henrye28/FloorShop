@@ -8,7 +8,7 @@
     <include layout="@layout/widget_title_bar"/>
 
     <ListView
-        android:background="@color/whitesmoke"
+        android:background="@color/white"
         android:id="@+id/countryList"
         android:divider="#ffdddddd"
         android:dividerHeight="3px"

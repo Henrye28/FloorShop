@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,9 +20,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by henryye on 5/14/17.
- */
 public class CountryChoosingFragment extends Fragment {
 
     private View view;
@@ -51,14 +47,14 @@ public class CountryChoosingFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-              //  RelativeLayout item = (RelativeLayout)parent.getItemAtPosition(position);
-                String item = (String)parent.getItemAtPosition(position);
-                TextView txtCountry = (TextView)getActivity().findViewById(R.id.txtCountry);
-                EditText txtCountryCode = (EditText)getActivity().findViewById(R.id.txtCountryCode);
+                //  RelativeLayout item = (RelativeLayout)parent.getItemAtPosition(position);
+                String item = (String) parent.getItemAtPosition(position);
+                TextView txtCountry = (TextView) getActivity().findViewById(R.id.txtCountry);
+                TextView txtCountryCode = (TextView) getActivity().findViewById(R.id.txtCountryCode);
                 String[] divided = item.split(" ");
                 int len = divided.length;
-                String codes = item.split(" ")[len-1];
-                String countries = item.replace(" "+codes,"");
+                String codes = item.split(" ")[len - 1];
+                String countries = item.replace(" " + codes, "");
 
                 txtCountry.setText(countries);
                 txtCountryCode.setText(codes);

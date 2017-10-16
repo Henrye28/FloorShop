@@ -123,7 +123,7 @@ public class AlertBox extends Dialog {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             // instantiate the dialog with the custom Theme
-            final AlertBox dialog = new AlertBox(context, R.style.Dialog);
+            final AlertBox dialog = new AlertBox(context, R.style.editText_base);
             View layout = inflater.inflate(R.layout.widget_alert_box, null);
             dialog.addContentView(layout, new LayoutParams(
                     LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));

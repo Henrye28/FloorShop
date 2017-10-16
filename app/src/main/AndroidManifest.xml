@@ -32,10 +32,11 @@
         <activity android:name=".pages.ItemsPage">
         </activity>
 
-        <activity android:name=".pages.RegisterActivity">
+        <activity android:name=".pages.RegisterMobileActivity">
         </activity>
 
-        <activity android:name=".pages.RegisterSecondActivity">
+        <activity android:name=".pages.WelcomeActivity">
+
         </activity>
 
     </application>

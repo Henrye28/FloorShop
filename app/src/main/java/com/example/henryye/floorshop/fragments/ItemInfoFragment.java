@@ -410,8 +410,6 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
             backgroundAlpha(0.3f);
             // 添加pop窗口关闭事件
             this.setOnDismissListener(new poponDismissListener());
-            // 设置动画--这里按需求设置成系统输入法动画
-            this.setAnimationStyle(R.style.AnimBottom);
             // mMenuView添加OnTouchListener监听判断获取触屏位置如果在选择框外面则销毁弹出框
             CommodityAttributeView.setOnTouchListener(new View.OnTouchListener() {
 

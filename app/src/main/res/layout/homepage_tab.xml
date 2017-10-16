@@ -50,7 +50,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/bg_Gray" />
+                android:background="@color/gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/bg_Gray" />
+                    android:background="@color/gray" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -87,7 +87,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/bg_Gray" />
+                        android:background="@color/gray" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -106,7 +106,7 @@
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="@color/bg_Gray" />
+                            android:background="@color/gray" />
 
                         <com.facebook.drawee.view.SimpleDraweeView
                             android:id="@+id/hotItem3"
@@ -130,12 +130,12 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:background="@color/bg_Gray" />
+                android:background="@color/gray" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:background="@color/bg_Gray" />
+                android:background="@color/gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -147,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Hot Items"
-                    android:textColor="@color/tv_Black"
+                    android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <GridView

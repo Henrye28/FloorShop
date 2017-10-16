@@ -32,11 +32,4 @@
     <string name="signup_with_email">邮箱注册</string>
     <string name="signup_with_mobile">手机注册</string>
     <string name="sign_up">注册</string>
-    <string name="login_alert">登录失败，请检查用户账号以及密码哟</string>
-    <string name="logining">登录中...</string>
-    <string name="signup_format_alert">请输入正确的电话号码以及密码，密码必须包含数字和字母</string>
-    <string name="verify_code_format_alert">请输入正确的验证码</string>
-    <string name="user_register_failed_alert">用户注册失败, 请再次尝试</string>
-    <string name="verify_code_failed_to_send">验证码发送失败，请重新发送</string>
-
 </resources>

@@ -1,43 +1,35 @@
 package com.example.henryye.floorshop.pages;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dd.processbutton.iml.ActionProcessButton;
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.bean.User;
-import com.example.henryye.floorshop.wigets.AlertBox;
-import com.example.henryye.floorshop.wigets.ClearEditText;
-import com.example.henryye.floorshop.wigets.LoadingViewWithText;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
+import de.mrapp.android.dialog.MaterialDialog;
 
-/**
- * Created by henryye on 5/9/17.
- */
-public class LoginActivity  extends AppCompatActivity {
 
-    private Button login_btn;
-    private ClearEditText mobile;
-    private ClearEditText pwd;
+public class LoginActivity  extends AppCompatActivity{
+
+    private MaterialDialog alertDialog;
+    private MaterialDialog listDialog;
+    private ActionProcessButton signInButton;
+    private MaterialEditText account;
+    private MaterialEditText pwd;
     private User user;
-    private AlertBox.Builder builder;
-    private LoadingViewWithText loadingView;
-    private RelativeLayout rootView;
-    private LinearLayout loadingBackground;
     private TextView signUp;
     private TextView forgotPwd;
     private Intent in;
@@ -51,45 +43,62 @@ public class LoginActivity  extends AppCompatActivity {
      *
      */
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
+        mContext = this;
 
-        in = new Intent(this,RegisterActivity.class);
-        mobile = (ClearEditText)findViewById(R.id.etxt_phone);
-        pwd = (ClearEditText)findViewById(R.id.etxt_pwd);
-        login_btn = (Button)findViewById(R.id.btn_login);
+        account = (MaterialEditText)findViewById(R.id.account);
+        pwd = (MaterialEditText)findViewById(R.id.password);
+        signInButton = (ActionProcessButton)findViewById(R.id.login_button);
 
         signUp = (TextView)findViewById(R.id.txt_signUp);
         forgotPwd = (TextView)findViewById(R.id.txt_forgetPwd);
 
-        loadingBackground = (LinearLayout)findViewById(R.id.loading_background);
-        builder = new AlertBox.Builder(this);;
         Bmob.initialize(this, "ee80fab0407209723c93996bff00b101");
 
-        loadingView = new LoadingViewWithText(this);
-        rootView = (RelativeLayout) ((ViewGroup)findViewById(android.R.id.content)).getChildAt(0);
 
-        mContext = this;
 
-        login_btn.setOnClickListener(new View.OnClickListener() {
+        signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingView.postLoadState(LoadingViewWithText.State.LOADING);
-                rootView.addView(loadingView);
-                loadingBackground.setBackgroundColor(getResources().getColor(R.color.translucent));
-                rootView.setEnabled(false);
+               // progressGenerator.start(signInButton);
+                signInButton.setProgress(75);
+                signInButton.setEnabled(false);
                 login();
+
             }
         });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Jump to register page
-                startActivity(in);
+
+                String registerWithEmail = LoginActivity.this.getResources().getString(R.string.signup_with_email);
+                String registerWithMobile = LoginActivity.this.getResources().getString(R.string.signup_with_mobile);
+
+                MaterialDialog.Builder dialogBuilder = new de.mrapp.android.dialog.MaterialDialog.Builder(LoginActivity.this);
+                dialogBuilder.setButtonBarDividerColor(Color.parseColor("#EB4F38"));
+                dialogBuilder.setItems(new String[]{registerWithEmail, registerWithMobile}, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                in = new Intent(LoginActivity.this, RegisterMobileActivity.class);
+                                startActivity(in);
+                                listDialog.dismiss();
+                                break;
+                            case 1:
+                                listDialog.dismiss();
+                                break;
+                        }
+                    }
+                });
+                dialogBuilder.setPositiveButton(android.R.string.ok, null);
+                listDialog = dialogBuilder.create();
+                listDialog.show();
+
             }
         });
 
@@ -107,43 +116,37 @@ public class LoginActivity  extends AppCompatActivity {
 
     public void login(){
         user = new User();
-        user.setMobilePhoneNumber(mobile.getText().toString());
+        user.setMobilePhoneNumber(account.getText().toString());
         user.setPassword(pwd.getText().toString());
         //Need to set username correct, or wont be able to login
-        user.setUsername(mobile.getText().toString());
+        user.setUsername(account.getText().toString());
 
-        user.login( new SaveListener<BmobUser>() {
+        user.login(new SaveListener<BmobUser>() {
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
-                if(e==null){
-                    rootView.removeView(loadingView);
-                    Toast.makeText(mContext,"Login done",Toast.LENGTH_SHORT).show();
+                if (e == null) {
+                    in = new Intent(LoginActivity.this, MainPage.class);
+                    signInButton.setProgress(0);
+                    Toast.makeText(mContext, "Login done", Toast.LENGTH_SHORT).show();
+                    startActivity(in);
                     //Jump to stores page
                     //通过BmobUser user = BmobUser.getCurrentUser()获取登录成功后的本地用户信息
                     //如果是自定义用户对象MyUser，可通过MyUser user = BmobUser.getCurrentUser(MyUser.class)获取自定义用户
-                }else{
+                } else {
+                    signInButton.setProgress(0);
 
-                    rootView.removeView(loadingView);
-                    rootView.setEnabled(true);
-                    loadingBackground.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    MaterialDialog.Builder dialogBuilder = new de.mrapp.android.dialog.MaterialDialog.Builder(LoginActivity.this);
+                    dialogBuilder.setMessage(R.string.login_alert);
+                    dialogBuilder.setPositiveButton(android.R.string.ok, null);
+                    alertDialog = dialogBuilder.create();
+                    alertDialog.show();
 
-                    builder.setTitle("Reminder");
-                    builder.setMessage("Login failed, \nPlease Check your phone number and password");
-                    rootView.setEnabled(true);
-                    builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.setNegativeButton("Cancel", new Dialog.OnClickListener(){
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.create().show();
+                    signInButton.setEnabled(true);
                 }
             }
         });
     }
+
+
 
 }
