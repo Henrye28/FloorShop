@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CNiao5Shop</string>
+    <string name="app_name">FloorShop</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="AlertBox_title_register"></string>
+    <string name="AlertBox_title_Login">登录失败，请检查密码以及电话号码</string>
+    <string name="AlertBox_title">提示</string>
     <string name="home">主页</string>
     <string name="hot">热卖</string>
     <string name="catagory">分类</string>
@@ -25,5 +27,16 @@
     <string name="create_order">填写订单</string>
     <string name="pay_result">支付结果</string>
     <string name="add_addresses">新建收件地址</string>
+    <string name="email_verify_resend">重发验证邮件</string>
+    <string name="email_verify_sned">发送验证</string>
+    <string name="signup_with_email">邮箱注册</string>
+    <string name="signup_with_mobile">手机注册</string>
+    <string name="sign_up">注册</string>
+    <string name="login_alert">登录失败，请检查用户账号以及密码哟</string>
+    <string name="logining">登录中...</string>
+    <string name="signup_format_alert">请输入正确的电话号码以及密码，密码必须包含数字和字母</string>
+    <string name="verify_code_format_alert">请输入正确的验证码</string>
+    <string name="user_register_failed_alert">用户注册失败, 请再次尝试</string>
+    <string name="verify_code_failed_to_send">验证码发送失败，请重新发送</string>
 
 </resources>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CNiao5Shop</string>
+    <string name="app_name">FloorShop</string>
 
     <string name="action_settings">Settings</string>
 
+    <string name="AlertBox_title_Login">Login failed, Please check password and phone number</string>
+    <string name="AlertBox_title">Reminder</string>
     <string name="home">Homepage</string>
     <string name="hot">Hot</string>
     <string name="catagory">Classification</string>
@@ -24,9 +26,15 @@
     <string name="create_order">Fill up order</string>
     <string name="pay_result">Payment result</string>
     <string name="add_addresses">Recommended adress</string>
-
-
-
-
-
+    <string name="Cemail_verify_resend">Resend Email</string>
+    <string name="Cemail_verify_send">Send Email</string>
+    <string name="signup_with_email">Sign up with email</string>
+    <string name="signup_with_mobile">Sign up with mobile</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login_alert">Login failed,Please Check your phone number and password</string>
+    <string name="logining">Logining...</string>
+    <string name="signup_format_alert">Please Check your phone number and password format password should contains both character and number</string>
+    <string name="verify_code_format_alert">Please enter correct sms code</string>
+    <string name="user_register_failed_alert">User register failed, please try again</string>
+    <string name="verify_code_failed_to_send">SMS verify code failed to send, please try again</string>
 </resources>

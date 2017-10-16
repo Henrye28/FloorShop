@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.henryye.floorshop.R;
@@ -28,26 +29,28 @@ public class ToolBar extends Toolbar {
     private TextView mTextTitle;
     private EditText mSearchView;
     private Button mRightButton;
+    private static int height = 80;
+
 
 
     public ToolBar(Context context) {
-       this(context,null);
+
+        this(context, null);
+        setHeight(context);
+
     }
 
     public ToolBar(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        setHeight(context);
     }
 
     public ToolBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
 
-
         initView();
-        setContentInsetsRelative(10,10);
-
-
-
+        setContentInsetsRelative(10, 10);
 
         if(attrs !=null) {
             final TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
@@ -70,27 +73,31 @@ public class ToolBar extends Toolbar {
 
             }
 
-
-
             CharSequence rightButtonText = a.getText(R.styleable.CNiaoToolBar_rightButtonText);
             if(rightButtonText !=null){
                 setRightButtonText(rightButtonText);
             }
-
-
 
             a.recycle();
         }
 
     }
 
+    public void setHeightValue(int height){
+        this.height = height;
+    }
+
+    public void setHeight(Context context){
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight(context)+height);
+        this.setLayoutParams(params);
+    }
+
     private void initView() {
-
-
         if(mView == null) {
 
             mInflater = LayoutInflater.from(getContext());
-            mView = mInflater.inflate(R.layout.toolbar, null);
+            mView = mInflater.inflate(R.layout.widget_toolbar, null);
 
 
             mTextTitle = (TextView) mView.findViewById(R.id.toolbar_title);
@@ -102,10 +109,8 @@ public class ToolBar extends Toolbar {
 
             addView(mView, lp);
         }
-
-
-
     }
+
 
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -147,6 +152,11 @@ public class ToolBar extends Toolbar {
     }
 
 
+    public static int getStatusBarHeight(Context context) {
+        // get status bar height
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        return context.getResources().getDimensionPixelSize(resourceId);
+    }
 
     @Override
     public void setTitle(int resId) {
@@ -162,11 +172,6 @@ public class ToolBar extends Toolbar {
             mTextTitle.setText(title);
             showTitleView();
         }
-
-
-
-
-
     }
 
 

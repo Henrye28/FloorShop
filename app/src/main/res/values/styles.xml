@@ -2,12 +2,10 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat">
-        <!-- Customize your theme here. -->
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@color/white</item>
-        <!-- 窗口的背景颜色 -->
         <item name="android:windowBackground">@android:color/white</item>
 
         <item name="android:windowActionBar">false</item>
@@ -15,7 +13,14 @@
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:listDivider">@drawable/list_divider</item>
 
+    </style>
+
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
 
     <style name="search_view">
@@ -79,54 +84,12 @@
     </style>
 
 
-    <style name="smallGreenButton" parent="@style/smallButton">
-        <item name="android:background">@drawable/bg_btn_style_green</item>
-    </style>
-
-    <style name="smallGreyButton" parent="@style/smallButton">
-        <item name="android:textColor">@color/grey_btn_text_color</item>
-        <item name="android:background">@drawable/bg_btn_style_grey</item>
-    </style>
-
-    <style name="smallRedButton" parent="@style/smallButton">
-        <item name="android:background">@drawable/bg_btn_style_red</item>
-    </style>
-
-
-    <style name="bigGreenButton" parent="@style/bigButton">
+    <style name="countdownButton" parent="@style/smallButton">
         <item name="android:background">@drawable/bg_btn_style_green</item>
     </style>
 
 
-    <style name="bigRedButton" parent="@style/bigButton">
-        <item name="android:background">@drawable/bg_btn_style_red</item>
-    </style>
 
-    <style name="bigGreyButton" parent="@style/bigButton">
-        <item name="android:textColor">@color/grey_btn_text_color</item>
-        <item name="android:background">@drawable/bg_btn_style_grey</item>
-    </style>
-
-
-    <style name="customCheckbox" parent="@android:style/Widget.CompoundButton.CheckBox">
-        <item name="android:button">@drawable/selector_checkbox</item>
-    </style>
-
-
-
-
-    <style name="ware_title">
-
-        <item name="android:textColor">@color/gray</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:maxLines">3</item>
-    </style>
-
-    <style name="ware_price">
-        <item name="android:textColor">@color/crimson</item>
-        <item name="android:textSize">22sp</item>
-
-    </style>
 
     <style name="editText_base">
         <item name="android:textSize">16sp</item>
@@ -145,11 +108,7 @@
 
     </style>
 
-    <style name="radioButton">
-        <item name="android:background">@drawable/selector_checkbox_green</item>
-        <item name="android:button">@null</item>
 
-    </style>
 
 
 </resources>
