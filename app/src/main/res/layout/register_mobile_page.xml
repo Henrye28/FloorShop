@@ -15,16 +15,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.example.henryye.floorshop.wigets.ToolBar
-                android:id="@id/toolbar"
-                android:background="?attr/colorPrimary"
-                android:minHeight="?attr/actionBarSize"
+
+            <com.example.henryye.floorshop.widgets.PageTopBar
+                android:id="@+id/pageTopBar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:navigationIcon="@drawable/icon_back_32"
-                app:title="Sign up(1/2)"
-                app:rightButtonText="Next"
-                />
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -143,7 +138,7 @@
                         app:met_primaryColor="#EB4F38"
                         app:met_errorColor="#ddaa00" />
 
-                    <com.example.henryye.floorshop.wigets.CountDownButton
+                    <com.example.henryye.floorshop.widgets.CountDownButton
                         android:id="@+id/btn_reSend"
                         android:layout_weight="3"
                         android:layout_width="0dp"

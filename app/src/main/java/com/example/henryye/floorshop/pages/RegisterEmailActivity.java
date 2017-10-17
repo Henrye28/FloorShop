@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.henryye.floorshop.GlobalFunctions;
 import com.example.henryye.floorshop.R;
-import com.example.henryye.floorshop.wigets.ToolBar;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.rengwuxian.materialedittext.validation.RegexpValidator;
 
@@ -15,7 +14,6 @@ public class RegisterEmailActivity extends AppCompatActivity {
 
     private MaterialEditText email;
     private MaterialEditText password;
-    private ToolBar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +21,6 @@ public class RegisterEmailActivity extends AppCompatActivity {
         setContentView(R.layout.register_email_page);
         BmobSMS.initialize(this, "ee80fab0407209723c93996bff00b101");
 
-        toolbar = (ToolBar)findViewById(R.id.toolbar);
         email = (MaterialEditText)findViewById(R.id.email_txt);
         password = (MaterialEditText)findViewById(R.id.password_txt);
 

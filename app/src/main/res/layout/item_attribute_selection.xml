@@ -48,7 +48,7 @@
                         android:textColor="#66000000"
                         android:textSize="14sp"/>
 
-                    <com.example.henryye.floorshop.wigets.itemAttributeTag.TagFlowLayout
+                    <com.example.henryye.floorshop.widgets.itemAttributeTag.TagFlowLayout
                         android:id="@+id/tf_color"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                         android:textColor="#66000000"
                         android:textSize="14sp"/>
 
-                    <com.example.henryye.floorshop.wigets.itemAttributeTag.TagFlowLayout
+                    <com.example.henryye.floorshop.widgets.itemAttributeTag.TagFlowLayout
                         android:id="@+id/tf_size"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

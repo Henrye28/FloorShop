@@ -19,10 +19,7 @@ import android.widget.TextView;
 
 import com.example.henryye.floorshop.R;
 
-/**
- * Created by Dan on 17/9/3.
- */
-public class PageTopBar extends Toolbar {
+public class PageTopBar extends Toolbar{
 
     private LayoutInflater mInflater;
 
@@ -32,7 +29,7 @@ public class PageTopBar extends Toolbar {
     private LinearLayout communityLayout;
     private TextView communityFollow;
     private TextView communityDiscovery;
-    private ImageView commentButton;
+    private ImageView rightCornerButton;
     private ImageView meShareButton;
     private TextView meTitle;
     private Typeface homeTypeFace;
@@ -80,7 +77,7 @@ public class PageTopBar extends Toolbar {
 
             final Drawable communityComment = a.getDrawable(R.styleable.PageTopBar_communityComment);
             if (communityComment != null) {
-                setCommentButton(communityComment);
+                setRightCornerButton(communityComment);
             }
 
             final Drawable meShare = a.getDrawable(R.styleable.PageTopBar_meShare);
@@ -109,7 +106,7 @@ public class PageTopBar extends Toolbar {
             communityFollow.setTypeface(communityTypeFace);
             communityDiscovery = (TextView) mView.findViewById(R.id.topbar_community_discovery);
             communityDiscovery.setTypeface(communityTypeFace);
-            commentButton = (ImageView) mView.findViewById(R.id.topbar_comment);
+            rightCornerButton = (ImageView) mView.findViewById(R.id.topbar_rightcorner);
             meShareButton = (ImageView) mView.findViewById(R.id.topbar_me_share);
             meTitle = (TextView) mView.findViewById(R.id.topbar_me_title);
             meTitle.setTypeface(homeTypeFace);
@@ -156,11 +153,11 @@ public class PageTopBar extends Toolbar {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setCommentButton(Drawable icon) {
+    public void setRightCornerButton(Drawable icon) {
 
-        if (commentButton != null) {
-            commentButton.setBackground(icon);
-            commentButton.setVisibility(VISIBLE);
+        if (rightCornerButton != null) {
+            rightCornerButton.setBackground(icon);
+            rightCornerButton.setVisibility(VISIBLE);
         }
     }
 
@@ -197,8 +194,8 @@ public class PageTopBar extends Toolbar {
         if (communityLayout != null)
             communityLayout.setVisibility(VISIBLE);
 
-        if (commentButton != null)
-            commentButton.setVisibility(VISIBLE);
+        if (rightCornerButton != null)
+            rightCornerButton.setVisibility(VISIBLE);
     }
 
     public void showMeView() {
@@ -208,9 +205,13 @@ public class PageTopBar extends Toolbar {
         if (meTitle != null)
             meTitle.setVisibility(VISIBLE);
 
-        if (commentButton != null) {
-            commentButton.setVisibility(VISIBLE);
+        if (rightCornerButton != null) {
+            rightCornerButton.setVisibility(VISIBLE);
         }
+    }
+
+    public void setRightCornerButton(OnClickListener clickListener){
+        rightCornerButton.setOnClickListener(clickListener);
     }
 
 }

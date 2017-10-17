@@ -12,15 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.henryye.floorshop.wigets.ToolBar
-            android:id="@id/toolbar"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            app:navigationIcon="@drawable/icon_back_32"
-            app:title="FloorShop Login"
-            />
+        <com.example.henryye.floorshop.widgets.PageTopBar
+            android:id="@+id/pageTopBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
         <!--android:background="@drawable/selector_view_block"-->

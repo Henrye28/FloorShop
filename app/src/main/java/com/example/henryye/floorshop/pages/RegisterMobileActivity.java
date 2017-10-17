@@ -16,8 +16,8 @@ import com.example.henryye.floorshop.GlobalFunctions;
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.bean.User;
 import com.example.henryye.floorshop.fragments.TempCountryChoosingFragment;
-import com.example.henryye.floorshop.wigets.CountDownButton;
-import com.example.henryye.floorshop.wigets.ToolBar;
+import com.example.henryye.floorshop.widgets.CountDownButton;
+import com.example.henryye.floorshop.widgets.PageTopBar;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import cn.bmob.sms.BmobSMS;
@@ -37,9 +37,9 @@ public class RegisterMobileActivity extends AppCompatActivity{
     private TextView country;
     private CountDownButton countDownButton;
     private TextView countryCode;
-    private ToolBar toolbar;
 
     private TempCountryChoosingFragment ccf;
+    private PageTopBar toolbar;
     private String[] countries;
     private String[] codes;
     private String[] array;
@@ -74,19 +74,23 @@ public class RegisterMobileActivity extends AppCompatActivity{
 
         countryCode = (TextView)findViewById(R.id.txtCountryCode);
         country = (TextView)findViewById(R.id.txtCountry);
-        toolbar = (ToolBar)findViewById(R.id.toolbar);
+
         mobileInput = (MaterialEditText)findViewById(R.id.mobile_txt);
         pwdInput = (MaterialEditText)findViewById(R.id.password_txt);
         verifyCodeInput = (MaterialEditText)findViewById(R.id.verify_code_txt);
 
         countDownButton = (CountDownButton) findViewById(R.id.btn_reSend);
 
+        toolbar = (PageTopBar)findViewById(R.id.pageTopBar);
         countDownButton.setOnClickListener(countDownButton);
         ccf = new TempCountryChoosingFragment();
 
         BmobSMS.initialize(this, "ee80fab0407209723c93996bff00b101");
 
-        toolbar.setRightButtonOnClickListener(new View.OnClickListener() {
+
+        toolbar.setRightCornerButton(getResources().getDrawable(R.drawable.next));
+
+        toolbar.setRightCornerButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user = new User();
@@ -94,9 +98,9 @@ public class RegisterMobileActivity extends AppCompatActivity{
                 user.setMobilePhoneNumber(mobileStr);
                 user.setPassword(pwdStr);
 
-                if(verifyCodeInput.getText().toString().equals("") || verifyCodeInput.getText().toString() == null){
+                if (verifyCodeInput.getText().toString().equals("") || verifyCodeInput.getText().toString() == null) {
                     createDialogWithAlertMsg(R.string.verify_code_format_alert);
-                }else {
+                } else {
                     codeVerifying(mobileStr, verifyCodeInput.getText().toString());
                 }
             }

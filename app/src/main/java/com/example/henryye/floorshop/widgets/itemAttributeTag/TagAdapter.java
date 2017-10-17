@@ -1,4 +1,4 @@
-package com.example.henryye.floorshop.wigets.itemAttributeTag;
+package com.example.henryye.floorshop.widgets.itemAttributeTag;
 
 import android.view.View;
 
