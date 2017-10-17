@@ -54,7 +54,6 @@
                 android:inputType="number"
                 android:maxLength="6"/>
 
-
             <com.example.henryye.floorshop.widgets.CountDownButton
                 android:id="@+id/btn_reSend"
                 android:layout_width="wrap_content"

@@ -26,7 +26,6 @@
                 app:rightButtonText="Next"
                 />
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,8 +33,6 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/selector_view_block"
                 android:padding="@dimen/largePadding">
-
-
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -95,13 +92,10 @@
                         app:met_primaryColor="#EB4F38"
                         app:met_errorColor="#ddaa00" />
 
-
                 </LinearLayout>
-
 
                 <View
                     style="@style/line_vertical"
-
                     />
 
                 <LinearLayout
@@ -158,10 +152,7 @@
                         android:text="Send verify code"
                         style="@style/countdownButton"
                         />
-
-
                 </LinearLayout>
-
 
             </LinearLayout>
 
