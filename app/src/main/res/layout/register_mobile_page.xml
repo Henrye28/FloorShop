@@ -116,7 +116,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Password"
                         app:met_primaryColor="#EB4F38"
-                        app:met_errorColor="#ddaa00" />
+                        app:met_errorColor="@color/errorColor" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -136,7 +136,7 @@
                         android:inputType="number"
                         android:maxLength="6"
                         app:met_primaryColor="#EB4F38"
-                        app:met_errorColor="#ddaa00" />
+                        app:met_errorColor="@color/errorColor" />
 
                     <com.example.henryye.floorshop.widgets.CountDownButton
                         android:id="@+id/btn_reSend"

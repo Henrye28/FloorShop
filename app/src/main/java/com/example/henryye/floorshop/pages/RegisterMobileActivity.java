@@ -19,6 +19,7 @@ import com.example.henryye.floorshop.fragments.TempCountryChoosingFragment;
 import com.example.henryye.floorshop.widgets.CountDownButton;
 import com.example.henryye.floorshop.widgets.PageTopBar;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.rengwuxian.materialedittext.validation.RegexpValidator;
 
 import cn.bmob.sms.BmobSMS;
 import cn.bmob.sms.exception.BmobException;
@@ -77,6 +78,9 @@ public class RegisterMobileActivity extends AppCompatActivity{
 
         mobileInput = (MaterialEditText)findViewById(R.id.mobile_txt);
         pwdInput = (MaterialEditText)findViewById(R.id.password_txt);
+        mobileInput.addValidator(new RegexpValidator("Please input correct mobile format", GlobalFunctions.MOBILE_PATTERN));
+        pwdInput.addValidator(new RegexpValidator("Password should contains both character and numbers", GlobalFunctions.PASSWORD_PATTERN));
+
         verifyCodeInput = (MaterialEditText)findViewById(R.id.verify_code_txt);
 
         countDownButton = (CountDownButton) findViewById(R.id.btn_reSend);
@@ -121,15 +125,12 @@ public class RegisterMobileActivity extends AppCompatActivity{
         countDownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mobileStr= mobileInput.getText().toString();
-                pwdStr = pwdInput.getText().toString();
-                if(GlobalFunctions.isMobileNO(mobileStr) && GlobalFunctions.isRightPwd(pwdStr)) {
-                    codeSending(mobileStr);
-                    countDownButton.startTimer();
-                }else{
-                    countDownButton.stopTimer();
-                    createDialogWithAlertMsg(R.string.signup_format_alert);
-                }
+            if(mobileInput.validate() && pwdInput.validate()){
+                codeSending(mobileStr);
+                countDownButton.startTimer();
+            }else {
+                countDownButton.stopTimer();
+            }
             }
         });
 
