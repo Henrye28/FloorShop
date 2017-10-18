@@ -5,22 +5,19 @@ import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.henryye.floorshop.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by dan on 17/9/11.
@@ -34,14 +31,15 @@ public class DrawerView extends LinearLayout {
     private LinearLayout search_block;
     private ImageView searchBack;
 
-    private SearchListView listView;
-    private SimpleCursorAdapter adapter;
+    private ArrayList<String> historySearch = new ArrayList<>();
+    private SearchHistoryView historyView;
+    private MarginLayoutParams layoutParams;
 
     private RecordSQLiteOpenHelper helper ;
     private SQLiteDatabase db;
 
-    private  ICallBack mCallBack;
-    private  bCallBack bCallBack;
+    private ICallBack mCallBack;
+    private bCallBack bCallBack;
 
     private Float textSizeSearch;
     private int textColorSearch;
@@ -99,6 +97,9 @@ public class DrawerView extends LinearLayout {
 
     private void init() {
 
+        layoutParams = new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(30, 30, 10, 10);
+
         initView();
 
         helper = new RecordSQLiteOpenHelper(context);
@@ -118,7 +119,7 @@ public class DrawerView extends LinearLayout {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
 
-                    if (!(mCallBack == null)){
+                    if (!(mCallBack == null)) {
                         mCallBack.SearchAciton(et_search.getText().toString());
                     }
 
@@ -127,7 +128,7 @@ public class DrawerView extends LinearLayout {
                     boolean hasData = hasData(et_search.getText().toString().trim());
                     if (!hasData) {
                         insertData(et_search.getText().toString().trim());
-                        queryData("");
+                        addTextView(historySearch.size() - 1);
                     }
                 }
                 return false;
@@ -135,34 +136,34 @@ public class DrawerView extends LinearLayout {
         });
 
 
-        et_search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//        et_search.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                String tempName = et_search.getText().toString();
+//                queryData(tempName);
+//            }
+//        });
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String tempName = et_search.getText().toString();
-                queryData(tempName);
-            }
-        });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                TextView textView = (TextView) view.findViewById(android.R.id.text1);
-                String name = textView.getText().toString();
-                et_search.setText(name);
-                Toast.makeText(context, name, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                TextView textView = (TextView) view.findViewById(android.R.id.text1);
+//                String name = textView.getText().toString();
+//                et_search.setText(name);
+//                Toast.makeText(context, name, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         searchBack.setOnClickListener(new OnClickListener() {
             @Override
@@ -176,45 +177,43 @@ public class DrawerView extends LinearLayout {
 
     private void initView(){
 
-        LayoutInflater.from(context).inflate(R.layout.fragment_drawer,this);
+        LayoutInflater.from(context).inflate(R.layout.fragment_drawer, this);
 
-        et_search = (EditText) findViewById(R.id.et_search);
+        et_search = (EditText) findViewById(R.id.drawer_et_search);
         et_search.setTextSize(textSizeSearch);
         et_search.setTextColor(textColorSearch);
         et_search.setHint(textHintSearch);
 
-        search_block = (LinearLayout)findViewById(R.id.search_block);
+        search_block = (LinearLayout) findViewById(R.id.drawer_search_block);
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) search_block.getLayoutParams();
         params.height = searchBlockHeight;
         search_block.setBackgroundColor(searchBlockColor);
         search_block.setLayoutParams(params);
 
-        listView = (SearchListView) findViewById(R.id.listView);
+        historyView = (SearchHistoryView) findViewById(R.id.drawer_history_view);
 
-        tv_clear = (TextView) findViewById(R.id.tv_clear);
+        tv_clear = (TextView) findViewById(R.id.drawer_tv_clear);
         tv_clear.setVisibility(INVISIBLE);
 
-        searchBack = (ImageView) findViewById(R.id.search_back);
+        searchBack = (ImageView) findViewById(R.id.drawer_search_back);
     }
 
     private void queryData(String tempName) {
 
         Cursor cursor = helper.getReadableDatabase().rawQuery(
                 "select id as _id,name from records where name like '%" + tempName + "%' order by id desc ", null);
-        adapter = new SimpleCursorAdapter(context, android.R.layout.simple_list_item_1, cursor, new String[] { "name" },
-                new int[] { android.R.id.text1 }, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
-        adapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
 
-            @Override
-            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-                TextView row = (TextView) view;
-                row.setTextColor(Color.BLACK);
-                return false;
+        if (cursor.moveToFirst()) {
+            for (int i=0; i<cursor.getCount(); i++) {
+                cursor.move(i);
+                String record = cursor.getString(1);
+                historySearch.add(record);
             }
-        });
+        }
 
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        for (int i = 0; i < historySearch.size(); i++) {
+            addTextView(i);
+        }
 
         if (tempName.equals("") && cursor.getCount() != 0){
             tv_clear.setVisibility(VISIBLE);
@@ -242,6 +241,24 @@ public class DrawerView extends LinearLayout {
         db = helper.getWritableDatabase();
         db.execSQL("insert into records(name) values('" + tempName + "')");
         db.close();
+    }
+
+    private void addTextView(int index) {
+        final TextView textView = new TextView(context);
+        textView.setTag(index);
+        textView.setTextSize(15);
+        textView.setText(historySearch.get(index));
+        textView.setPadding(24, 11, 24, 11);
+        textView.setTextColor(Color.BLACK);
+        textView.setBackgroundResource(R.drawable.icon_item_background);
+        historyView.addView(textView, layoutParams);
+
+        textView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, historySearch.get((int) textView.getTag()), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void setOnClickSearch(ICallBack mCallBack){

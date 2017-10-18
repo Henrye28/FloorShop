@@ -9,6 +9,7 @@
         <attr name="communityComment" format="reference"/>
         <attr name="meShare" format="reference"/>
         <attr name="meTitle" format="string"/>
+        <attr name="registerNext" format="reference"/>
     </declare-styleable>
 
     <declare-styleable name="MaterialCircleView">

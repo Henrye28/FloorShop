@@ -29,9 +29,10 @@ public class PageTopBar extends Toolbar{
     private LinearLayout communityLayout;
     private TextView communityFollow;
     private TextView communityDiscovery;
-    private ImageView rightCornerButton;
+    private ImageView commentButton;
     private ImageView meShareButton;
     private TextView meTitle;
+    private ImageView registerNextButton;
     private Typeface homeTypeFace;
     private Typeface communityTypeFace;
 
@@ -77,7 +78,7 @@ public class PageTopBar extends Toolbar{
 
             final Drawable communityComment = a.getDrawable(R.styleable.PageTopBar_communityComment);
             if (communityComment != null) {
-                setRightCornerButton(communityComment);
+                setCommentButton(communityComment);
             }
 
             final Drawable meShare = a.getDrawable(R.styleable.PageTopBar_meShare);
@@ -88,6 +89,11 @@ public class PageTopBar extends Toolbar{
             final CharSequence meTitle = a.getText(R.styleable.PageTopBar_meTitle);
             if (meTitle != null) {
                 setMeTitle(meTitle);
+            }
+
+            final Drawable registerNext = a.getDrawable(R.styleable.PageTopBar_registerNext);
+            if (registerNext != null) {
+                setRegisterNextButton(registerNext);
             }
             a.recycle();
         }
@@ -106,10 +112,11 @@ public class PageTopBar extends Toolbar{
             communityFollow.setTypeface(communityTypeFace);
             communityDiscovery = (TextView) mView.findViewById(R.id.topbar_community_discovery);
             communityDiscovery.setTypeface(communityTypeFace);
-            rightCornerButton = (ImageView) mView.findViewById(R.id.topbar_rightcorner);
+            commentButton = (ImageView) mView.findViewById(R.id.topbar_comment);
             meShareButton = (ImageView) mView.findViewById(R.id.topbar_me_share);
             meTitle = (TextView) mView.findViewById(R.id.topbar_me_title);
             meTitle.setTypeface(homeTypeFace);
+            registerNextButton = (ImageView) mView.findViewById(R.id.topbar_register_next);
 
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
             addView(mView, lp);
@@ -153,11 +160,11 @@ public class PageTopBar extends Toolbar{
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setRightCornerButton(Drawable icon) {
+    public void setCommentButton(Drawable icon) {
 
-        if (rightCornerButton != null) {
-            rightCornerButton.setBackground(icon);
-            rightCornerButton.setVisibility(VISIBLE);
+        if (commentButton != null) {
+            commentButton.setBackground(icon);
+            commentButton.setVisibility(VISIBLE);
         }
     }
 
@@ -179,6 +186,15 @@ public class PageTopBar extends Toolbar{
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void setRegisterNextButton(Drawable icon) {
+
+        if (registerNextButton != null) {
+            registerNextButton.setBackground(icon);
+            registerNextButton.setVisibility(VISIBLE);
+        }
+    }
+
     public void showHomepageView() {
         if (searchButton != null)
             searchButton.setVisibility(VISIBLE);
@@ -194,8 +210,8 @@ public class PageTopBar extends Toolbar{
         if (communityLayout != null)
             communityLayout.setVisibility(VISIBLE);
 
-        if (rightCornerButton != null)
-            rightCornerButton.setVisibility(VISIBLE);
+        if (commentButton != null)
+            commentButton.setVisibility(VISIBLE);
     }
 
     public void showMeView() {
@@ -205,13 +221,30 @@ public class PageTopBar extends Toolbar{
         if (meTitle != null)
             meTitle.setVisibility(VISIBLE);
 
-        if (rightCornerButton != null) {
-            rightCornerButton.setVisibility(VISIBLE);
+        if (commentButton != null) {
+            commentButton.setVisibility(VISIBLE);
         }
     }
 
-    public void setRightCornerButton(OnClickListener clickListener){
-        rightCornerButton.setOnClickListener(clickListener);
+    public void showRegisterView() {
+        if (registerNextButton != null ){
+            registerNextButton.setVisibility(VISIBLE);
+        }
     }
 
+    public void setCommentButtonButton(OnClickListener clickListener) {
+        commentButton.setOnClickListener(clickListener);
+    }
+
+    public void setSearchButton(OnClickListener clickListener) {
+        searchButton.setOnClickListener(clickListener);
+    }
+
+    public void setMeShareButton(OnClickListener clickListener) {
+        meShareButton.setOnClickListener(clickListener);
+    }
+
+    public void setRegisterNextButton(OnClickListener clickListener) {
+        registerNextButton.setOnClickListener(clickListener);
+    }
 }

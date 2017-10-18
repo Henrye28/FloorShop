@@ -82,29 +82,27 @@ public class RegisterMobileActivity extends AppCompatActivity{
         countDownButton = (CountDownButton) findViewById(R.id.btn_reSend);
 
         toolbar = (PageTopBar)findViewById(R.id.pageTopBar);
+        setSupportActionBar(toolbar);
         countDownButton.setOnClickListener(countDownButton);
         ccf = new TempCountryChoosingFragment();
 
         BmobSMS.initialize(this, "ee80fab0407209723c93996bff00b101");
 
-
-        toolbar.setRightCornerButton(getResources().getDrawable(R.drawable.next));
-
-        toolbar.setRightCornerButton(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                user = new User();
-                user.setUsername(mobileStr);
-                user.setMobilePhoneNumber(mobileStr);
-                user.setPassword(pwdStr);
-
-                if (verifyCodeInput.getText().toString().equals("") || verifyCodeInput.getText().toString() == null) {
-                    createDialogWithAlertMsg(R.string.verify_code_format_alert);
-                } else {
-                    codeVerifying(mobileStr, verifyCodeInput.getText().toString());
-                }
-            }
-        });
+//        toolbar.setRightCornerButton(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                user = new User();
+//                user.setUsername(mobileStr);
+//                user.setMobilePhoneNumber(mobileStr);
+//                user.setPassword(pwdStr);
+//
+//                if (verifyCodeInput.getText().toString().equals("") || verifyCodeInput.getText().toString() == null) {
+//                    createDialogWithAlertMsg(R.string.verify_code_format_alert);
+//                } else {
+//                    codeVerifying(mobileStr, verifyCodeInput.getText().toString());
+//                }
+//            }
+//        });
 
         country.setOnClickListener(new View.OnClickListener() {
             @Override

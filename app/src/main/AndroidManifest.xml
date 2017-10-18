@@ -18,20 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".pages.MainPage">
-
-        </activity>
-
-        <activity android:name=".pages.LoginActivity"></activity>
-        <activity android:name=".pages.ItemsPage"></activity>
-        <activity android:name=".pages.LoginActivity"></activity>
-        <activity android:name=".pages.ItemsPage"></activity>
-        <activity android:name=".pages.RegisterEmailActivity"></activity>
-        <activity android:name=".pages.RegisterMobileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".pages.LoginActivity"></activity>
+        <activity android:name=".pages.ItemsPage"></activity>
+        <activity android:name=".pages.RegisterEmailActivity"></activity>
+        <activity android:name=".pages.RegisterMobileActivity">
+
         </activity>
 
         <activity android:name=".pages.WelcomeActivity"></activity>

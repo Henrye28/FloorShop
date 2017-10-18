@@ -31,7 +31,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:textSize="37sp"
-            android:textColor="#fa831f"
+            android:textColor="@color/defaultTextColor"
             android:text="FloorShop"
             android:visibility="invisible"/>
 
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Follow"
-                android:textColor="#fa831f"
+                android:textColor="@color/defaultTextColor"
                 android:textSize="15sp"
                 android:layout_gravity="center_vertical"/>
 
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Discovery"
-                android:textColor="#fa831f"
+                android:textColor="@color/defaultTextColor"
                 android:textSize="15sp"
                 android:layout_gravity="center_vertical"/>
 
@@ -79,17 +79,26 @@
             android:paddingTop="5dp"
             android:text="ME"
             android:textSize="25sp"
-            android:textColor="#fa831f"
+            android:textColor="@color/defaultTextColor"
             android:visibility="invisible"/>
 
         <ImageView
-            android:id="@+id/topbar_rightcorner"
+            android:id="@+id/topbar_comment"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:src="@drawable/next"
-            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_message"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
+            android:paddingRight="10dp"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/topbar_register_next"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/icon_next"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
             android:paddingRight="10dp"
             android:visibility="invisible"/>
     </RelativeLayout>
