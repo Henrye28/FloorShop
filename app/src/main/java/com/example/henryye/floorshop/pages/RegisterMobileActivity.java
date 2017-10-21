@@ -26,7 +26,6 @@ import cn.bmob.sms.exception.BmobException;
 import cn.bmob.sms.listener.RequestSMSCodeListener;
 import cn.bmob.sms.listener.VerifySMSCodeListener;
 import cn.bmob.v3.listener.SaveListener;
-import de.mrapp.android.dialog.MaterialDialog;
 import de.mrapp.android.dialog.ProgressDialog;
 
 
@@ -44,7 +43,7 @@ public class RegisterMobileActivity extends AppCompatActivity{
     private String[] countries;
     private String[] codes;
     private String[] array;
-    private MaterialDialog alertDialog;
+
     private Intent in;
     private MaterialEditText mobileInput;
     private MaterialEditText pwdInput;
@@ -103,7 +102,7 @@ public class RegisterMobileActivity extends AppCompatActivity{
                 user.setPassword(pwdStr);
 
                 if (verifyCodeInput.getText().toString().equals("") || verifyCodeInput.getText().toString() == null) {
-                    createDialogWithAlertMsg(R.string.verify_code_format_alert);
+                    GlobalFunctions.createDialogWithAlertMsg(RegisterMobileActivity.this, R.string.verify_code_format_alert);
                 } else {
                     codeVerifying(mobileStr, verifyCodeInput.getText().toString());
                 }
@@ -181,9 +180,9 @@ public class RegisterMobileActivity extends AppCompatActivity{
                 // TODO Auto-generated method stub
                 if (ex == null) {
                     Log.i("bmob", "SMS ID ：" + smsId);
-                }else{
+                } else {
                     countDownButton.stopTimer();
-                    Toast.makeText(RegisterMobileActivity.this,getString(R.string.verify_code_failed_to_send), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterMobileActivity.this, getString(R.string.verify_code_failed_to_send), Toast.LENGTH_SHORT).show();
                     ex.printStackTrace();
                 }
             }
@@ -215,25 +214,19 @@ public class RegisterMobileActivity extends AppCompatActivity{
                                 //Jump to register fail page
                                 Log.d("Register", " user sign up failed " + e.getMessage());
 
-                                createDialogWithAlertMsg(R.string.user_register_failed_alert);
+                                GlobalFunctions.createDialogWithAlertMsg(RegisterMobileActivity.this, R.string.user_register_failed_alert);
                             }
                         }
                     });
                 } else {
                     Log.d("Register ", " sms code verify failed " + e.getMessage());
-                    createDialogWithAlertMsg(R.string.verify_code_format_alert);
+                    GlobalFunctions.createDialogWithAlertMsg(RegisterMobileActivity.this, R.string.verify_code_format_alert);
                     dialog.dismiss();
                 }
             }
         });
     }
 
-    private void createDialogWithAlertMsg(int msg){
-        MaterialDialog.Builder dialogBuilder = new MaterialDialog.Builder(RegisterMobileActivity.this);
-        dialogBuilder.setMessage(msg);
-        dialogBuilder.setPositiveButton(android.R.string.ok, null);
-        alertDialog = dialogBuilder.create();
-        alertDialog.show();
-    }
+
 
 }

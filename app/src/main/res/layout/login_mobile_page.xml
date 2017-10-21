@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.henryye.floorshop.widgets.PageTopBar
+            android:id="@+id/pageTopBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <!--android:background="@drawable/selector_view_block"-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            android:padding="@dimen/largePadding">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ACCOUNT"
+                android:inputType="number"
+                android:maxLength="11"
+                app:met_floatingLabelTextColor="#000000"
+                app:met_floatingLabelTextSize="20sp"
+                app:met_floatingLabel="normal"
+                app:met_primaryColor="#EB4F38"
+                app:met_errorColor="#ddaa00"
+                app:met_floatingLabelText="ACCOUNT" />
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/password"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="PASSWORD"
+                app:met_floatingLabelTextSize="20sp"
+                android:inputType="textPassword"
+                app:met_floatingLabelTextColor="#000000"
+                app:met_primaryColor="#EB4F38"
+                app:met_floatingLabel="normal"
+                app:met_errorColor="#ddaa00"
+                app:met_floatingLabelText="PASSWORD"/>
+
+
+        </LinearLayout>
+
+        <com.dd.processbutton.iml.ActionProcessButton
+            android:id="@+id/login_button"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            android:text="Sign in"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            custom:pb_colorComplete="@color/colorPrimary"
+            custom:pb_colorNormal="@color/colorPrimary"
+            custom:pb_colorPressed="@color/colorButtonClicked"
+            custom:pb_colorProgress="@color/blue_normal"
+            custom:pb_textComplete="Success"
+            custom:pb_textProgress="Loading"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/largePadding">
+
+            <TextView
+                android:id="@+id/txt_signUp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="sign up"
+                android:textColor="@color/skyblue"
+                android:textSize="12sp"
+                />
+
+            <TextView
+                android:id="@+id/txt_forgetPwd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="forget password"
+                android:textColor="@color/skyblue"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_signInWithEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="Login by Email"
+        android:textColor="@color/skyblue"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        />
+
+
+</RelativeLayout>

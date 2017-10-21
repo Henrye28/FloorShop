@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.henryye.floorshop.GlobalFunctions;
 import com.example.henryye.floorshop.R;
@@ -13,7 +14,8 @@ import com.example.henryye.floorshop.bean.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.rengwuxian.materialedittext.validation.RegexpValidator;
 
-import cn.bmob.sms.BmobSMS;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
 public class RegisterEmailActivity extends AppCompatActivity {
@@ -28,7 +30,7 @@ public class RegisterEmailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_email_page);
-        BmobSMS.initialize(this, "ee80fab0407209723c93996bff00b101");
+        Bmob.initialize(this,"ee80fab0407209723c93996bff00b101");
 
         next = (Button)findViewById(R.id.next);
         email = (MaterialEditText)findViewById(R.id.email_txt);
@@ -49,20 +51,21 @@ public class RegisterEmailActivity extends AppCompatActivity {
                     user.setUsername(email.getText().toString());
                     user.setEmail(email.getText().toString());
 
+                    user.signUp(new SaveListener<User>() {
+                        @Override
+                        public void done(User s, BmobException e) {
+                            if (e == null) {
+                                Toast.makeText(RegisterEmailActivity.this, "User regiser successfully", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                GlobalFunctions.createDialogWithAlertMsg(RegisterEmailActivity.this,e.getMessage());
+                                Log.d("Register", " user sign up failed " + e.getMessage());
+                            }
+                        }
+                    });
+
                 }
 
-                user.signUp(new SaveListener<User>() {
-                    @Override
-                    public void done(User bmobUser, cn.bmob.v3.exception.BmobException e) {
-                        if (e == null) {
-
-                        } else {
-                            //Jump to register fail page
-                            Log.d("Register", " user sign up failed " + e.getMessage());
-
-                        }
-                    }
-                });
 
             }
         });

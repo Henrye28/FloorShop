@@ -31,7 +31,7 @@ public class WelcomeActivity  extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in = new Intent(WelcomeActivity.this, LoginActivity.class);
+                in = new Intent(WelcomeActivity.this, LoginWithMobileActivity.class);
                 startActivity(in);
             }
         });
