@@ -29,7 +29,7 @@ import cn.bmob.v3.listener.SaveListener;
 import de.mrapp.android.dialog.ProgressDialog;
 
 
-public class RegisterMobileActivity extends AppCompatActivity{
+public class RegisterMobilePage extends AppCompatActivity{
 
     private static final String VERIFY_SUCESS = "verifySuccess";
 
@@ -61,7 +61,7 @@ public class RegisterMobileActivity extends AppCompatActivity{
             switch (msg.obj.toString()){
                 case VERIFY_SUCESS:
                     verifySucess = true;
-                    Toast.makeText(RegisterMobileActivity.this,"SMS Code verified", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterMobilePage.this,"SMS Code verified", Toast.LENGTH_SHORT).show();
                     break;
             }
 
@@ -102,7 +102,7 @@ public class RegisterMobileActivity extends AppCompatActivity{
                 user.setPassword(pwdStr);
 
                 if (verifyCodeInput.getText().toString().equals("") || verifyCodeInput.getText().toString() == null) {
-                    GlobalFunctions.createDialogWithAlertMsg(RegisterMobileActivity.this, R.string.verify_code_format_alert);
+                    GlobalFunctions.createDialogWithAlertMsg(RegisterMobilePage.this, R.string.verify_code_format_alert);
                 } else {
                     codeVerifying(mobileStr, verifyCodeInput.getText().toString());
                 }
@@ -182,7 +182,7 @@ public class RegisterMobileActivity extends AppCompatActivity{
                     Log.i("bmob", "SMS ID ：" + smsId);
                 } else {
                     countDownButton.stopTimer();
-                    Toast.makeText(RegisterMobileActivity.this, getString(R.string.verify_code_failed_to_send), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterMobilePage.this, getString(R.string.verify_code_failed_to_send), Toast.LENGTH_SHORT).show();
                     ex.printStackTrace();
                 }
             }
@@ -191,7 +191,7 @@ public class RegisterMobileActivity extends AppCompatActivity{
 
     private void codeVerifying (String mobile, String code){
 
-        ProgressDialog.Builder dialogBuilder = new ProgressDialog.Builder(RegisterMobileActivity.this);
+        ProgressDialog.Builder dialogBuilder = new ProgressDialog.Builder(RegisterMobilePage.this);
         dialogBuilder.setTitle(R.string.logining);
         dialogBuilder.setProgressBarPosition(ProgressDialog.ProgressBarPosition.BOTTOM);
         dialog = dialogBuilder.create();
@@ -214,13 +214,13 @@ public class RegisterMobileActivity extends AppCompatActivity{
                                 //Jump to register fail page
                                 Log.d("Register", " user sign up failed " + e.getMessage());
 
-                                GlobalFunctions.createDialogWithAlertMsg(RegisterMobileActivity.this, R.string.user_register_failed_alert);
+                                GlobalFunctions.createDialogWithAlertMsg(RegisterMobilePage.this, R.string.user_register_failed_alert);
                             }
                         }
                     });
                 } else {
                     Log.d("Register ", " sms code verify failed " + e.getMessage());
-                    GlobalFunctions.createDialogWithAlertMsg(RegisterMobileActivity.this, R.string.verify_code_format_alert);
+                    GlobalFunctions.createDialogWithAlertMsg(RegisterMobilePage.this, R.string.verify_code_format_alert);
                     dialog.dismiss();
                 }
             }

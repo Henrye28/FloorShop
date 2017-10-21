@@ -25,7 +25,7 @@ import cn.bmob.v3.listener.SaveListener;
 import de.mrapp.android.dialog.MaterialDialog;
 
 
-public class LoginWithMobileActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginWithMobilePage extends AppCompatActivity implements View.OnClickListener{
 
     private MaterialDialog alertDialog;
     private MaterialDialog listDialog;
@@ -65,22 +65,22 @@ public class LoginWithMobileActivity extends AppCompatActivity implements View.O
     }
 
     private void signUpClicked(){
-        String registerWithEmail = LoginWithMobileActivity.this.getResources().getString(R.string.signup_with_email);
-        String registerWithMobile = LoginWithMobileActivity.this.getResources().getString(R.string.signup_with_mobile);
+        String registerWithEmail = LoginWithMobilePage.this.getResources().getString(R.string.signup_with_email);
+        String registerWithMobile = LoginWithMobilePage.this.getResources().getString(R.string.signup_with_mobile);
 
-        MaterialDialog.Builder dialogBuilder = new de.mrapp.android.dialog.MaterialDialog.Builder(LoginWithMobileActivity.this);
+        MaterialDialog.Builder dialogBuilder = new de.mrapp.android.dialog.MaterialDialog.Builder(LoginWithMobilePage.this);
         dialogBuilder.setButtonBarDividerColor(Color.parseColor("#EB4F38"));
         dialogBuilder.setItems(new String[]{registerWithEmail, registerWithMobile}, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0:
-                        in = new Intent(LoginWithMobileActivity.this, RegisterMobileActivity.class);
+                        in = new Intent(LoginWithMobilePage.this, RegisterMobilePage.class);
                         startActivity(in);
                         listDialog.dismiss();
                         break;
                     case 1:
-                        in = new Intent(LoginWithMobileActivity.this, RegisterEmailActivity.class);
+                        in = new Intent(LoginWithMobilePage.this, RegisterEmailPage.class);
                         startActivity(in);
                         listDialog.dismiss();
                         break;
@@ -123,7 +123,7 @@ public class LoginWithMobileActivity extends AppCompatActivity implements View.O
                 @Override
                 public void done(BmobUser bmobUser, BmobException e) {
                     if (e == null) {
-                        in = new Intent(LoginWithMobileActivity.this, MainPage.class);
+                        in = new Intent(LoginWithMobilePage.this, MainPage.class);
                         signInButton.setProgress(0);
                         Toast.makeText(mContext, "Login done", Toast.LENGTH_SHORT).show();
                         startActivity(in);
@@ -133,7 +133,7 @@ public class LoginWithMobileActivity extends AppCompatActivity implements View.O
                     } else {
                         signInButton.setProgress(0);
 
-                        GlobalFunctions.createDialogWithAlertMsg(LoginWithMobileActivity.this, R.string.login_alert);
+                        GlobalFunctions.createDialogWithAlertMsg(LoginWithMobilePage.this, R.string.login_alert);
                         signInButton.setEnabled(true);
                     }
                 }
@@ -157,10 +157,10 @@ public class LoginWithMobileActivity extends AppCompatActivity implements View.O
                 signInClicked();
                 break;
             case R.id.txt_forgetPwd :
-                Toast.makeText(LoginWithMobileActivity.this, "HAHAHAHAHAH~", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginWithMobilePage.this, "HAHAHAHAHAH~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_signInWithEmail:
-                in = new Intent(LoginWithMobileActivity.this, LoginWithEmailActivity.class);
+                in = new Intent(LoginWithMobilePage.this, LoginWithEmailPage.class);
                 startActivity(in);
                 break;
         }

@@ -23,7 +23,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import de.mrapp.android.dialog.MaterialDialog;
 
-public class LoginWithEmailActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginWithEmailPage extends AppCompatActivity implements View.OnClickListener {
 
     private MaterialDialog listDialog;
     private ActionProcessButton signInButton;
@@ -71,22 +71,22 @@ public class LoginWithEmailActivity extends AppCompatActivity implements View.On
 
 
     private void signUpClicked(){
-        String registerWithEmail = LoginWithEmailActivity.this.getResources().getString(R.string.signup_with_email);
-        String registerWithMobile = LoginWithEmailActivity.this.getResources().getString(R.string.signup_with_mobile);
+        String registerWithEmail = LoginWithEmailPage.this.getResources().getString(R.string.signup_with_email);
+        String registerWithMobile = LoginWithEmailPage.this.getResources().getString(R.string.signup_with_mobile);
 
-        MaterialDialog.Builder dialogBuilder = new de.mrapp.android.dialog.MaterialDialog.Builder(LoginWithEmailActivity.this);
+        MaterialDialog.Builder dialogBuilder = new de.mrapp.android.dialog.MaterialDialog.Builder(LoginWithEmailPage.this);
         dialogBuilder.setButtonBarDividerColor(Color.parseColor("#EB4F38"));
         dialogBuilder.setItems(new String[]{registerWithEmail, registerWithMobile}, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0:
-                        in = new Intent(LoginWithEmailActivity.this, RegisterMobileActivity.class);
+                        in = new Intent(LoginWithEmailPage.this, RegisterMobilePage.class);
                         startActivity(in);
                         listDialog.dismiss();
                         break;
                     case 1:
-                        in = new Intent(LoginWithEmailActivity.this, RegisterEmailActivity.class);
+                        in = new Intent(LoginWithEmailPage.this, RegisterEmailPage.class);
                         startActivity(in);
                         listDialog.dismiss();
                         break;
@@ -109,7 +109,7 @@ public class LoginWithEmailActivity extends AppCompatActivity implements View.On
                 @Override
                 public void done(BmobUser bmobUser, BmobException e) {
                     if (e == null) {
-                        in = new Intent(LoginWithEmailActivity.this, MainPage.class);
+                        in = new Intent(LoginWithEmailPage.this, MainPage.class);
                         signInButton.setProgress(0);
                         Toast.makeText(mContext, "Login done", Toast.LENGTH_SHORT).show();
                         startActivity(in);
@@ -119,7 +119,7 @@ public class LoginWithEmailActivity extends AppCompatActivity implements View.On
                     } else {
                         signInButton.setProgress(0);
 
-                        GlobalFunctions.createDialogWithAlertMsg(LoginWithEmailActivity.this, R.string.login_alert);
+                        GlobalFunctions.createDialogWithAlertMsg(LoginWithEmailPage.this, R.string.login_alert);
 
                         signInButton.setEnabled(true);
                     }
@@ -152,10 +152,10 @@ public class LoginWithEmailActivity extends AppCompatActivity implements View.On
                 signInClicked();
                 break;
             case R.id.txt_forgetPwd :
-                Toast.makeText(LoginWithEmailActivity.this, "HAHAHAHAHAH~", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginWithEmailPage.this, "HAHAHAHAHAH~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_signInWithMobile :
-                in = new Intent(LoginWithEmailActivity.this, LoginWithMobileActivity.class);
+                in = new Intent(LoginWithEmailPage.this, LoginWithMobilePage.class);
                 startActivity(in);
                 break;
         }

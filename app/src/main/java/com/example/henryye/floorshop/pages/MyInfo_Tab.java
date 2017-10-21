@@ -14,6 +14,7 @@ public class MyInfo_Tab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.myinfo_tab, null);
         return view;
+
     }
 
 

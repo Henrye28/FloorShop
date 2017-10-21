@@ -18,7 +18,7 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
-public class RegisterEmailActivity extends AppCompatActivity {
+public class RegisterEmailPage extends AppCompatActivity {
 
     private MaterialEditText email;
     private MaterialEditText password;
@@ -55,10 +55,10 @@ public class RegisterEmailActivity extends AppCompatActivity {
                         @Override
                         public void done(User s, BmobException e) {
                             if (e == null) {
-                                Toast.makeText(RegisterEmailActivity.this, "User regiser successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterEmailPage.this, "User regiser successfully", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                GlobalFunctions.createDialogWithAlertMsg(RegisterEmailActivity.this,e.getMessage());
+                                GlobalFunctions.createDialogWithAlertMsg(RegisterEmailPage.this,e.getMessage());
                                 Log.d("Register", " user sign up failed " + e.getMessage());
                             }
                         }
