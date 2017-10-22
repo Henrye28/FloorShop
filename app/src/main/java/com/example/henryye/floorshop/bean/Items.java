@@ -17,4 +17,12 @@ public class Items extends BmobObject {
     public Stores getStore(){ return store; }
     public String getAttributes(){ return attributes; }
 
+    public Items(Stores store, String classification, String name, double price, String description, String attributes) {
+        this.store = store;
+        this.classification = classification;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.attributes = attributes;
+    }
 }
