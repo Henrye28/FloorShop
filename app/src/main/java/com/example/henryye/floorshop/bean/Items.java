@@ -3,6 +3,7 @@ package com.example.henryye.floorshop.bean;
 import cn.bmob.v3.BmobObject;
 
 public class Items extends BmobObject {
+
     private Stores store;
     private String classification;
     private String name;
@@ -16,6 +17,8 @@ public class Items extends BmobObject {
     public double getPrice() { return price; }
     public Stores getStore(){ return store; }
     public String getAttributes(){ return attributes; }
+
+    public Items() {}
 
     public Items(Stores store, String classification, String name, double price, String description, String attributes) {
         this.store = store;

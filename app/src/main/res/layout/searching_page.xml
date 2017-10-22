@@ -61,13 +61,12 @@
         app:ddmenuSelectedIcon="@drawable/icon_dropdown_selected"
         app:ddmaskColor="@color/mask_color"
         app:ddmenuBackgroundColor="@color/white"
-        app:ddmenuUnselectedIcon="@drawable/icon_dropdown_unselected"
-        />
-    
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/searching_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+        app:ddmenuUnselectedIcon="@drawable/icon_dropdown_unselected">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/searching_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.yyydjk.library.DropDownMenu>>
 
 </LinearLayout>

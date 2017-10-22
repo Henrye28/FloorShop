@@ -11,17 +11,14 @@ import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.bean.Items;
 
 import java.util.ArrayList;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
  * Created by dan on 17/10/22.
  */
-public class SearchingPageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
-
-    private static final int ITEM_VIEW = 0;
-
-    private static final int STORE_VIEW = 1;
+public class SearchingPageListAdapter extends RecyclerView.Adapter implements View.OnClickListener {
 
     private ArrayList<Items> content_items = new ArrayList<>();
 
@@ -41,7 +38,9 @@ public class SearchingPageListAdapter extends RecyclerView.Adapter<RecyclerView.
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+        ((ItemViewHolder) holder).title.setText(content_items.get(position).getName());
+        ((ItemViewHolder) holder).price.setText(content_items.get(position).getPrice() + "");
+        holder.itemView.setTag(content_items.get(position));
     }
 
     @Override
@@ -55,15 +54,15 @@ public class SearchingPageListAdapter extends RecyclerView.Adapter<RecyclerView.
             mOnItemClickListener.onItemClick(v, (Items) v.getTag());
     }
 
-    private class ItemViewHolder extends RecyclerView.ViewHolder {
+    class ItemViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.searching_list_image)
-        private ImageView image;
+        ImageView image;
 
         @InjectView(R.id.searching_list_title)
-        private TextView title;
+        TextView title;
 
         @InjectView(R.id.searching_list_price)
-        private TextView price;
+        TextView price;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
