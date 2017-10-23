@@ -57,16 +57,12 @@
         app:ddtextSelectedColor="@color/drop_down_selected"
         app:dddividerColor="@color/gray"
         app:ddunderlineColor="@color/gray"
-        app:ddmenuMenuHeightPercent="0.5"
         app:ddmenuSelectedIcon="@drawable/icon_dropdown_selected"
         app:ddmaskColor="@color/mask_color"
         app:ddmenuBackgroundColor="@color/white"
+        app:dddividerHeight="10dp"
         app:ddmenuUnselectedIcon="@drawable/icon_dropdown_unselected">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/searching_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
     </com.yyydjk.library.DropDownMenu>>
 
 </LinearLayout>

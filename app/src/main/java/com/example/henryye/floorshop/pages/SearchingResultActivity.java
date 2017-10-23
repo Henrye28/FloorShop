@@ -11,14 +11,18 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.adapters.SearchingPageDropdownCommonAdapter;
-import com.example.henryye.floorshop.adapters.SearchingPageListAdapter;
+import com.example.henryye.floorshop.adapters.SearchingPageListGridAdapter;
+import com.example.henryye.floorshop.adapters.SearchingPageListRecyclerAdapter;
 import com.example.henryye.floorshop.bean.Items;
 import com.example.henryye.floorshop.bean.Stores;
 import com.yyydjk.library.DropDownMenu;
@@ -52,15 +56,19 @@ public class SearchingResultActivity extends AppCompatActivity {
     private int classificationPosition = 0;
 
     private RecyclerView mRecyclerView;
+    private GridView mGridView;
     private ArrayList<Items> item_content = new ArrayList<>();
-    private SearchingPageListAdapter mAdapter;
+    private SearchingPageListRecyclerAdapter mRecyclerAdapter;
+    private SearchingPageListGridAdapter mGridAdapter;
+
+    private Boolean isRecycle = false;
 
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case INFO_DOWNLOAD:
-                    mAdapter.notifyDataSetChanged();
+                    mRecyclerAdapter.notifyDataSetChanged();
             }
         }
     };
@@ -77,7 +85,7 @@ public class SearchingResultActivity extends AppCompatActivity {
 
     private void initView() {
 
-        View regionView = getLayoutInflater().inflate(R.layout.searching_dropdown, null);
+        View regionView = getLayoutInflater().inflate(R.layout.searching_dropdown_view, null);
         GridView region = ButterKnife.findById(regionView, R.id.searching_dropdown_content);
         regionAdapter = new SearchingPageDropdownCommonAdapter(this, Arrays.asList(regions));
         region.setAdapter(regionAdapter);
@@ -90,7 +98,7 @@ public class SearchingResultActivity extends AppCompatActivity {
             }
         });
 
-        View classificationView = getLayoutInflater().inflate(R.layout.searching_dropdown, null);
+        View classificationView = getLayoutInflater().inflate(R.layout.searching_dropdown_view, null);
         GridView classification = ButterKnife.findById(classificationView, R.id.searching_dropdown_content);
         classificationAdapter = new SearchingPageDropdownCommonAdapter(this, Arrays.asList(classifications));
         classification.setAdapter(classificationAdapter);
@@ -110,27 +118,65 @@ Items items = new Items(new Stores(), "11", "111", 11.11, "111", "111", R.drawab
 Items items1 = new Items(new Stores(), "22", "222", 22.11, "222", "222", R.drawable.menu_1_1);
 item_content.add(items);
 item_content.add(items1);
+
+        final ImageView triggerButton = new ImageView(this);
+        triggerButton.setImageResource(R.drawable.icon_recycler);
+        triggerButton.setScaleType(ImageView.ScaleType.CENTER);
+
         mRecyclerView = new RecyclerView(this);
-        mAdapter = new SearchingPageListAdapter(item_content);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new SearchingPageListAdapter.OnRecyclerViewItemClickListener() {
+        mRecyclerAdapter = new SearchingPageListRecyclerAdapter(item_content);
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+        mRecyclerAdapter.setOnItemClickListener(new SearchingPageListRecyclerAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, Items content) {
-                Toast.makeText(SearchingResultActivity.this, "item clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(SearchingResultActivity.this, "item clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
         mRecyclerView.setHasFixedSize(true);
-        ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+        ((SimpleItemAnimator) mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-//        mRecyclerView.addItemDecoration(new DividerItemDecoration(
-//                this, DividerItemDecoration.VERTICAL_LIST));
         int leftRight = dip2px(12);
         int topBottom = dip2px(12);
         mRecyclerView.addItemDecoration(new SpacesItemDecoration(leftRight, topBottom));
 
+        mGridView = new GridView(this);
+        mGridView.setGravity(Gravity.CENTER);
+        mGridView.setNumColumns(2);
+        mGridView.setHorizontalSpacing(30);
+        mGridView.setVerticalSpacing(30);
+        mGridAdapter = new SearchingPageListGridAdapter(item_content);
+        mGridView.setAdapter(mGridAdapter);
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(SearchingResultActivity.this, "item clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         mDropDownMenu.setDropDownMenu(Arrays.asList(filters), popupViews, mRecyclerView);
+        mDropDownMenu.addTab(triggerButton, 2);
+
+        triggerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isRecycle) {
+                    mDropDownMenu.removeView();
+                    mDropDownMenu.setDropDownMenu(Arrays.asList(filters), popupViews, mRecyclerView);
+                    mDropDownMenu.addTab(triggerButton, 2);
+                    isRecycle = !isRecycle;
+                    triggerButton.setImageResource(R.drawable.icon_recycler);
+                } else {
+                    mDropDownMenu.removeView();
+                    mDropDownMenu.setDropDownMenu(Arrays.asList(filters), popupViews, mGridView);
+                    mDropDownMenu.addTab(triggerButton, 2);
+                    isRecycle = !isRecycle;
+                    triggerButton.setImageResource(R.drawable.icon_grid);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -162,7 +208,7 @@ item_content.add(items1);
                         item_content.add(searchResult);
                     }
 
-                    mAdapter.notifyDataSetChanged();
+                    mRecyclerAdapter.notifyDataSetChanged();
                     Message msg = new Message();
                     msg.what = INFO_DOWNLOAD;
                     handler.sendMessage(msg);

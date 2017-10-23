@@ -1,9 +1,0 @@
-diff a/app/src/main/java/com/example/henryye/floorshop/pages/SearchingResultActivity.java b/app/src/main/java/com/example/henryye/floorshop/pages/SearchingResultActivity.java	(rejected hunks)
-@@ -141,6 +141,7 @@
-         private int topBottom;
- 
-         public SpacesItemDecoration(int leftRight, int topBottom) {
-+            this.leftRight = leftRight;
-             this.topBottom = topBottom;
-         }
- 

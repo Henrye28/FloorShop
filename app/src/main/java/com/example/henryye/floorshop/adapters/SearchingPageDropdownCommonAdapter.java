@@ -54,7 +54,7 @@ public class SearchingPageDropdownCommonAdapter extends BaseAdapter {
         if (convertView != null) {
             viewHolder = (ViewHolder) convertView.getTag();
         } else {
-            convertView = LayoutInflater.from(context).inflate(R.layout.searching_drop_down_view, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.searching_dropdown_block, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         }

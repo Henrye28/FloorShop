@@ -1,6 +1,5 @@
 package com.example.henryye.floorshop.adapters;
 
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,29 +18,29 @@ import butterknife.InjectView;
 /**
  * Created by dan on 17/10/22.
  */
-public class SearchingPageListAdapter extends RecyclerView.Adapter implements View.OnClickListener {
+public class SearchingPageListRecyclerAdapter extends RecyclerView.Adapter implements View.OnClickListener {
 
     private ArrayList<Items> content_items = new ArrayList<>();
 
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
-    public SearchingPageListAdapter(ArrayList<Items> content_items) {
+    public SearchingPageListRecyclerAdapter(ArrayList<Items> content_items) {
         this.content_items = content_items;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.searching_item_single_view, parent, false);
-        ItemViewHolder itemViewHolder = new ItemViewHolder(view);
+        ReItemViewHolder reItemViewHolder = new ReItemViewHolder(view);
         view.setOnClickListener(this);
-        return itemViewHolder;
+        return reItemViewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ItemViewHolder) holder).image.setImageResource(content_items.get(position).getImageSrc());
-        ((ItemViewHolder) holder).title.setText(content_items.get(position).getName());
-        ((ItemViewHolder) holder).price.setText(content_items.get(position).getPrice() + "");
+        ((ReItemViewHolder) holder).image.setImageResource(content_items.get(position).getImageSrc());
+        ((ReItemViewHolder) holder).title.setText(content_items.get(position).getName());
+        ((ReItemViewHolder) holder).price.setText(content_items.get(position).getPrice() + "");
         holder.itemView.setTag(content_items.get(position));
     }
 
@@ -56,7 +55,7 @@ public class SearchingPageListAdapter extends RecyclerView.Adapter implements Vi
             mOnItemClickListener.onItemClick(v, (Items) v.getTag());
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    class ReItemViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.searching_list_image)
         ImageView image;
 
@@ -66,7 +65,7 @@ public class SearchingPageListAdapter extends RecyclerView.Adapter implements Vi
         @InjectView(R.id.searching_list_price)
         TextView price;
 
-        public ItemViewHolder(View itemView) {
+        public ReItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
         }
