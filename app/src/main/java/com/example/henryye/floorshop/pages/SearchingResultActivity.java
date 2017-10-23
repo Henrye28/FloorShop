@@ -106,8 +106,8 @@ public class SearchingResultActivity extends AppCompatActivity {
         popupViews.add(regionView);
         popupViews.add(classificationView);
 
-Items items = new Items(new Stores(), "11", "111", 11.11, "111", "111");
-Items items1 = new Items(new Stores(), "22", "222", 22.11, "222", "222");
+Items items = new Items(new Stores(), "11", "111", 11.11, "111", "111", R.drawable.menu_1_1);
+Items items1 = new Items(new Stores(), "22", "222", 22.11, "222", "222", R.drawable.menu_1_1);
 item_content.add(items);
 item_content.add(items1);
         mRecyclerView = new RecyclerView(this);
@@ -157,7 +157,8 @@ item_content.add(items1);
                         String description = item.getDescription();
                         String classification = item.getClassification();
                         String attributes = item.getAttributes();
-                        Items searchResult = new Items(store, classification, name, price, description, attributes);
+                        int imageSrc = item.getImageSrc();
+                        Items searchResult = new Items(store, classification, name, price, description, attributes, imageSrc);
                         item_content.add(searchResult);
                     }
 

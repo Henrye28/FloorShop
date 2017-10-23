@@ -10,6 +10,7 @@ public class Items extends BmobObject {
     private double price;
     private String description;
     private String attributes;
+    private int imageSrc;
 
     public String getDescription(){ return description;}
     public String getClassification() { return classification;}
@@ -17,15 +18,17 @@ public class Items extends BmobObject {
     public double getPrice() { return price; }
     public Stores getStore(){ return store; }
     public String getAttributes(){ return attributes; }
+    public int getImageSrc() {return imageSrc;}
 
     public Items() {}
 
-    public Items(Stores store, String classification, String name, double price, String description, String attributes) {
+    public Items(Stores store, String classification, String name, double price, String description, String attributes, int imageSrc) {
         this.store = store;
         this.classification = classification;
         this.name = name;
         this.price = price;
         this.description = description;
         this.attributes = attributes;
+        this.imageSrc = imageSrc;
     }
 }
