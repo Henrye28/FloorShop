@@ -39,7 +39,7 @@ public class SearchingPageListRecyclerAdapter extends RecyclerView.Adapter imple
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ReItemViewHolder) holder).image.setImageURI(Uri.parse(content_items.get(position).getCover().getFileUrl()));
+//        ((ReItemViewHolder) holder).image.setImageURI(Uri.parse(content_items.get(position).getCover().getFileUrl()));
         ((ReItemViewHolder) holder).title.setText(content_items.get(position).getName());
         ((ReItemViewHolder) holder).price.setText(content_items.get(position).getPrice() + "");
         holder.itemView.setTag(content_items.get(position));

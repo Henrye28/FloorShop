@@ -29,6 +29,8 @@ import com.yyydjk.library.DropDownMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -61,7 +63,12 @@ public class SearchingResultActivity extends AppCompatActivity {
     private SearchingPageListRecyclerAdapter mRecyclerAdapter;
     private SearchingPageListGridAdapter mGridAdapter;
 
-    private Boolean isRecycle = false;
+    private Boolean isRecycle = true;
+    private Boolean isAscend = true;
+
+    private ArrayList<Items> tmpList = new ArrayList<>();
+    private Boolean classificationSelected = false;
+    private Boolean regionSelected = false;
 
     private Handler handler = new Handler() {
         @Override
@@ -80,14 +87,13 @@ public class SearchingResultActivity extends AppCompatActivity {
         ButterKnife.inject(this);
 
         initView();
-        initData();
+//        initData();
     }
 
     private void initView() {
 
         filters = new String[]{getResources().getString(R.string.searching_menu_region),
-                getResources().getString(R.string.searching_menu_classification),
-                getResources().getString(R.string.searching_menu_price)};
+                getResources().getString(R.string.searching_menu_classification)};
 
         View regionView = getLayoutInflater().inflate(R.layout.searching_dropdown_view, null);
         GridView region = ButterKnife.findById(regionView, R.id.searching_dropdown_content);
@@ -116,18 +122,39 @@ public class SearchingResultActivity extends AppCompatActivity {
         });
 
         View priceView = getLayoutInflater().inflate(R.layout.searching_menu_price, null);
-        ImageView priceIcon = ButterKnife.findById(priceView, R.id.searching_menu_price_image);
+        final ImageView priceIcon = ButterKnife.findById(priceView, R.id.searching_menu_price_image);
+        priceIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isAscend) {
+                    Collections.sort(item_content, new PriceAscendingComparator());
+                    priceIcon.setImageResource(R.drawable.icon_searching_menu_up);
+                    if (isRecycle)
+                        mRecyclerAdapter.notifyDataSetChanged();
+                    else
+                        mGridAdapter.notifyDataSetChanged();
+                    isAscend = !isAscend;
+                } else {
+                    Collections.sort(item_content, new PriceDescendingComparator());
+                    priceIcon.setImageResource(R.drawable.icon_searching_menu_down);
+                    if (isRecycle)
+                        mRecyclerAdapter.notifyDataSetChanged();
+                    else
+                        mGridAdapter.notifyDataSetChanged();
+                    isAscend = !isAscend;
+                }
+            }
+        });
 
         popupViews.add(regionView);
         popupViews.add(classificationView);
-        popupViews.add(priceView);
 
-//Items items1 = new Items(new Stores(), "11", "111", 11.11, "111", "111", R.drawable.menu_1_1);
-//Items items2 = new Items(new Stores(), "22", "222", 22.11, "222", "222", R.drawable.menu_2_2);
-//Items items3 = new Items(new Stores(), "33", "333", 33.11, "333", "333", R.drawable.menu_1_1);
-//item_content.add(items1);
-//item_content.add(items2);
-//item_content.add(item3);
+Items items1 = new Items(new Stores(), "11", "111", 11.11, "111", "111", null);
+Items items2 = new Items(new Stores(), "22", "222", 22.11, "222", "222", null);
+Items items3 = new Items(new Stores(), "33", "333", 33.11, "333", "333", null);
+item_content.add(items3);
+item_content.add(items1);
+item_content.add(items2);
 
         final ImageView triggerButton = new ImageView(this);
         triggerButton.setImageResource(R.drawable.icon_recycler);
@@ -166,12 +193,13 @@ public class SearchingResultActivity extends AppCompatActivity {
         });
 
         mDropDownMenu.setDropDownMenu(Arrays.asList(filters), popupViews, mRecyclerView);
-        mDropDownMenu.addTab(triggerButton, 2);
+        mDropDownMenu.addTab(priceView, 2);
+        mDropDownMenu.addTab(triggerButton, 3);
 
         triggerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isRecycle) {
+                if (!isRecycle) {
                     mDropDownMenu.removeView();
                     mDropDownMenu.setDropDownMenu(Arrays.asList(filters), popupViews, mRecyclerView);
                     mDropDownMenu.addTab(triggerButton, 2);
@@ -267,6 +295,24 @@ public class SearchingResultActivity extends AppCompatActivity {
                 outRect.left = leftRight;
                 outRect.bottom = topBottom;
             }
+        }
+    }
+
+    class PriceAscendingComparator implements Comparator<Items> {
+        @Override
+        public int compare(Items item1, Items item2) {
+            if (item1.getPrice() < item2.getPrice()) return -1;
+            if (item1.getPrice() > item2.getPrice()) return 1;
+            return 0;
+        }
+    }
+
+    class PriceDescendingComparator implements Comparator<Items> {
+        @Override
+        public int compare(Items item1, Items item2) {
+            if (item1.getPrice() < item2.getPrice()) return 1;
+            if (item1.getPrice() > item2.getPrice()) return -1;
+            return 0;
         }
     }
 }

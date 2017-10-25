@@ -56,7 +56,7 @@ public class SearchingPageListGridAdapter extends BaseAdapter {
         } else {
             gridItemViewHolder = (GridItemViewHolder) convertView.getTag();
         }
-        gridItemViewHolder.imageView.setImageURI(Uri.parse(content_items.get(position).getCover().getFileUrl()));
+//        gridItemViewHolder.imageView.setImageURI(Uri.parse(content_items.get(position).getCover().getFileUrl()));
         gridItemViewHolder.title.setText(content_items.get(position).getName());
         gridItemViewHolder.price.setText(content_items.get(position).getPrice() + "");
 
