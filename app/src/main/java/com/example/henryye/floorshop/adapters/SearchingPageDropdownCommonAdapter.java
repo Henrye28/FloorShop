@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.henryye.floorshop.R;
+import com.example.henryye.floorshop.widgets.SearchingMenuGridView;
 
 import java.util.List;
 
@@ -21,7 +22,8 @@ public class SearchingPageDropdownCommonAdapter extends BaseAdapter {
 
     private Context context;
     private List<String> list;
-    private int checkItemPosition = 0;
+    private int checkItemPosition = -1;
+    private boolean[] chosenPostion;
 
     public void setCheckItem(int position) {
         checkItemPosition = position;
@@ -31,6 +33,7 @@ public class SearchingPageDropdownCommonAdapter extends BaseAdapter {
     public SearchingPageDropdownCommonAdapter(Context context, List<String> list) {
         this.context = context;
         this.list = list;
+        chosenPostion = new boolean[list.size()];
     }
 
     @Override
@@ -50,7 +53,13 @@ public class SearchingPageDropdownCommonAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        int childCount = parent.getChildCount();
         ViewHolder viewHolder;
+
+        if (position != childCount && position == 0 && convertView != null) {
+            return convertView;
+        }
+
         if (convertView != null) {
             viewHolder = (ViewHolder) convertView.getTag();
         } else {
@@ -58,6 +67,11 @@ public class SearchingPageDropdownCommonAdapter extends BaseAdapter {
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         }
+
+        if(((SearchingMenuGridView) parent).isOnMeasure){
+            return convertView;
+        }
+
         fillValue(position, viewHolder);
         return convertView;
     }
@@ -66,13 +80,21 @@ public class SearchingPageDropdownCommonAdapter extends BaseAdapter {
         viewHolder.mText.setText(list.get(position));
         if (checkItemPosition != -1) {
             if (checkItemPosition == position) {
-                viewHolder.mText.setTextColor(context.getResources().getColor(R.color.drop_down_selected));
-                viewHolder.mText.setBackgroundResource(R.drawable.check_bg);
-            } else {
-                viewHolder.mText.setTextColor(context.getResources().getColor(R.color.drop_down_unselected));
-                viewHolder.mText.setBackgroundResource(R.drawable.uncheck_bg);
+                if (chosenPostion[checkItemPosition] == true) {
+                    viewHolder.mText.setTextColor(context.getResources().getColor(R.color.drop_down_unselected));
+                    viewHolder.mText.setBackgroundResource(R.drawable.uncheck_bg);
+                    chosenPostion[checkItemPosition] = false;
+                } else {
+                    viewHolder.mText.setTextColor(context.getResources().getColor(R.color.drop_down_selected));
+                    viewHolder.mText.setBackgroundResource(R.drawable.check_bg);
+                    chosenPostion[checkItemPosition] = true;
+                }
             }
         }
+    }
+
+    public boolean[] getChosePosition() {
+        return chosenPostion;
     }
 
     static class ViewHolder {
@@ -83,4 +105,5 @@ public class SearchingPageDropdownCommonAdapter extends BaseAdapter {
             ButterKnife.inject(this, view);
         }
     }
+
 }

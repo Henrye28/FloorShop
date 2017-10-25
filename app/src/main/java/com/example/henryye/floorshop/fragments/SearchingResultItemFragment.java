@@ -28,12 +28,14 @@ import com.example.henryye.floorshop.adapters.SearchingPageListGridAdapter;
 import com.example.henryye.floorshop.adapters.SearchingPageListRecyclerAdapter;
 import com.example.henryye.floorshop.bean.Items;
 import com.example.henryye.floorshop.bean.Stores;
+import com.example.henryye.floorshop.widgets.SearchingMenuGridView;
 import com.yyydjk.library.DropDownMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -78,8 +80,9 @@ public class SearchingResultItemFragment extends Fragment {
     private ArrayList<Items> tmpList = new ArrayList<>();
     private Boolean classificationSelected = false;
     private Boolean regionSelected = false;
+    private HashMap<String, ArrayList> conditions = new HashMap<>();
 
-    private Handler handler = new Handler() {
+   private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -111,20 +114,31 @@ public class SearchingResultItemFragment extends Fragment {
                 getResources().getString(R.string.searching_menu_classification)};
 
         View regionView = mInflater.inflate(R.layout.searching_dropdown_view, null);
-        GridView region = ButterKnife.findById(regionView, R.id.searching_dropdown_content);
+        SearchingMenuGridView region = ButterKnife.findById(regionView, R.id.searching_dropdown_content);
         regionAdapter = new SearchingPageDropdownCommonAdapter(getActivity(), Arrays.asList(regions));
         region.setAdapter(regionAdapter);
         TextView regionConfirm = ButterKnife.findById(regionView, R.id.searching_dropdown_confirm);
+
+        region.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                regionAdapter.setCheckItem(position);
+            }
+        });
         regionConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDropDownMenu.setTabText(regionPosition == 0 ? filters[0] : regions[regionPosition]);
+                for (int i=0; i<regionAdapter.getChosePosition().length; i++) {
+                    if (regionAdapter.getChosePosition()[i] == true)
+                        Log.d("here------", i + "");
+                }
+
                 mDropDownMenu.closeMenu();
             }
         });
 
         View classificationView = mInflater.inflate(R.layout.searching_dropdown_view, null);
-        GridView classification = ButterKnife.findById(classificationView, R.id.searching_dropdown_content);
+        SearchingMenuGridView classification = ButterKnife.findById(classificationView, R.id.searching_dropdown_content);
         classificationAdapter = new SearchingPageDropdownCommonAdapter(getActivity(), Arrays.asList(classifications));
         classification.setAdapter(classificationAdapter);
         TextView classificationConfirm = ButterKnife.findById(classificationView, R.id.searching_dropdown_confirm);
