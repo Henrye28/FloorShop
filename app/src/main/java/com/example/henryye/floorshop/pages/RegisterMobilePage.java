@@ -91,9 +91,9 @@ public class RegisterMobilePage extends AppCompatActivity{
 
         BmobSMS.initialize(this, "ee80fab0407209723c93996bff00b101");
 
-        toolbar.setRightCornerButton(getResources().getDrawable(R.drawable.next));
+        toolbar.setRegisterNextButton(getResources().getDrawable(R.drawable.icon_next));
 
-        toolbar.setRightCornerButton(new View.OnClickListener() {
+        toolbar.setRegisterNextButton(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user = new User();
