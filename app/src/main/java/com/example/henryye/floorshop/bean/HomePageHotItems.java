@@ -7,10 +7,7 @@ import cn.bmob.v3.datatype.BmobFile;
 public class HomePageHotItems extends BmobObject {
     private BmobFile bitmap;
 
-
-    public void setPics(){
-
-    }
+    public void setPics(){}
 
     public BmobFile getBitmap(){
         return bitmap;

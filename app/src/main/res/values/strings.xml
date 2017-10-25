@@ -32,4 +32,10 @@
     <string name="signup_with_email">邮箱注册</string>
     <string name="signup_with_mobile">手机注册</string>
     <string name="sign_up">注册</string>
+    <string name="searching_menu_price">价格</string>
+    <string name="searching_menu_region">地区</string>
+    <string name="searching_menu_classification">分类</string>
+    <string name="searching_sliding_item">商品</string>
+    <string name="searching_sliding_store">店铺</string>
+    <string name="searching_dropdown_confirm">确认</string>
 </resources>

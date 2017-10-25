@@ -1,14 +1,15 @@
 package com.example.henryye.floorshop.adapters;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.bean.Items;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
@@ -55,7 +56,7 @@ public class SearchingPageListGridAdapter extends BaseAdapter {
         } else {
             gridItemViewHolder = (GridItemViewHolder) convertView.getTag();
         }
-        gridItemViewHolder.imageView.setImageResource(content_items.get(position).getImageSrc());
+        gridItemViewHolder.imageView.setImageURI(Uri.parse(content_items.get(position).getCover().getFileUrl()));
         gridItemViewHolder.title.setText(content_items.get(position).getName());
         gridItemViewHolder.price.setText(content_items.get(position).getPrice() + "");
 
@@ -63,7 +64,7 @@ public class SearchingPageListGridAdapter extends BaseAdapter {
     }
 
     class GridItemViewHolder {
-        private ImageView imageView;
+        private SimpleDraweeView imageView;
         private TextView title;
         private TextView price;
     }

@@ -1,14 +1,15 @@
 package com.example.henryye.floorshop.adapters;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.henryye.floorshop.R;
 import com.example.henryye.floorshop.bean.Items;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class SearchingPageListRecyclerAdapter extends RecyclerView.Adapter imple
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ReItemViewHolder) holder).image.setImageResource(content_items.get(position).getImageSrc());
+        ((ReItemViewHolder) holder).image.setImageURI(Uri.parse(content_items.get(position).getCover().getFileUrl()));
         ((ReItemViewHolder) holder).title.setText(content_items.get(position).getName());
         ((ReItemViewHolder) holder).price.setText(content_items.get(position).getPrice() + "");
         holder.itemView.setTag(content_items.get(position));
@@ -57,7 +58,7 @@ public class SearchingPageListRecyclerAdapter extends RecyclerView.Adapter imple
 
     class ReItemViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.searching_list_image)
-        ImageView image;
+        SimpleDraweeView image;
 
         @InjectView(R.id.searching_list_title)
         TextView title;

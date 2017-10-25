@@ -33,8 +33,8 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
@@ -43,7 +43,7 @@ public class SearchingResultActivity extends AppCompatActivity {
     private final int INFO_DOWNLOAD = 0;
 
     @InjectView(R.id.searching_dropDownMenu) DropDownMenu mDropDownMenu;
-    private String filters[] = {"Region", "Classification"};
+    private String filters[];
     private List<View> popupViews = new ArrayList<>();
 
     private SearchingPageDropdownCommonAdapter regionAdapter;
@@ -78,12 +78,16 @@ public class SearchingResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.searching_page);
         ButterKnife.inject(this);
-        Bmob.initialize(this, "ee80fab0407209723c93996bff00b101");
+
         initView();
-//        initData();
+        initData();
     }
 
     private void initView() {
+
+        filters = new String[]{getResources().getString(R.string.searching_menu_region),
+                getResources().getString(R.string.searching_menu_classification),
+                getResources().getString(R.string.searching_menu_price)};
 
         View regionView = getLayoutInflater().inflate(R.layout.searching_dropdown_view, null);
         GridView region = ButterKnife.findById(regionView, R.id.searching_dropdown_content);
@@ -111,13 +115,19 @@ public class SearchingResultActivity extends AppCompatActivity {
             }
         });
 
+        View priceView = getLayoutInflater().inflate(R.layout.searching_menu_price, null);
+        ImageView priceIcon = ButterKnife.findById(priceView, R.id.searching_menu_price_image);
+
         popupViews.add(regionView);
         popupViews.add(classificationView);
+        popupViews.add(priceView);
 
-Items items = new Items(new Stores(), "11", "111", 11.11, "111", "111", R.drawable.menu_1_1);
-Items items1 = new Items(new Stores(), "22", "222", 22.11, "222", "222", R.drawable.menu_1_1);
-item_content.add(items);
-item_content.add(items1);
+//Items items1 = new Items(new Stores(), "11", "111", 11.11, "111", "111", R.drawable.menu_1_1);
+//Items items2 = new Items(new Stores(), "22", "222", 22.11, "222", "222", R.drawable.menu_2_2);
+//Items items3 = new Items(new Stores(), "33", "333", 33.11, "333", "333", R.drawable.menu_1_1);
+//item_content.add(items1);
+//item_content.add(items2);
+//item_content.add(item3);
 
         final ImageView triggerButton = new ImageView(this);
         triggerButton.setImageResource(R.drawable.icon_recycler);
@@ -190,7 +200,7 @@ item_content.add(items1);
 
     private void initData() {
         BmobQuery<Items> query = new BmobQuery<>();
-        query.addWhereEqualTo("name", "Apple Watch");
+        query.addWhereEqualTo("name", "Drone");
         query.setLimit(100);
         query.findObjects(new FindListener<Items>() {
             @Override
@@ -203,8 +213,8 @@ item_content.add(items1);
                         String description = item.getDescription();
                         String classification = item.getClassification();
                         String attributes = item.getAttributes();
-                        int imageSrc = item.getImageSrc();
-                        Items searchResult = new Items(store, classification, name, price, description, attributes, imageSrc);
+                        BmobFile cover = item.getCover();
+                        Items searchResult = new Items(store, classification, name, price, description, attributes, cover);
                         item_content.add(searchResult);
                     }
 

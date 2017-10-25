@@ -57,11 +57,11 @@
         app:ddtextSelectedColor="@color/drop_down_selected"
         app:dddividerColor="@color/gray"
         app:ddunderlineColor="@color/gray"
-        app:ddmenuSelectedIcon="@drawable/icon_dropdown_selected"
+        app:ddmenuSelectedIcon="@drawable/icon_searching_menu_up"
         app:ddmaskColor="@color/mask_color"
         app:ddmenuBackgroundColor="@color/white"
         app:dddividerHeight="10dp"
-        app:ddmenuUnselectedIcon="@drawable/icon_dropdown_unselected">
+        app:ddmenuUnselectedIcon="@drawable/icon_searching_menu_down">
 
     </com.yyydjk.library.DropDownMenu>>
 
