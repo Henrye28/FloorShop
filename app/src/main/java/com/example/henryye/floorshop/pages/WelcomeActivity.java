@@ -31,7 +31,8 @@ public class WelcomeActivity  extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in = new Intent(WelcomeActivity.this, LoginActivity.class);
+                in = new Intent(WelcomeActivity.this, LoginWithMobilePage.class);
+
                 startActivity(in);
             }
         });
@@ -39,7 +40,7 @@ public class WelcomeActivity  extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in = new Intent(WelcomeActivity.this, RegisterMobileActivity.class);
+                in = new Intent(WelcomeActivity.this, RegisterMobilePage.class);
                 startActivity(in);
             }
         });

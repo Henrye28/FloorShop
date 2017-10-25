@@ -53,7 +53,8 @@ dependencies {
     compile 'com.facebook.fresco:animated-webp:0.10.0'
     compile 'com.facebook.fresco:animated-gif:0.10.0'
     compile 'com.github.allan1st:JellyRefreshLayout:2.0'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
+    //Circle image view
+    compile 'com.mikhaellopez:circularimageview:3.0.2'
     // Material design edittext
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     // Material desgin button

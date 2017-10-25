@@ -3,6 +3,7 @@
 
     <color name="colorPrimary">#eb4f38</color>
     <color name="colorPrimaryDark">#009688</color>
+    <color name="errorColor">#DC143C</color>
     <color name="bg_color2">#f1f1f1</color>
     <color name="bg_color">#f8f8f8</color>
     <color name="colorButtonClicked">#EE4F54</color>

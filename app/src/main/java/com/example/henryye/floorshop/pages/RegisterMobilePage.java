@@ -19,17 +19,17 @@ import com.example.henryye.floorshop.fragments.TempCountryChoosingFragment;
 import com.example.henryye.floorshop.widgets.CountDownButton;
 import com.example.henryye.floorshop.widgets.PageTopBar;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.rengwuxian.materialedittext.validation.RegexpValidator;
 
 import cn.bmob.sms.BmobSMS;
 import cn.bmob.sms.exception.BmobException;
 import cn.bmob.sms.listener.RequestSMSCodeListener;
 import cn.bmob.sms.listener.VerifySMSCodeListener;
 import cn.bmob.v3.listener.SaveListener;
-import de.mrapp.android.dialog.MaterialDialog;
 import de.mrapp.android.dialog.ProgressDialog;
 
 
-public class RegisterMobileActivity extends AppCompatActivity{
+public class RegisterMobilePage extends AppCompatActivity{
 
     private static final String VERIFY_SUCESS = "verifySuccess";
 
@@ -43,7 +43,7 @@ public class RegisterMobileActivity extends AppCompatActivity{
     private String[] countries;
     private String[] codes;
     private String[] array;
-    private MaterialDialog alertDialog;
+
     private Intent in;
     private MaterialEditText mobileInput;
     private MaterialEditText pwdInput;
@@ -61,7 +61,7 @@ public class RegisterMobileActivity extends AppCompatActivity{
             switch (msg.obj.toString()){
                 case VERIFY_SUCESS:
                     verifySucess = true;
-                    Toast.makeText(RegisterMobileActivity.this,"SMS Code verified", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterMobilePage.this,"SMS Code verified", Toast.LENGTH_SHORT).show();
                     break;
             }
 
@@ -77,6 +77,9 @@ public class RegisterMobileActivity extends AppCompatActivity{
 
         mobileInput = (MaterialEditText)findViewById(R.id.mobile_txt);
         pwdInput = (MaterialEditText)findViewById(R.id.password_txt);
+        mobileInput.addValidator(new RegexpValidator("Please input correct mobile format", GlobalFunctions.MOBILE_PATTERN));
+        pwdInput.addValidator(new RegexpValidator("Password should contains both character and numbers", GlobalFunctions.PASSWORD_PATTERN));
+
         verifyCodeInput = (MaterialEditText)findViewById(R.id.verify_code_txt);
 
         countDownButton = (CountDownButton) findViewById(R.id.btn_reSend);
@@ -88,21 +91,23 @@ public class RegisterMobileActivity extends AppCompatActivity{
 
         BmobSMS.initialize(this, "ee80fab0407209723c93996bff00b101");
 
-//        toolbar.setRightCornerButton(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                user = new User();
-//                user.setUsername(mobileStr);
-//                user.setMobilePhoneNumber(mobileStr);
-//                user.setPassword(pwdStr);
-//
-//                if (verifyCodeInput.getText().toString().equals("") || verifyCodeInput.getText().toString() == null) {
-//                    createDialogWithAlertMsg(R.string.verify_code_format_alert);
-//                } else {
-//                    codeVerifying(mobileStr, verifyCodeInput.getText().toString());
-//                }
-//            }
-//        });
+        toolbar.setRightCornerButton(getResources().getDrawable(R.drawable.next));
+
+        toolbar.setRightCornerButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user = new User();
+                user.setUsername(mobileStr);
+                user.setMobilePhoneNumber(mobileStr);
+                user.setPassword(pwdStr);
+
+                if (verifyCodeInput.getText().toString().equals("") || verifyCodeInput.getText().toString() == null) {
+                    GlobalFunctions.createDialogWithAlertMsg(RegisterMobilePage.this, R.string.verify_code_format_alert);
+                } else {
+                    codeVerifying(mobileStr, verifyCodeInput.getText().toString());
+                }
+            }
+        });
 
         country.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,15 +124,12 @@ public class RegisterMobileActivity extends AppCompatActivity{
         countDownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mobileStr= mobileInput.getText().toString();
-                pwdStr = pwdInput.getText().toString();
-                if(GlobalFunctions.isMobileNO(mobileStr) && GlobalFunctions.isRightPwd(pwdStr)) {
-                    codeSending(mobileStr);
-                    countDownButton.startTimer();
-                }else{
-                    countDownButton.stopTimer();
-                    createDialogWithAlertMsg(R.string.signup_format_alert);
-                }
+            if(mobileInput.validate() && pwdInput.validate()){
+                codeSending(mobileStr);
+                countDownButton.startTimer();
+            }else {
+                countDownButton.stopTimer();
+            }
             }
         });
 
@@ -178,9 +180,9 @@ public class RegisterMobileActivity extends AppCompatActivity{
                 // TODO Auto-generated method stub
                 if (ex == null) {
                     Log.i("bmob", "SMS ID ：" + smsId);
-                }else{
+                } else {
                     countDownButton.stopTimer();
-                    Toast.makeText(RegisterMobileActivity.this,getString(R.string.verify_code_failed_to_send), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterMobilePage.this, getString(R.string.verify_code_failed_to_send), Toast.LENGTH_SHORT).show();
                     ex.printStackTrace();
                 }
             }
@@ -189,7 +191,7 @@ public class RegisterMobileActivity extends AppCompatActivity{
 
     private void codeVerifying (String mobile, String code){
 
-        ProgressDialog.Builder dialogBuilder = new ProgressDialog.Builder(RegisterMobileActivity.this);
+        ProgressDialog.Builder dialogBuilder = new ProgressDialog.Builder(RegisterMobilePage.this);
         dialogBuilder.setTitle(R.string.logining);
         dialogBuilder.setProgressBarPosition(ProgressDialog.ProgressBarPosition.BOTTOM);
         dialog = dialogBuilder.create();
@@ -212,25 +214,19 @@ public class RegisterMobileActivity extends AppCompatActivity{
                                 //Jump to register fail page
                                 Log.d("Register", " user sign up failed " + e.getMessage());
 
-                                createDialogWithAlertMsg(R.string.user_register_failed_alert);
+                                GlobalFunctions.createDialogWithAlertMsg(RegisterMobilePage.this, R.string.user_register_failed_alert);
                             }
                         }
                     });
                 } else {
                     Log.d("Register ", " sms code verify failed " + e.getMessage());
-                    createDialogWithAlertMsg(R.string.verify_code_format_alert);
+                    GlobalFunctions.createDialogWithAlertMsg(RegisterMobilePage.this, R.string.verify_code_format_alert);
                     dialog.dismiss();
                 }
             }
         });
     }
 
-    private void createDialogWithAlertMsg(int msg){
-        MaterialDialog.Builder dialogBuilder = new MaterialDialog.Builder(RegisterMobileActivity.this);
-        dialogBuilder.setMessage(msg);
-        dialogBuilder.setPositiveButton(android.R.string.ok, null);
-        alertDialog = dialogBuilder.create();
-        alertDialog.show();
-    }
+
 
 }

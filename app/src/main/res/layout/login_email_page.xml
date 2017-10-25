@@ -104,5 +104,17 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/txt_signInWithMobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="Login by Mobile"
+        android:textColor="@color/skyblue"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

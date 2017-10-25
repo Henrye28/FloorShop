@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#D8D8D8">
+    android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="220dp"
             android:layout_gravity="center"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimary"
             android:layout_marginBottom="30dp">
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
+
+            <com.mikhaellopez.circularimageview.CircularImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/myselftab"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#ffffff"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                android:src="@drawable/default_user"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="4dp"
+                app:civ_shadow="true"
+                app:civ_shadow_radius="5"
+                app:civ_shadow_color="#8BC34A"/>
 
             <TextView
                 android:textSize="20sp"
@@ -35,27 +37,27 @@
         </RelativeLayout>
 
     <LinearLayout
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="60dp"
             android:background="@drawable/cart_box"/>
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="60dp"
             android:background="@drawable/coupon_box"/>
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="60dp"
             android:background="@drawable/favorite_box"/>
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="60dp"
             android:background="@drawable/share_box"/>
 
 

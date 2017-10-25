@@ -35,7 +35,7 @@
                 app:met_floatingLabelTextSize="20sp"
                 app:met_floatingLabel="normal"
                 app:met_primaryColor="#EB4F38"
-                app:met_errorColor="#ddaa00"
+                app:met_errorColor="@color/errorColor"
                 app:met_floatingLabelText="EMAIL" />
 
 
@@ -50,11 +50,16 @@
                 app:met_floatingLabelTextColor="#000000"
                 app:met_primaryColor="#EB4F38"
                 app:met_floatingLabel="normal"
-                app:met_errorColor="#ddaa00"
+                app:met_errorColor="@color/errorColor"
                 app:met_floatingLabelText="PASSWORD"/>
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/next"
+            android:text="register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
