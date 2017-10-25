@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yyydjk.library.DropDownMenu
+    android:id="@+id/searching_dropDownMenu"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:ddmenuTextSize="10sp"
+    app:ddtextUnselectedColor="@color/drop_down_unselected"
+    app:ddtextSelectedColor="@color/drop_down_selected"
+    app:dddividerColor="@color/gray"
+    app:ddunderlineColor="@color/gray"
+    app:ddmenuSelectedIcon="@drawable/icon_searching_menu_up"
+    app:ddmaskColor="@color/mask_color"
+    app:ddmenuBackgroundColor="@color/white"
+    app:dddividerHeight="10dp"
+    app:ddmenuUnselectedIcon="@drawable/icon_searching_menu_down">
+
+</com.yyydjk.library.DropDownMenu>

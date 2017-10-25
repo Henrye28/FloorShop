@@ -28,7 +28,6 @@ import com.example.henryye.floorshop.adapters.SearchingPageListGridAdapter;
 import com.example.henryye.floorshop.adapters.SearchingPageListRecyclerAdapter;
 import com.example.henryye.floorshop.bean.Items;
 import com.example.henryye.floorshop.bean.Stores;
-import com.example.henryye.floorshop.pages.SearchingResultActivity;
 import com.yyydjk.library.DropDownMenu;
 
 import java.util.ArrayList;
@@ -38,7 +37,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
@@ -54,8 +52,8 @@ public class SearchingResultItemFragment extends Fragment {
 
     private LayoutInflater mInflater;
 
-    @InjectView(R.id.searching_dropDownMenu)
-    DropDownMenu mDropDownMenu;
+    private DropDownMenu mDropDownMenu;
+
     private String filters[];
     private List<View> popupViews = new ArrayList<>();
 
@@ -91,30 +89,30 @@ public class SearchingResultItemFragment extends Fragment {
         }
     };
 
+    public static Fragment getInstance(Bundle bundle) {
+        SearchingResultItemFragment fragment = new SearchingResultItemFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.mInflater = inflater;
+        View view = inflater.inflate(R.layout.searching_dropdown, container, false);
+        initView(view);
+        return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.searching_page);
-        ButterKnife.inject(this);
+    private void initView(View view) {
 
-        initView();
-//        initData();
-    }
-
-    private void initView() {
-
+        mDropDownMenu = ButterKnife.findById(view, R.id.searching_dropDownMenu);
         filters = new String[]{getResources().getString(R.string.searching_menu_region),
                 getResources().getString(R.string.searching_menu_classification)};
 
-        View regionView = getLayoutInflater().inflate(R.layout.searching_dropdown_view, null);
+        View regionView = mInflater.inflate(R.layout.searching_dropdown_view, null);
         GridView region = ButterKnife.findById(regionView, R.id.searching_dropdown_content);
-        regionAdapter = new SearchingPageDropdownCommonAdapter(this, Arrays.asList(regions));
+        regionAdapter = new SearchingPageDropdownCommonAdapter(getActivity(), Arrays.asList(regions));
         region.setAdapter(regionAdapter);
         TextView regionConfirm = ButterKnife.findById(regionView, R.id.searching_dropdown_confirm);
         regionConfirm.setOnClickListener(new View.OnClickListener() {
@@ -125,9 +123,9 @@ public class SearchingResultItemFragment extends Fragment {
             }
         });
 
-        View classificationView = getLayoutInflater().inflate(R.layout.searching_dropdown_view, null);
+        View classificationView = mInflater.inflate(R.layout.searching_dropdown_view, null);
         GridView classification = ButterKnife.findById(classificationView, R.id.searching_dropdown_content);
-        classificationAdapter = new SearchingPageDropdownCommonAdapter(this, Arrays.asList(classifications));
+        classificationAdapter = new SearchingPageDropdownCommonAdapter(getActivity(), Arrays.asList(classifications));
         classification.setAdapter(classificationAdapter);
         TextView classificationConfirm = ButterKnife.findById(classificationView, R.id.searching_dropdown_confirm);
         classificationConfirm.setOnClickListener(new View.OnClickListener() {
@@ -138,13 +136,13 @@ public class SearchingResultItemFragment extends Fragment {
             }
         });
 
-        View priceView = getLayoutInflater().inflate(R.layout.searching_menu_price, null);
+        View priceView = mInflater.inflate(R.layout.searching_menu_price, null);
         final ImageView priceIcon = ButterKnife.findById(priceView, R.id.searching_menu_price_image);
         priceIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isAscend) {
-                    Collections.sort(item_content, new SearchingResultActivity.PriceAscendingComparator());
+                    Collections.sort(item_content, new PriceAscendingComparator());
                     priceIcon.setImageResource(R.drawable.icon_searching_menu_up);
                     if (isRecycle)
                         mRecyclerAdapter.notifyDataSetChanged();
@@ -152,7 +150,7 @@ public class SearchingResultItemFragment extends Fragment {
                         mGridAdapter.notifyDataSetChanged();
                     isAscend = !isAscend;
                 } else {
-                    Collections.sort(item_content, new SearchingResultActivity.PriceDescendingComparator());
+                    Collections.sort(item_content, new PriceDescendingComparator());
                     priceIcon.setImageResource(R.drawable.icon_searching_menu_down);
                     if (isRecycle)
                         mRecyclerAdapter.notifyDataSetChanged();
@@ -173,29 +171,29 @@ public class SearchingResultItemFragment extends Fragment {
         item_content.add(items1);
         item_content.add(items2);
 
-        final ImageView triggerButton = new ImageView(this);
+        final ImageView triggerButton = new ImageView(getActivity());
         triggerButton.setImageResource(R.drawable.icon_recycler);
         triggerButton.setScaleType(ImageView.ScaleType.CENTER);
 
-        mRecyclerView = new RecyclerView(this);
+        mRecyclerView = new RecyclerView(getActivity());
         mRecyclerAdapter = new SearchingPageListRecyclerAdapter(item_content);
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mRecyclerAdapter.setOnItemClickListener(new SearchingPageListRecyclerAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, Items content) {
-                Toast.makeText(SearchingResultActivity.this, "item clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "item clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
         mRecyclerView.setHasFixedSize(true);
         ((SimpleItemAnimator) mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         int leftRight = dip2px(12);
         int topBottom = dip2px(12);
-        mRecyclerView.addItemDecoration(new SearchingResultActivity.SpacesItemDecoration(leftRight, topBottom));
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(leftRight, topBottom));
 
-        mGridView = new GridView(this);
+        mGridView = new GridView(getActivity());
         mGridView.setGravity(Gravity.CENTER);
         mGridView.setNumColumns(2);
         mGridView.setHorizontalSpacing(30);
@@ -205,7 +203,7 @@ public class SearchingResultItemFragment extends Fragment {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(SearchingResultActivity.this, "item clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "item clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -232,15 +230,6 @@ public class SearchingResultItemFragment extends Fragment {
             }
         });
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mDropDownMenu.isShowing()) {
-            mDropDownMenu.closeMenu();
-        } else {
-            super.onBackPressed();
-        }
     }
 
     private void initData() {

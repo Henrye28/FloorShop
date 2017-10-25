@@ -163,6 +163,11 @@ public class DropDownMenu extends LinearLayout {
 
     }
 
+    public void removeView() {
+        containerView.removeAllViews();
+        popupMenuViews.removeAllViews();
+        tabMenuView.removeAllViews();
+    }
 
     /**
      * 初始化DropDownMenu
@@ -208,12 +213,6 @@ public class DropDownMenu extends LinearLayout {
             popupMenuViews.addView(popupViews.get(i), i);
         }
 
-    }
-
-    public void removeView() {
-        containerView.removeAllViews();
-        popupMenuViews.removeAllViews();
-        tabMenuView.removeAllViews();
     }
 
     /**
