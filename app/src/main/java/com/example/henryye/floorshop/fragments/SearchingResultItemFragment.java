@@ -1,11 +1,14 @@
 package com.example.henryye.floorshop.fragments;
 
+import android.annotation.TargetApi;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,12 +34,17 @@ import com.example.henryye.floorshop.bean.Stores;
 import com.example.henryye.floorshop.widgets.SearchingMenuGridView;
 import com.yyydjk.library.DropDownMenu;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobQuery;
@@ -53,7 +61,6 @@ public class SearchingResultItemFragment extends Fragment {
     private final int INFO_DOWNLOAD = 0;
 
     private LayoutInflater mInflater;
-
     private DropDownMenu mDropDownMenu;
 
     private String filters[];
@@ -65,24 +72,22 @@ public class SearchingResultItemFragment extends Fragment {
     private String regions[] = {"goulongtang", "Mongkok"};
     private String classifications[] = {"digital product", "shoes"};
 
-    private int regionPosition = 0;
-    private int classificationPosition = 0;
-
     private RecyclerView mRecyclerView;
     private GridView mGridView;
-    private ArrayList<Items> item_content = new ArrayList<>();
+    private List<Items> item_content = new ArrayList<>();
     private SearchingPageListRecyclerAdapter mRecyclerAdapter;
     private SearchingPageListGridAdapter mGridAdapter;
 
     private Boolean isRecycle = true;
     private Boolean isAscend = true;
 
-    private ArrayList<Items> tmpList = new ArrayList<>();
+    private List<Items> copyList = new ArrayList<>();
     private Boolean classificationSelected = false;
     private Boolean regionSelected = false;
-    private HashMap<String, ArrayList> conditions = new HashMap<>();
+    private ArrayList<String> claConditions = new ArrayList<>();
+    private ArrayList<String> regionConditions = new ArrayList<>();
 
-   private Handler handler = new Handler() {
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -128,7 +133,7 @@ public class SearchingResultItemFragment extends Fragment {
         regionConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i=0; i<regionAdapter.getChosePosition().length; i++) {
+                for (int i = 0; i < regionAdapter.getChosePosition().length; i++) {
                     if (regionAdapter.getChosePosition()[i] == true)
                         Log.d("here------", i + "");
                 }
@@ -142,10 +147,35 @@ public class SearchingResultItemFragment extends Fragment {
         classificationAdapter = new SearchingPageDropdownCommonAdapter(getActivity(), Arrays.asList(classifications));
         classification.setAdapter(classificationAdapter);
         TextView classificationConfirm = ButterKnife.findById(classificationView, R.id.searching_dropdown_confirm);
+
+        classification.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                classificationAdapter.setCheckItem(position);
+            }
+        });
         classificationConfirm.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                mDropDownMenu.setTabText(classificationPosition == 0 ? filters[1] : classifications[classificationPosition]);
+                claConditions.clear();
+
+                for (int i=0; i<classificationAdapter.getChosePosition().length; i++) {
+                    if (classificationAdapter.getChosePosition()[i] == true)
+                        claConditions.add(classifications[i]);
+                }
+
+//                item_content.clear();
+//                item_content.addAll(copyList.stream()
+//                        .filter(items -> claConditions.contains(items.getClassification()))
+//                        .collect(Collectors.toList()));
+//
+//                if (isRecycle)
+//                    mRecyclerAdapter.notifyDataSetChanged();
+//                else
+//                    mGridAdapter.notifyDataSetChanged();
+
+                filterData();
                 mDropDownMenu.closeMenu();
             }
         });
@@ -178,12 +208,20 @@ public class SearchingResultItemFragment extends Fragment {
         popupViews.add(regionView);
         popupViews.add(classificationView);
 
-        Items items1 = new Items(new Stores(), "11", "111", 11.11, "111", "111", null);
-        Items items2 = new Items(new Stores(), "22", "222", 22.11, "222", "222", null);
-        Items items3 = new Items(new Stores(), "33", "333", 33.11, "333", "333", null);
+        Items items1 = new Items(new Stores(), "shoes", "111", 11.11, "111", "111", null);
+        Items items2 = new Items(new Stores(), "digital product", "222", 22.11, "222", "222", null);
+        Items items3 = new Items(new Stores(), "shoes", "333", 33.11, "333", "333", null);
         item_content.add(items3);
         item_content.add(items1);
         item_content.add(items2);
+
+        try {
+            copyList = deepCopy(item_content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         final ImageView triggerButton = new ImageView(getActivity());
         triggerButton.setImageResource(R.drawable.icon_recycler);
@@ -279,6 +317,40 @@ public class SearchingResultItemFragment extends Fragment {
 
     public int dip2px(float dpValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, getResources().getDisplayMetrics());
+    }
+
+    public static <T> List<T> deepCopy(List<T> src) throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(byteOut);
+        out.writeObject(src);
+
+        ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
+        ObjectInputStream in = new ObjectInputStream(byteIn);
+        @SuppressWarnings("unchecked")
+        List<T> dest = (List<T>) in.readObject();
+        return dest;
+    }
+
+    @TargetApi(Build.VERSION_CODES.N)
+    public void filterData() {
+        item_content.clear();
+
+        if (claConditions.size() != 0) {
+            item_content.addAll(copyList.stream()
+                    .filter(items -> claConditions.contains(items.getClassification()))
+                    .collect(Collectors.toList()));
+        }
+
+//        if (regionConditions.size() != 0) {
+//            item_content.addAll(copyList.stream()
+//                    .filter(items -> regionConditions.contains(items.getRegion()))
+//                    .collect(Collectors.toList()));
+//        }
+
+        if (isRecycle)
+            mRecyclerAdapter.notifyDataSetChanged();
+        else
+            mGridAdapter.notifyDataSetChanged();
     }
 
     class SpacesItemDecoration extends RecyclerView.ItemDecoration {

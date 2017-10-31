@@ -1,6 +1,5 @@
 package com.example.henryye.floorshop.adapters;
 
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,20 +11,21 @@ import com.example.henryye.floorshop.bean.Items;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by dan on 17/10/22.
  */
 public class SearchingPageListRecyclerAdapter extends RecyclerView.Adapter implements View.OnClickListener {
 
-    private ArrayList<Items> content_items = new ArrayList<>();
+    private List<Items> content_items = new ArrayList<>();
 
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
-    public SearchingPageListRecyclerAdapter(ArrayList<Items> content_items) {
+    public SearchingPageListRecyclerAdapter(List<Items> content_items) {
         this.content_items = content_items;
     }
 
@@ -57,18 +57,18 @@ public class SearchingPageListRecyclerAdapter extends RecyclerView.Adapter imple
     }
 
     class ReItemViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.searching_list_image)
+        @BindView(R.id.searching_list_image)
         SimpleDraweeView image;
 
-        @InjectView(R.id.searching_list_title)
+        @BindView(R.id.searching_list_title)
         TextView title;
 
-        @InjectView(R.id.searching_list_price)
+        @BindView(R.id.searching_list_price)
         TextView price;
 
         public ReItemViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.inject(this, itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 

@@ -12,8 +12,8 @@ import com.example.henryye.floorshop.widgets.SearchingMenuGridView;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by dan on 17/10/21.
@@ -98,11 +98,11 @@ public class SearchingPageDropdownCommonAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        @InjectView(R.id.searching_text)
+        @BindView(R.id.searching_text)
         TextView mText;
 
         ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 

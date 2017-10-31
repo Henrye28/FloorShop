@@ -1,6 +1,5 @@
 package com.example.henryye.floorshop.adapters;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import com.example.henryye.floorshop.bean.Items;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -20,9 +20,9 @@ import butterknife.ButterKnife;
  */
 public class SearchingPageListGridAdapter extends BaseAdapter {
 
-    private ArrayList<Items> content_items = new ArrayList<>();
+    private List<Items> content_items = new ArrayList<>();
 
-    public SearchingPageListGridAdapter(ArrayList<Items> content_items) {
+    public SearchingPageListGridAdapter(List<Items> content_items) {
         this.content_items = content_items;
     }
 
