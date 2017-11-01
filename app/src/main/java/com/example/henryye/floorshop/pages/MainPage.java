@@ -19,11 +19,8 @@ import com.example.henryye.floorshop.fragments.searchDrawer.ICallBack;
 import com.example.henryye.floorshop.fragments.searchDrawer.bCallBack;
 import com.example.henryye.floorshop.interfaces.IBtnCallListener;
 import com.example.henryye.floorshop.widgets.PageTopBar;
-import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.HashMap;
-
-import cn.bmob.v3.Bmob;
 
 public class MainPage extends AppCompatActivity implements OnClickListener,IBtnCallListener {
 
@@ -45,8 +42,6 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
-        Bmob.initialize(this, "ee80fab0407209723c93996bff00b101");
-        Fresco.initialize(this);
         getSaveData();
         initView();
     }

@@ -222,6 +222,13 @@ public class DropDownMenu extends LinearLayout {
      * @param index 0start
      */
     public void addTab(View tab, int index) {
+        LayoutParams params = null;
+//        if (tab instanceof ImageView)
+            params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        else
+//            params = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
+        params.gravity = Gravity.CENTER;
+        tab.setLayoutParams(params);
         if (index == (tabMenuView.getChildCount() + 1) / 2) {
             addTabEnd(tab);
             return;

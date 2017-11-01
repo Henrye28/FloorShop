@@ -19,6 +19,9 @@ import com.example.henryye.floorshop.R;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by dan on 17/9/11.
  */
@@ -26,13 +29,22 @@ public class DrawerView extends LinearLayout {
 
     private Context context;
 
-    private EditText et_search;
-    private TextView tv_clear;
-    private LinearLayout search_block;
-    private ImageView searchBack;
+    @BindView(R.id.drawer_et_search)
+    EditText et_search;
+
+    @BindView(R.id.drawer_tv_clear)
+    TextView tv_clear;
+
+    @BindView(R.id.drawer_search_block)
+    LinearLayout search_block;
+
+    @BindView(R.id.drawer_search_back)
+    ImageView searchBack;
+
+//    @BindView(R.id.drawer_history_view)
+    SearchHistoryView historyView;
 
     private ArrayList<String> historySearch = new ArrayList<>();
-    private SearchHistoryView historyView;
     private MarginLayoutParams layoutParams;
 
     private RecordSQLiteOpenHelper helper ;
@@ -178,24 +190,26 @@ public class DrawerView extends LinearLayout {
     private void initView(){
 
         LayoutInflater.from(context).inflate(R.layout.fragment_drawer, this);
+        ButterKnife.bind(this);
 
-        et_search = (EditText) findViewById(R.id.drawer_et_search);
+//        et_search = (EditText) findViewById(R.id.drawer_et_search);
         et_search.setTextSize(textSizeSearch);
         et_search.setTextColor(textColorSearch);
         et_search.setHint(textHintSearch);
 
-        search_block = (LinearLayout) findViewById(R.id.drawer_search_block);
+//        search_block = (LinearLayout) findViewById(R.id.drawer_search_block);
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) search_block.getLayoutParams();
         params.height = searchBlockHeight;
         search_block.setBackgroundColor(searchBlockColor);
         search_block.setLayoutParams(params);
 
         historyView = (SearchHistoryView) findViewById(R.id.drawer_history_view);
+//        historyView = ButterKnife.findById(this, R.id.drawer_history_view);
 
-        tv_clear = (TextView) findViewById(R.id.drawer_tv_clear);
+//        tv_clear = (TextView) findViewById(R.id.drawer_tv_clear);
         tv_clear.setVisibility(INVISIBLE);
 
-        searchBack = (ImageView) findViewById(R.id.drawer_search_back);
+//        searchBack = (ImageView) findViewById(R.id.drawer_search_back);
     }
 
     private void queryData(String tempName) {

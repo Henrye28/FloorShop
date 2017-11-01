@@ -19,7 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".pages.MainPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".pages.LoginWithMobilePage"></activity>
@@ -28,11 +32,7 @@
         <activity android:name=".pages.RegisterMobilePage"></activity>
         <activity android:name=".pages.WelcomeActivity"></activity>
         <activity android:name=".pages.SearchingResultPage">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".pages.LoginWithEmailPage"></activity>
 

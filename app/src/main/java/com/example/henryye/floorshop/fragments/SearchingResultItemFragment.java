@@ -82,8 +82,6 @@ public class SearchingResultItemFragment extends Fragment {
     private Boolean isAscend = true;
 
     private List<Items> copyList = new ArrayList<>();
-    private Boolean classificationSelected = false;
-    private Boolean regionSelected = false;
     private ArrayList<String> claConditions = new ArrayList<>();
     private ArrayList<String> regionConditions = new ArrayList<>();
 
@@ -165,16 +163,6 @@ public class SearchingResultItemFragment extends Fragment {
                         claConditions.add(classifications[i]);
                 }
 
-//                item_content.clear();
-//                item_content.addAll(copyList.stream()
-//                        .filter(items -> claConditions.contains(items.getClassification()))
-//                        .collect(Collectors.toList()));
-//
-//                if (isRecycle)
-//                    mRecyclerAdapter.notifyDataSetChanged();
-//                else
-//                    mGridAdapter.notifyDataSetChanged();
-
                 filterData();
                 mDropDownMenu.closeMenu();
             }
@@ -187,7 +175,7 @@ public class SearchingResultItemFragment extends Fragment {
             public void onClick(View v) {
                 if (isAscend) {
                     Collections.sort(item_content, new PriceAscendingComparator());
-                    priceIcon.setImageResource(R.drawable.icon_searching_menu_up);
+                    priceIcon.setImageResource(R.drawable.icon_arrow_up);
                     if (isRecycle)
                         mRecyclerAdapter.notifyDataSetChanged();
                     else
@@ -195,7 +183,7 @@ public class SearchingResultItemFragment extends Fragment {
                     isAscend = !isAscend;
                 } else {
                     Collections.sort(item_content, new PriceDescendingComparator());
-                    priceIcon.setImageResource(R.drawable.icon_searching_menu_down);
+                    priceIcon.setImageResource(R.drawable.icon_arrow_down);
                     if (isRecycle)
                         mRecyclerAdapter.notifyDataSetChanged();
                     else
