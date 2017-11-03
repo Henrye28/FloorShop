@@ -61,13 +61,13 @@ public class DrawerView extends LinearLayout {
     private int searchBlockColor;
 
     public DrawerView(Context context) {
-        super(context, null);
+        super(context);
         this.context = context;
         init();
     }
 
     public DrawerView(Context context, AttributeSet attrs) {
-        super(context, attrs, 0);
+        super(context, attrs);
         this.context = context;
         initAttrs(context, attrs);
         init();
