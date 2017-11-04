@@ -1,12 +1,9 @@
 package com.example.henryye.floorshop.fragments.searchDrawer;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.henryye.floorshop.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +16,21 @@ public class SearchHistoryView extends ViewGroup {
     private List<List<View>> mAllChildViews = new ArrayList<>();
 
     private List<Integer> mLineHeight = new ArrayList<>();
-    
+
+    public SearchHistoryView(Context context) {
+        this(context, null);
+    }
+
     public SearchHistoryView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SearchHistoryView);
-        int id = typedArray.getResourceId(R.styleable.SearchHistoryView_linkedView, 0);
+        this(context, null, 0);
+    }
+
+    public SearchHistoryView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    public SearchHistoryView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override

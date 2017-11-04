@@ -31,8 +31,4 @@
         <attr name="searchBlockHeight" format="integer" />
         <attr name="searchBlockColor" format="color" />
     </declare-styleable>
-
-    <declare-styleable name="SearchHistoryView">
-        <attr name="linkedView" format="reference"/>
-    </declare-styleable>
 </resources>

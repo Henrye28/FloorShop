@@ -68,19 +68,19 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
 //        topbar.showCommunityView();
 //        topbar.showMeView();
 
-         if (home_F == null) {
-             home_F = new Homepage_Tab();
-             addFragment(home_F);
-             showFragment(home_F);
-         } else {
-             showFragment(home_F);
+        // if (home_F == null) {
+        //     home_F = new Homepage_Tab();
+        //     addFragment(home_F);
+        //     showFragment(home_F);
+        // } else {
+        //     showFragment(home_F);
 
-//        if (myInfo_tab == null) {
-//            myInfo_tab = new MyInfo_Tab();
-//            addFragment(myInfo_tab);
-//            showFragment(myInfo_tab);
-//        } else {
-//            showFragment(myInfo_tab);
+        if (myInfo_tab == null) {
+            myInfo_tab = new MyInfo_Tab();
+            addFragment(myInfo_tab);
+            showFragment(myInfo_tab);
+        } else {
+            showFragment(myInfo_tab);
         }
 
         topbar_search.setOnClickListener(new OnClickListener() {
@@ -110,20 +110,20 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
         switch (v.getId()) {
             case R.id.home_tab:
 
-                 if (home_F == null) {
-                     home_F = new Homepage_Tab();
-                     addFragment(home_F);
-                     showFragment(home_F);
-                 } else {
-                     if (home_F.isHidden()) {
+                // if (home_F == null) {
+                //     home_F = new Homepage_Tab();
+                //     addFragment(home_F);
+                //     showFragment(home_F);
+                // } else {
+                //     if (home_F.isHidden()) {
 
-//                if (myInfo_tab == null) {
-//                    myInfo_tab = new MyInfo_Tab();
-//                    addFragment(home_F);
-//                    showFragment(home_F);
-//                } else {
-//                    if (myInfo_tab.isHidden()) {
-//                        showFragment(home_F);
+                if (myInfo_tab == null) {
+                    myInfo_tab = new MyInfo_Tab();
+                    addFragment(home_F);
+                    showFragment(home_F);
+                } else {
+                    if (myInfo_tab.isHidden()) {
+                        showFragment(home_F);
                     }
                 }
 
