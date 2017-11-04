@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.henryye.floorshop">
+    package="com.skymall">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,30 +17,32 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".pages.MainPage">
+        <activity android:name="com.skymall.pages.MainPage">
+        </activity>
+
+        <activity android:name="com.skymall.pages.LoginWithMobilePage">
+
+        </activity>
+        <activity android:name="com.skymall.pages.StorePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".pages.LoginWithMobilePage">
-
-        </activity>
-        <activity android:name=".pages.ItemsPage"></activity>
-        <activity android:name=".pages.LoginWithEmailPage">
+        <activity android:name="com.skymall.pages.ItemsPage"></activity>
+        <activity android:name="com.skymall.pages.LoginWithEmailPage">
 
         </activity>
-        <activity android:name=".pages.ItemsPage"></activity>
-        <activity android:name=".pages.RegisterEmailPage">
+        <activity android:name="com.skymall.pages.ItemsPage"></activity>
+        <activity android:name="com.skymall.pages.RegisterEmailPage">
 
         </activity>
-        <activity android:name=".pages.RegisterMobilePage">
+        <activity android:name="com.skymall.pages.RegisterMobilePage">
 
         </activity>
 
-        <activity android:name=".pages.WelcomeActivity"></activity>
+        <activity android:name="com.skymall.pages.WelcomeActivity"></activity>
 
     </application>
 

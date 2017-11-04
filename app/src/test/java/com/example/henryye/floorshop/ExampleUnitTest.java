@@ -1,4 +1,4 @@
-package com.example.henryye.floorshop;
+package com.skymall;
 
 import org.junit.Test;
 

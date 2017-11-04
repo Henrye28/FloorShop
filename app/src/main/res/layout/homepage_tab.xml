@@ -23,7 +23,7 @@
                 android:clickable="true"
                 />
 
-            <com.example.henryye.floorshop.widgets.MyGridView
+            <com.skymall.widgets.MyGridView
                 android:id="@+id/my_gridview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

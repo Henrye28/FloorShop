@@ -16,7 +16,7 @@
             android:orientation="vertical">
 
 
-            <com.example.henryye.floorshop.widgets.PageTopBar
+            <com.skymall.widgets.PageTopBar
                 android:id="@+id/pageTopBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -138,7 +138,7 @@
                         app:met_primaryColor="#EB4F38"
                         app:met_errorColor="@color/errorColor" />
 
-                    <com.example.henryye.floorshop.widgets.CountDownButton
+                    <com.skymall.widgets.CountDownButton
                         android:id="@+id/btn_reSend"
                         android:layout_weight="3"
                         android:layout_width="0dp"
