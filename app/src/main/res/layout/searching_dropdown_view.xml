@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.example.henryye.floorshop.widgets.SearchingMenuGridView
+    <com.skymall.widgets.SearchingMenuGridView
         android:id="@+id/searching_dropdown_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

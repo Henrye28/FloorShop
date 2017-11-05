@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:background="#FFFFFF">
 
-        <com.example.henryye.floorshop.widgets.PageTopBar
+        <com.skymall.widgets.PageTopBar
             android:id="@+id/pageTopBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -101,12 +101,12 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <com.example.henryye.floorshop.fragments.searchDrawer.DrawerView
+    <com.skymall.fragments.searchDrawer.DrawerView
         android:id="@+id/drawer_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginRight="-65dp"
         android:layout_gravity="start">
-    </com.example.henryye.floorshop.fragments.searchDrawer.DrawerView>
+    </com.skymall.fragments.searchDrawer.DrawerView>
 
 </android.support.v4.widget.DrawerLayout>

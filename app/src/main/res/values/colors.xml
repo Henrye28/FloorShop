@@ -74,5 +74,16 @@
     <color name="deepskyblue">#00bfff</color>
     <!-- 深天蓝色 -->
 
+    <!--调色板-->
+    <color name="main_dark_blue">#16172D</color>
+    <color name="main_accent">#ff4800</color>
+    <color name="secondary_color">#27c2b5</color>
+    <color name="dark_blue_50">#8a8b96</color>
+    <color name="dark_blue_25">#c5c5ca</color>
+    <color name="dark_blue_15">#dcdce0</color>
+    <color name="dark_blue_3">#f8f8f8</color>
+    <color name="link">#1a88ff</color>
+    <color name="warning">#f52222</color>
+    <color name="press">#ed3a0d</color>
 
 </resources>
