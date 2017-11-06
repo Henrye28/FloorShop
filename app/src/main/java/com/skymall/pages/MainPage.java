@@ -6,19 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
 import com.skymall.R;
-import com.skymall.fragments.searchDrawer.DrawerView;
-import com.skymall.fragments.searchDrawer.ICallBack;
-import com.skymall.fragments.searchDrawer.bCallBack;
 import com.skymall.interfaces.IBtnCallListener;
-import com.skymall.widgets.PageTopBar;
 
 import java.util.HashMap;
 
@@ -30,12 +24,6 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
     private int[] select_off = { R.drawable.homepagetab, R.drawable.storetab, R.drawable.carttab, R.drawable.myselftab };
 
     private Homepage_Tab home_F;
-
-    private PageTopBar topbar;
-    private DrawerLayout mainView;
-    private ImageView topbar_search;
-    private DrawerView drawer_view;
-
     private MyInfo_Tab myInfo_tab;
 
     @Override
@@ -58,15 +46,6 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
     }
 
     private void initView() {
-        topbar = (PageTopBar) findViewById(R.id.pageTopBar);
-        mainView = (DrawerLayout) findViewById(R.id.main_view);
-        topbar_search = (ImageView) findViewById(R.id.topbar_search);
-        drawer_view = (DrawerView) findViewById(R.id.drawer_view);
-
-        setSupportActionBar(topbar);
-//        topbar.showHomepageView();
-//        topbar.showCommunityView();
-//        topbar.showMeView();
 
          if (home_F == null) {
              home_F = new Homepage_Tab();
@@ -82,27 +61,6 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
 //        } else {
 //            showFragment(myInfo_tab);
         }
-
-        topbar_search.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainView.openDrawer(GravityCompat.START);
-            }
-        });
-
-        drawer_view.setOnClickSearch(new ICallBack() {
-            @Override
-            public void SearchAciton(String string) {
-
-            }
-        });
-
-        drawer_view.setOnClickBack(new bCallBack() {
-            @Override
-            public void BackAciton() {
-                mainView.closeDrawer(drawer_view);
-            }
-        });
     }
 
     @Override

@@ -6,6 +6,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +24,17 @@ import com.skymall.adapters.Adapter_GridView;
 import com.skymall.bean.BannerImages;
 import com.skymall.bean.HomePageHotItems;
 import com.skymall.bean.Items;
+import com.skymall.fragments.searchDrawer.DrawerView;
+import com.skymall.fragments.searchDrawer.ICallBack;
+import com.skymall.fragments.searchDrawer.bCallBack;
 import com.skymall.widgets.MyGridView;
+import com.skymall.widgets.PageTopBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -38,6 +46,15 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
     private MyGridView myGridView;
     private ArrayList<View> allListView;
     private SliderLayout viewPager ;
+
+    @BindView(R.id.homepage_topbar)
+    PageTopBar topbar;
+
+    @BindView(R.id.homepage_view)
+    DrawerLayout main_view;
+
+    @BindView(R.id.homepage_drawer_view)
+    DrawerView drawer_view;
 
     private ImageView hotItem0;
     private ImageView hotItem1;
@@ -114,8 +131,12 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
     }
 
     private void initView(View view) {
-        myGridView = (MyGridView) view.findViewById(R.id.my_gridview);
 
+        ButterKnife.bind(this, view);
+
+        topbar.showHomepageView();
+
+        myGridView = (MyGridView) view.findViewById(R.id.my_gridview);
         myGridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
         gradViewAdapter = new Adapter_GridView(getActivity(), gridViewPics);
         myGridView.setAdapter(gradViewAdapter);
@@ -126,11 +147,28 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
 
             }
         });
+
+        topbar.setSearchView(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                main_view.openDrawer(GravityCompat.START);
+            }
+        });
+
+        drawer_view.setOnClickSearch(new ICallBack() {
+            @Override
+            public void SearchAciton(String string) {
+
+            }
+        });
+
+        drawer_view.setOnClickBack(new bCallBack() {
+            @Override
+            public void BackAciton() {
+                main_view.closeDrawer(drawer_view);
+            }
+        });
     }
-
-
-
-
 
     @Override
     public void onSliderClick(BaseSliderView baseSliderView) {

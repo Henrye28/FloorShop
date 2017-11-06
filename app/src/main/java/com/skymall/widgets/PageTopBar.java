@@ -24,8 +24,7 @@ public class PageTopBar extends Toolbar{
     private LayoutInflater mInflater;
 
     private View mView;
-    private ImageView searchButton;
-    private TextView homepageTitle;
+    private ImageView searchView;
     private LinearLayout communityLayout;
     private TextView communityFollow;
     private TextView communityDiscovery;
@@ -33,8 +32,7 @@ public class PageTopBar extends Toolbar{
     private ImageView meShareButton;
     private TextView meTitle;
     private ImageView registerNextButton;
-    private Typeface homeTypeFace;
-    private Typeface communityTypeFace;
+    private Typeface textTypeFace;
 
     public PageTopBar(Context context) {
         this(context, null);
@@ -47,8 +45,7 @@ public class PageTopBar extends Toolbar{
     public PageTopBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        homeTypeFace = Typeface.createFromAsset(context.getAssets(),"fonts/billabong.ttf");
-        communityTypeFace = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Condensed.ttf");
+        textTypeFace = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Condensed.ttf");
         initView();
         setContentInsetsRelative(0, 0);
 
@@ -56,47 +53,51 @@ public class PageTopBar extends Toolbar{
             final TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
                     R.styleable.PageTopBar, defStyleAttr, 0);
 
-            final Drawable searchButton = a.getDrawable(R.styleable.PageTopBar_searchButton);
-            if (searchButton != null) {
-                setSearchButtonIcon(searchButton);
+            final Drawable attrSearchView = a.getDrawable(R.styleable.PageTopBar_searchView);
+            if (attrSearchView != null) {
+                setSearchViewIcon(attrSearchView);
             }
 
-            final CharSequence homepageTitle = a.getText(R.styleable.PageTopBar_homepageTitle);
-            if (homepageTitle != null) {
-                setHomepageTitle(homepageTitle);
+            final CharSequence attrCommunityFollow = a.getText(R.styleable.PageTopBar_communityFollow);
+            if (attrCommunityFollow != null) {
+                setCommunityFollow(attrCommunityFollow);
             }
 
-            final CharSequence communityFollow = a.getText(R.styleable.PageTopBar_communityFollow);
-            if (communityFollow != null) {
-                setCommunityFollow(communityFollow);
+            final CharSequence attrCommunityDiscovery = a.getText(R.styleable.PageTopBar_communityDiscovery);
+            if (attrCommunityDiscovery != null) {
+                setCommunityDiscovery(attrCommunityDiscovery);
             }
 
-            final CharSequence communityDiscovery = a.getText(R.styleable.PageTopBar_communityDiscovery);
-            if (communityDiscovery != null) {
-                setCommunityDiscovery(communityDiscovery);
+            final Drawable attrCommunityComment = a.getDrawable(R.styleable.PageTopBar_communityComment);
+            if (attrCommunityComment != null) {
+                setCommentButton(attrCommunityComment);
             }
 
-            final Drawable communityComment = a.getDrawable(R.styleable.PageTopBar_communityComment);
-            if (communityComment != null) {
-                setCommentButton(communityComment);
+            final Drawable attrMeShare = a.getDrawable(R.styleable.PageTopBar_meShare);
+            if (attrMeShare != null) {
+                setMeShareButton(attrMeShare);
             }
 
-            final Drawable meShare = a.getDrawable(R.styleable.PageTopBar_meShare);
-            if (meShare != null) {
-                setMeShareButton(meShare);
+            final CharSequence attrMeTitle = a.getText(R.styleable.PageTopBar_meTitle);
+            if (attrMeTitle != null) {
+                setMeTitle(attrMeTitle);
             }
 
-            final CharSequence meTitle = a.getText(R.styleable.PageTopBar_meTitle);
-            if (meTitle != null) {
-                setMeTitle(meTitle);
-            }
-
-            final Drawable registerNext = a.getDrawable(R.styleable.PageTopBar_registerNext);
-            if (registerNext != null) {
-                setRegisterNextButton(registerNext);
+            final Drawable attrRegisterNext = a.getDrawable(R.styleable.PageTopBar_registerNext);
+            if (attrRegisterNext != null) {
+                setRegisterNextButton(attrRegisterNext);
             }
             a.recycle();
         }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        widthMeasureSpec = MeasureSpec.makeMeasureSpec(
+                MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.EXACTLY);
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(
+                MeasureSpec.getSize(heightMeasureSpec), MeasureSpec.EXACTLY);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     private void initView() {
@@ -104,18 +105,16 @@ public class PageTopBar extends Toolbar{
             mInflater = LayoutInflater.from(getContext());
             mView = mInflater.inflate(R.layout.widget_topbar, null);
 
-            searchButton = (ImageView) mView.findViewById(R.id.topbar_search);
-            homepageTitle = (TextView) mView.findViewById(R.id.topbar_homepage_title);
-            homepageTitle.setTypeface(homeTypeFace);
+            searchView = (ImageView) mView.findViewById(R.id.topbar_searching_view);
             communityLayout = (LinearLayout) mView.findViewById(R.id.topbar_community_title);
             communityFollow = (TextView) mView.findViewById(R.id.topbar_community_follow);
-            communityFollow.setTypeface(communityTypeFace);
+            communityFollow.setTypeface(textTypeFace);
             communityDiscovery = (TextView) mView.findViewById(R.id.topbar_community_discovery);
-            communityDiscovery.setTypeface(communityTypeFace);
+            communityDiscovery.setTypeface(textTypeFace);
             commentButton = (ImageView) mView.findViewById(R.id.topbar_comment);
             meShareButton = (ImageView) mView.findViewById(R.id.topbar_me_share);
             meTitle = (TextView) mView.findViewById(R.id.topbar_me_title);
-            meTitle.setTypeface(homeTypeFace);
+            meTitle.setTypeface(textTypeFace);
             registerNextButton = (ImageView) mView.findViewById(R.id.topbar_register_next);
 
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
@@ -124,20 +123,11 @@ public class PageTopBar extends Toolbar{
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setSearchButtonIcon(Drawable icon) {
+    public void setSearchViewIcon(Drawable icon) {
 
-        if(searchButton !=null){
-            searchButton.setBackground(icon);
-            searchButton.setVisibility(VISIBLE);
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setHomepageTitle(CharSequence text) {
-
-        if(homepageTitle !=null){
-            homepageTitle.setText(text);
-            homepageTitle.setVisibility(VISIBLE);
+        if(searchView !=null){
+            searchView.setBackground(icon);
+            searchView.setVisibility(VISIBLE);
         }
     }
 
@@ -196,16 +186,11 @@ public class PageTopBar extends Toolbar{
     }
 
     public void showHomepageView() {
-        if (searchButton != null)
-            searchButton.setVisibility(VISIBLE);
-
-        if (homepageTitle != null)
-            homepageTitle.setVisibility(VISIBLE);
+        if (searchView != null)
+            searchView.setVisibility(VISIBLE);
     }
 
     public void showCommunityView() {
-        if (searchButton != null)
-            searchButton.setVisibility(VISIBLE);
 
         if (communityLayout != null)
             communityLayout.setVisibility(VISIBLE);
@@ -236,8 +221,8 @@ public class PageTopBar extends Toolbar{
         commentButton.setOnClickListener(clickListener);
     }
 
-    public void setSearchButton(OnClickListener clickListener) {
-        searchButton.setOnClickListener(clickListener);
+    public void setSearchView(OnClickListener clickListener) {
+        searchView.setOnClickListener(clickListener);
     }
 
     public void setMeShareButton(OnClickListener clickListener) {
