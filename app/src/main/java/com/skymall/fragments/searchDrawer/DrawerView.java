@@ -192,24 +192,18 @@ public class DrawerView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.fragment_drawer, this);
         ButterKnife.bind(this);
 
-//        et_search = (EditText) findViewById(R.id.drawer_et_search);
         et_search.setTextSize(textSizeSearch);
         et_search.setTextColor(textColorSearch);
         et_search.setHint(textHintSearch);
 
-//        search_block = (LinearLayout) findViewById(R.id.drawer_search_block);
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) search_block.getLayoutParams();
         params.height = searchBlockHeight;
         search_block.setBackgroundColor(searchBlockColor);
         search_block.setLayoutParams(params);
 
         historyView = (SearchHistoryView) findViewById(R.id.drawer_history_view);
-//        historyView = ButterKnife.findById(this, R.id.drawer_history_view);
 
-//        tv_clear = (TextView) findViewById(R.id.drawer_tv_clear);
         tv_clear.setVisibility(INVISIBLE);
-
-//        searchBack = (ImageView) findViewById(R.id.drawer_search_back);
     }
 
     private void queryData(String tempName) {

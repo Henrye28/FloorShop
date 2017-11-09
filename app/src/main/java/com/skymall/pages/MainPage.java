@@ -22,6 +22,9 @@ import com.skymall.widgets.PageTopBar;
 
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainPage extends AppCompatActivity implements OnClickListener,IBtnCallListener {
 
     private ImageView[] bt_menu = new ImageView[5];
@@ -31,10 +34,14 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
 
     private Homepage_Tab home_F;
 
-    private PageTopBar topbar;
-    private DrawerLayout mainView;
-    private ImageView topbar_search;
-    private DrawerView drawer_view;
+    @BindView(R.id.mainpage_topbar)
+    PageTopBar topBar;
+
+    @BindView(R.id.mainpage_view)
+    DrawerLayout mainView;
+
+    @BindView(R.id.mainpage_drawer_view)
+    DrawerView drawer_view;
 
     private MyInfo_Tab myInfo_tab;
 
@@ -58,22 +65,20 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
     }
 
     private void initView() {
-        topbar = (PageTopBar) findViewById(R.id.pageTopBar);
-        mainView = (DrawerLayout) findViewById(R.id.main_view);
-        topbar_search = (ImageView) findViewById(R.id.topbar_search);
-        drawer_view = (DrawerView) findViewById(R.id.drawer_view);
 
-        setSupportActionBar(topbar);
-//        topbar.showHomepageView();
-//        topbar.showCommunityView();
-//        topbar.showMeView();
+        ButterKnife.bind(this);
 
-         if (home_F == null) {
-             home_F = new Homepage_Tab();
-             addFragment(home_F);
-             showFragment(home_F);
-         } else {
-             showFragment(home_F);
+        setSupportActionBar(topBar);
+        topBar.showHomepageView();
+//        topBar.showCommunityView();
+//        topBar.showMeView();
+
+        if (home_F == null) {
+            home_F = new Homepage_Tab();
+            addFragment(home_F);
+            showFragment(home_F);
+        } else {
+            showFragment(home_F);
 
 //        if (myInfo_tab == null) {
 //            myInfo_tab = new MyInfo_Tab();
@@ -83,7 +88,7 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
 //            showFragment(myInfo_tab);
         }
 
-        topbar_search.setOnClickListener(new OnClickListener() {
+        topBar.setSearchViewListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainView.openDrawer(GravityCompat.START);
@@ -109,13 +114,12 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.home_tab:
-
-                 if (home_F == null) {
-                     home_F = new Homepage_Tab();
-                     addFragment(home_F);
-                     showFragment(home_F);
-                 } else {
-                     if (home_F.isHidden()) {
+                if (home_F == null) {
+                    home_F = new Homepage_Tab();
+                    addFragment(home_F);
+                    showFragment(home_F);
+                } else {
+                    if (home_F.isHidden()) {
 
 //                if (myInfo_tab == null) {
 //                    myInfo_tab = new MyInfo_Tab();
@@ -140,7 +144,7 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
 
     public void addFragment(Fragment fragment) {
         FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.show_layout, fragment);
+        ft.add(R.id.mainpage_show_layout, fragment);
         ft.commit();
     }
 

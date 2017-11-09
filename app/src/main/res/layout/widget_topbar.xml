@@ -6,19 +6,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="41dp">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/topbar_searching_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_searching"/>
-
-        <ImageView
-            android:id="@+id/topbar_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/icon_search"
+            android:src="@drawable/view_search"
+            android:paddingLeft="8dp"
+            android:paddingRight="20dp"
             android:visibility="invisible"/>
 
         <ImageView
@@ -27,17 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:src="@drawable/icon_share"
-            android:visibility="invisible"/>
-
-        <TextView
-            android:id="@+id/topbar_homepage_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textSize="37sp"
-            android:textColor="@color/defaultTextColor"
-            android:text="FloorShop"
             android:visibility="invisible"/>
 
         <LinearLayout

@@ -1,11 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:background="#FFFFFF"
-    android:orientation="vertical"
-    tools:context=".Tao_F">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,20 +15,18 @@
             android:orientation="vertical" >
 
             <com.hss01248.slider.SliderLayout
-                android:id="@+id/view_pager"
+                android:id="@+id/homepage_view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:clickable="true"
-                />
+                android:layout_height="@dimen/homepage_banner_height"
+                android:clickable="true" />
 
-            <com.skymall.widgets.MyGridView
-                android:id="@+id/my_gridview"
+            <GridView
+                android:id="@+id/homepage_gridview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:horizontalSpacing="10dp"
-                android:numColumns="4"
-                android:verticalSpacing="10dp"
-            />
+                android:numColumns="3"
+                android:verticalSpacing="10dp"/>
 
             <View
                 android:layout_marginTop="10dp"

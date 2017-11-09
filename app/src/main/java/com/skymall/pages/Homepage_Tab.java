@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -22,7 +23,6 @@ import com.skymall.adapters.Adapter_GridView;
 import com.skymall.bean.BannerImages;
 import com.skymall.bean.HomePageHotItems;
 import com.skymall.bean.Items;
-import com.skymall.widgets.MyGridView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ import cn.bmob.v3.listener.FindListener;
 public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderClickListener{
 
     private Adapter_GridView gradViewAdapter;
-    private MyGridView myGridView;
+    private GridView myGridView;
     private ArrayList<View> allListView;
     private SliderLayout viewPager ;
 
@@ -46,7 +46,7 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
 
     private List<Items> viewPagerItems = new ArrayList<Items>();
     
-    private int[] gridViewPics = {R.drawable.catogeries, R.drawable.picshare, R.drawable.saletab, R.drawable.hkmarket};
+    private int[] gridViewPics = {R.drawable.icon_shop, R.drawable.icon_coupon, R.drawable.icon_recommend};
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.homepage_tab, null);
@@ -82,7 +82,7 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
     };
 
     private void initViewPager(final View view){
-        viewPager = (SliderLayout)view.findViewById(R.id.view_pager);
+        viewPager = (SliderLayout)view.findViewById(R.id.homepage_view_pager);
         BmobQuery<BannerImages> query = new BmobQuery<BannerImages>();
         query.findObjects(new FindListener<BannerImages>() {
             @Override
@@ -114,7 +114,7 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
     }
 
     private void initView(View view) {
-        myGridView = (MyGridView) view.findViewById(R.id.my_gridview);
+        myGridView = (GridView) view.findViewById(R.id.homepage_gridview);
 
         myGridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
         gradViewAdapter = new Adapter_GridView(getActivity(), gridViewPics);
@@ -127,10 +127,6 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
             }
         });
     }
-
-
-
-
 
     @Override
     public void onSliderClick(BaseSliderView baseSliderView) {

@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <com.skymall.widgets.PageTopBar
-            android:id="@+id/pageTopBar"
+            android:id="@+id/mainpage_topbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

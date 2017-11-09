@@ -2,8 +2,7 @@
 <resources>
 
     <declare-styleable name="PageTopBar">
-        <attr name="searchButton" format="reference"/>
-        <attr name="homepageTitle" format="string"/>
+        <attr name="searchView" format="reference"/>
         <attr name="communityFollow" format="string"/>
         <attr name="communityDiscovery" format="string"/>
         <attr name="communityComment" format="reference"/>
