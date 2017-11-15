@@ -56,10 +56,10 @@ public class TagFlowLayout extends FlowLayout implements
 
         for (int i = 0; i < cCount; i++) {
             TagView tagView = (TagView) getChildAt(i);
-            if (tagView.getVisibility() == View.GONE)
+            if (tagView.getVisibility() == GONE)
                 continue;
-            if (tagView.getTagView().getVisibility() == View.GONE) {
-                tagView.setVisibility(View.GONE);
+            if (tagView.getTagView().getVisibility() == GONE) {
+                tagView.setVisibility(GONE);
             }
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -259,7 +259,7 @@ public class TagFlowLayout extends FlowLayout implements
         final int cCount = getChildCount();
         for (int i = 0; i < cCount; i++) {
             TagView v = (TagView) getChildAt(i);
-            if (v.getVisibility() == View.GONE)
+            if (v.getVisibility() == GONE)
                 continue;
             Rect outRect = new Rect();
             v.getHitRect(outRect);

@@ -1,4 +1,8 @@
+<<<<<<< HEAD:app/src/test/java/com/example/henryye/skymall/ExampleUnitTest.java
 package com.example.henryye.skymall;
+=======
+package com.skymall;
+>>>>>>> develop-mergeTest:app/src/test/java/com/example/henryye/floorshop/ExampleUnitTest.java
 
 import org.junit.Test;
 

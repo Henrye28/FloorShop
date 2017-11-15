@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.rengwuxian.materialedittext.MaterialEditText;
-import com.rengwuxian.materialedittext.validation.RegexpValidator;
 import com.skymall.GlobalFunctions;
 import com.skymall.R;
 import com.skymall.bean.User;
+import com.rengwuxian.materialedittext.MaterialEditText;
+import com.rengwuxian.materialedittext.validation.RegexpValidator;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;

@@ -14,6 +14,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 
+import com.skymall.R;
+import com.skymall.adapters.HomepageGridViewAdapter;
+import com.skymall.bean.BannerImages;
+import com.skymall.bean.HomePageHotItems;
+import com.skymall.widgets.MyGridView;
+import com.skymall.bean.Items;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hss01248.slider.Animations.DescriptionAnimation;
 import com.hss01248.slider.SliderLayout;
@@ -42,7 +48,7 @@ import cn.bmob.v3.listener.FindListener;
 
 public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderClickListener{
 
-    private Adapter_GridView gradViewAdapter;
+    private HomepageGridViewAdapter gradViewAdapter;
     private MyGridView myGridView;
     private ArrayList<View> allListView;
     private SliderLayout viewPager ;
@@ -138,7 +144,7 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
 
         myGridView = (MyGridView) view.findViewById(R.id.my_gridview);
         myGridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
-        gradViewAdapter = new Adapter_GridView(getActivity(), gridViewPics);
+        gradViewAdapter = new HomepageGridViewAdapter(getActivity(), gridViewPics);
         myGridView.setAdapter(gradViewAdapter);
 
         myGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

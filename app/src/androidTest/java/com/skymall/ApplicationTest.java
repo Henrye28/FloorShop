@@ -1,4 +1,4 @@
-package com.example.henryye.skymall;
+package com.skymall;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

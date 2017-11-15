@@ -80,10 +80,8 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
     private double itemPrice;
     private String itemName;
     private String itemDescription;
-    private Stores itemStore;
     private String itemColor;
     private String itemSize;
-    private String itemClassification;
     private List<String> itemSizeList;
     private List<String> itemColorList;
 
@@ -255,7 +253,6 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
                         itemPrice = item.getPrice();
                         itemDescription = item.getDescription();
                         itemName = item.getName();
-                        itemClassification = item.getClassification();
                         String attributes = item.getAttributes();
                         String[] splitedAttribute = attributes.split("\\|");
                         itemSize = splitedAttribute[0];

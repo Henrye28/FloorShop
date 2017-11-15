@@ -1,9 +1,9 @@
 package com.skymall;
 
+import android.content.Context;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import android.content.Context;
 
 import de.mrapp.android.dialog.MaterialDialog;
 

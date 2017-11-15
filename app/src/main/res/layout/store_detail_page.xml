@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/store_icon"
+            android:src="@drawable/test_store_icon"
+            android:layout_margin="10dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical|right"
+            android:layout_margin="10dp"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="NEXT Tech"
+                android:id="@+id/store_name"
+                android:textStyle="bold|italic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textSize="10sp"
+                android:text="香港, Festival Walk,又一城,九龍塘達之路 80 號"
+                android:id="@+id/store_adress"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <com.dd.processbutton.FlatButton
+            android:id="@+id/follow"
+            android:textSize="8sp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_margin="3dp"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:textAlignment="center"
+            android:text="@string/following_store"
+            custom:pb_colorNormal="@color/colorPrimary"
+            custom:pb_colorPressed="@color/colorButtonClicked"
+            custom:pb_textComplete="@string/followed_store" />
+
+    </LinearLayout>
+
+    <com.gxz.PagerSlidingTabStrip
+        android:id="@+id/store_slidingtabs"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        app:pstsDividerColor="@android:color/transparent"
+        app:pstsDividerPaddingTopBottom="0dp"
+        app:pstsIndicatorColor="#ffffff"
+        app:pstsIndicatorHeight="2dp"
+        app:pstsScaleZoomMax="0.0"
+        app:pstsShouldExpand="false"
+        app:pstsSmoothScrollWhenClickTab="false"
+        app:pstsTabPaddingLeftRight="12dp"
+        app:pstsTextAllCaps="false"
+        app:pstsTextSelectedColor="#ffffff"
+        app:pstsUnderlineHeight="0dp" />
+
+
+
+</LinearLayout>

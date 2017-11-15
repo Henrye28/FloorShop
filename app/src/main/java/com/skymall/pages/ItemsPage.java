@@ -7,12 +7,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.gxz.PagerSlidingTabStrip;
-import com.skymall.R;
 import com.skymall.adapters.ItemTitlePagerAdapter;
 import com.skymall.fragments.ItemCommentFragment;
 import com.skymall.fragments.ItemInfoFragment;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.gxz.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 import java.util.List;

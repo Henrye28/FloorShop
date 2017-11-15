@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FloorShop</string>
+    <string name="app_name">Skymall</string>
 
     <string name="action_settings">Settings</string>
 
@@ -37,4 +37,8 @@
     <string name="verify_code_format_alert">Please enter correct sms code</string>
     <string name="user_register_failed_alert">User register failed, please try again</string>
     <string name="verify_code_failed_to_send">SMS verify code failed to send, please try again</string>
+    <string name="follow_store">Follow</string>
+    <string name="following_store">Following</string>
+    <string name="followed_store">Followed</string>
+
 </resources>

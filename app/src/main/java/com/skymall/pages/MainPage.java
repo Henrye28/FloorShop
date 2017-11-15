@@ -13,6 +13,12 @@ import android.widget.ImageView;
 
 import com.skymall.R;
 import com.skymall.interfaces.IBtnCallListener;
+import com.skymall.fragments.searchDrawer.DrawerView;
+import com.skymall.fragments.searchDrawer.ICallBack;
+import com.skymall.fragments.searchDrawer.bCallBack;
+import com.skymall.interfaces.IBtnCallListener;
+import com.skymall.widgets.PageTopBar;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.HashMap;
 
