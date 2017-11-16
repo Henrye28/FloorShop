@@ -58,6 +58,41 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/location"/>
+
+
+        <TextView
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:text="香港特别行政区油尖旺区砵兰街335"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="GO"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
     <com.gxz.PagerSlidingTabStrip
         android:id="@+id/store_slidingtabs"
         android:layout_width="wrap_content"
@@ -76,7 +111,6 @@
         app:pstsTextAllCaps="false"
         app:pstsTextSelectedColor="#ffffff"
         app:pstsUnderlineHeight="0dp" />
-
 
 
 </LinearLayout>
