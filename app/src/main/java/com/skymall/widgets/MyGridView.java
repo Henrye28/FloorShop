@@ -1,5 +1,3 @@
-import android.widget.GridView;
-
 package com.skymall.widgets;
 
 import android.content.Context;

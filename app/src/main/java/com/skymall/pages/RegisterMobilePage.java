@@ -12,13 +12,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rengwuxian.materialedittext.MaterialEditText;
+import com.rengwuxian.materialedittext.validation.RegexpValidator;
 import com.skymall.GlobalFunctions;
+import com.skymall.R;
 import com.skymall.bean.User;
 import com.skymall.fragments.TempCountryChoosingFragment;
 import com.skymall.widgets.CountDownButton;
 import com.skymall.widgets.PageTopBar;
-import com.rengwuxian.materialedittext.MaterialEditText;
-import com.rengwuxian.materialedittext.validation.RegexpValidator;
 
 import cn.bmob.sms.BmobSMS;
 import cn.bmob.sms.exception.BmobException;
