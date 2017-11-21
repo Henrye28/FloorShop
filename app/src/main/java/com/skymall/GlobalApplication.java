@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
+import java.io.File;
+
 import cn.bmob.v3.Bmob;
 
 /**
@@ -23,5 +25,11 @@ public class GlobalApplication extends Application {
         if (getResources() == null) {
             android.os.Process.killProcess(android.os.Process.myPid());
         }
+    }
+
+    //判断是否安装目标应用
+    public static boolean isInstallByread(String packageName) {
+        return new File("/data/data/" + packageName)
+                .exists();
     }
 }

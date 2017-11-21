@@ -66,12 +66,13 @@
         <ImageView
             android:layout_margin="5dp"
             android:layout_gravity="center"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/location"/>
 
 
         <TextView
+            android:id="@+id/nav_address"
             android:layout_margin="5dp"
             android:gravity="center_vertical"
             android:layout_gravity="center"
@@ -81,13 +82,11 @@
             android:layout_weight="6"
             android:layout_height="match_parent" />
 
-        <TextView
-            android:textAlignment="center"
+        <ImageView
+            android:id="@+id/gotonav"
+            android:src="@drawable/gotonav"
             android:gravity="center"
-            android:textStyle="bold"
-            android:text="GO"
-            android:textColor="@color/colorPrimary"
-            android:textSize="15sp"
+            android:padding="10dp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent" />

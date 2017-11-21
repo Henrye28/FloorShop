@@ -31,6 +31,9 @@
     <string name="email_verify_sned">发送验证</string>
     <string name="signup_with_email">邮箱注册</string>
     <string name="signup_with_mobile">手机注册</string>
+    <string name="baidumap">百度地图</string>
+    <string name="gaodemap">高德地图</string>
+    <string name="googlemap">谷歌地图</string>
     <string name="sign_up">注册</string>
     <string name="login_alert">登录失败，请检查用户账号以及密码哟</string>
     <string name="logining">登录中...</string>
@@ -41,5 +44,7 @@
     <string name="follow_store">关注</string>
     <string name="following_store">关注中</string>
     <string name="followed_store">已关注</string>
-
+    <string name="amap_not_installed">没有安装高德地图客户端</string>
+    <string name="baidumap_not_installed">没有安装百度地图客户端</string>
+    <string name="Googlemap_not_installed">没有安装谷歌地图客户端</string>
 </resources>
