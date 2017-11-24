@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.dd.processbutton.FlatButton;
 import com.gxz.PagerSlidingTabStrip;
-import com.skymall.GlobalApplication;
+import com.skymall.GlobalFunctions;
 import com.skymall.R;
 import com.skymall.bean.Stores;
 import com.skymall.fragments.StoreActivityPageFragment;
@@ -199,7 +199,7 @@ public class StorePage extends AppCompatActivity implements View.OnClickListener
                 android.net.Uri.parse("androidamap://route?sourceApplication=softname&sname=我的位置&dlat=" + laln[0] + "&dlon=" + laln[0] + "&dname=" + "香港特别行政区深水埗区福荣街218号" + "&dev=0&m=0&t=1"));
         intent.addCategory("android.intent.category.DEFAULT");
 
-        if(GlobalApplication.isInstallByread("com.autonavi.minimap")){
+        if(GlobalFunctions.isInstallByread("com.autonavi.minimap")){
             startActivity(intent);
         }else {
             Log.e(TAG, getResources().getString(R.string.amap_not_installed)) ;
@@ -212,7 +212,7 @@ public class StorePage extends AppCompatActivity implements View.OnClickListener
         Intent intent = new Intent();
         intent.setData(Uri.parse("baidumap://map/direction?origin=我的位置&destination=latlng:" + latlng + "|name:" + address + "&mode=driving&src=yourCompanyName|yourAppName#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end"));
 
-        if(GlobalApplication.isInstallByread("com.baidu.BaiduMap")){
+        if(GlobalFunctions.isInstallByread("com.baidu.BaiduMap")){
             startActivity(intent);
         }else {
             Log.e(TAG, getResources().getString(R.string.baidumap_not_installed)) ;
@@ -224,7 +224,7 @@ public class StorePage extends AppCompatActivity implements View.OnClickListener
         //Assume latitude and longitude are not null in any case
         double[] laln =  bd09_To_Gcj02(Double.valueOf(location[0]),Double.valueOf(location[1]));
 
-        if (GlobalApplication.isInstallByread("com.google.android.apps.maps")) {
+        if (GlobalFunctions.isInstallByread("com.google.android.apps.maps")) {
             Uri gmmIntentUri = Uri.parse("google.navigation:q="+laln[0]+","+laln[1]+", + "+ address);
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");

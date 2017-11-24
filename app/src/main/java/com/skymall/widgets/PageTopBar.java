@@ -55,15 +55,15 @@ public class PageTopBar extends Toolbar{
             final TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
                     R.styleable.PageTopBar, defStyleAttr, 0);
 
-            final Drawable searchButton = a.getDrawable(R.styleable.PageTopBar_searchButton);
-            if (searchButton != null) {
-                setSearchButtonIcon(searchButton);
-            }
+//            final Drawable searchButton = a.getDrawable(R.styleable.PageTopBar_searchButton);
+//            if (searchButton != null) {
+//                setSearchButtonIcon(searchButton);
+//            }
 
-            final CharSequence homepageTitle = a.getText(R.styleable.PageTopBar_homepageTitle);
-            if (homepageTitle != null) {
-                setHomepageTitle(homepageTitle);
-            }
+//            final CharSequence homepageTitle = a.getText(R.styleable.PageTopBar_homepageTitle);
+//            if (homepageTitle != null) {
+//                setHomepageTitle(homepageTitle);
+//            }
 
             final CharSequence communityFollow = a.getText(R.styleable.PageTopBar_communityFollow);
             if (communityFollow != null) {
@@ -98,7 +98,7 @@ public class PageTopBar extends Toolbar{
             mInflater = LayoutInflater.from(getContext());
             mView = mInflater.inflate(R.layout.widget_topbar, null);
 
-            searchButton = (ImageView) mView.findViewById(R.id.topbar_search);
+//            searchButton = (ImageView) mView.findViewById(R.id.topbar_search);
             homepageTitle = (TextView) mView.findViewById(R.id.topbar_homepage_title);
             homepageTitle.setTypeface(homeTypeFace);
             communityLayout = (LinearLayout) mView.findViewById(R.id.topbar_community_title);
@@ -106,7 +106,7 @@ public class PageTopBar extends Toolbar{
             communityFollow.setTypeface(communityTypeFace);
             communityDiscovery = (TextView) mView.findViewById(R.id.topbar_community_discovery);
             communityDiscovery.setTypeface(communityTypeFace);
-            rightCornerButton = (ImageView) mView.findViewById(R.id.topbar_rightcorner);
+//            rightCornerButton = (ImageView) mView.findViewById(R.id.topbar_rightcorner);
             meShareButton = (ImageView) mView.findViewById(R.id.topbar_me_share);
             meTitle = (TextView) mView.findViewById(R.id.topbar_me_title);
             meTitle.setTypeface(homeTypeFace);

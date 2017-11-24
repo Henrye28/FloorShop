@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,19 +13,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 
-import com.skymall.R;
-import com.skymall.adapters.HomepageGridViewAdapter;
-import com.skymall.bean.BannerImages;
-import com.skymall.bean.HomePageHotItems;
-import com.skymall.widgets.MyGridView;
-import com.skymall.bean.Items;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hss01248.slider.Animations.DescriptionAnimation;
 import com.hss01248.slider.SliderLayout;
 import com.hss01248.slider.SliderTypes.BaseSliderView;
 import com.hss01248.slider.SliderTypes.TextSliderView;
 import com.skymall.R;
-import com.skymall.adapters.Adapter_GridView;
+import com.skymall.adapters.HomepageGridViewAdapter;
 import com.skymall.bean.BannerImages;
 import com.skymall.bean.HomePageHotItems;
 import com.skymall.bean.Items;
@@ -46,11 +39,11 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
 
-public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderClickListener{
+public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderClickListener {
+
 
     private HomepageGridViewAdapter gradViewAdapter;
     private MyGridView myGridView;
-    private ArrayList<View> allListView;
     private SliderLayout viewPager ;
 
     @BindView(R.id.homepage_topbar)
@@ -149,15 +142,16 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
 
         myGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+            public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
+                switch (position) {
+                    case 0:
 
-            }
-        });
-
-        topbar.setSearchView(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                main_view.openDrawer(GravityCompat.START);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
             }
         });
 
@@ -184,4 +178,5 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
         intent.putExtra("itemID", clickedItem.getObjectId());
         startActivity(intent);
     }
+
 }

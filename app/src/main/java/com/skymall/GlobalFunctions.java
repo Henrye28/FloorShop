@@ -2,6 +2,7 @@ package com.skymall;
 
 import android.content.Context;
 
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,5 +46,12 @@ public class GlobalFunctions {
         dialogBuilder.setPositiveButton(android.R.string.ok, null);
         alertDialog = dialogBuilder.create();
         alertDialog.show();
+    }
+
+
+    //判断是否安装目标应用
+    public static boolean isInstallByread(String packageName) {
+        return new File("/data/data/" + packageName)
+                .exists();
     }
 }
