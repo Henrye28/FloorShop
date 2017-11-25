@@ -92,10 +92,12 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         mBaiduMap.setMyLocationEnabled(true);
 
+        nearByhopsOnClick();
+
     }
 
 
-    private void nearByShopsOnClick(){
+    private void nearByhopsOnClick(){
         NearbySearchInfo info = new NearbySearchInfo();
         info.ak = CLOUD_AK;
         info.geoTableId = 178788;

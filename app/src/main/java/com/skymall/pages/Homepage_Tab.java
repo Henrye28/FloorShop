@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,15 +83,17 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
         query.findObjects(new FindListener<HomePageHotItems>() {
             @Override
             public void done(List<HomePageHotItems> list, BmobException e) {
-
+                Log.d("test ------ ", " page pppppppp "  );
                 if (e == null) {
                     if (list.size() != 0) {
+                        Log.d("test ------ ", " page pppppppp 2" + list.get(0).getBitmap().getFileUrl() );
                         hotItem0.setImageURI(Uri.parse(list.get(0).getBitmap().getFileUrl()));
                         hotItem1.setImageURI(Uri.parse(list.get(1).getBitmap().getFileUrl()));
                         hotItem2.setImageURI(Uri.parse(list.get(2).getBitmap().getFileUrl()));
                         hotItem3.setImageURI(Uri.parse(list.get(3).getBitmap().getFileUrl()));
                     }
                 } else {
+                    Log.d("test ------ ", " page pppppppp e" + e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -145,7 +148,9 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
             public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
                 switch (position) {
                     case 0:
-
+                        Intent intent = new Intent();
+                        intent.setClass(Homepage_Tab.this.getActivity(), NearbyMapPage.class);
+                        startActivity(intent);
                         break;
                     case 1:
                         break;
@@ -154,6 +159,13 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
                 }
             }
         });
+
+//        topbar.setSearchView(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                main_view.openDrawer(GravityCompat.START);
+//            }
+//        });
 
         drawer_view.setOnClickSearch(new ICallBack() {
             @Override

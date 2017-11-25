@@ -33,6 +33,10 @@
             android:process=":remote" />
 
         <activity android:name="com.skymall.pages.MainPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="com.skymall.pages.LoginWithMobilePage"></activity>
         <activity android:name="com.skymall.pages.StorePage">
@@ -43,11 +47,7 @@
         <activity android:name="com.skymall.pages.WelcomeActivity"></activity>
         <activity android:name="com.skymall.pages.SearchingResultPage"></activity>
         <activity android:name="com.skymall.pages.LoginWithEmailPage"></activity>
-        <activity android:name="com.skymall.pages.MapTest">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name="com.skymall.pages.NearbyMapPage">
         </activity>
 
     </application>
