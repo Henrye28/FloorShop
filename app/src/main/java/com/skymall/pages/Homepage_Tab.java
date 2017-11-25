@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,19 +13,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 
-import com.skymall.R;
-import com.skymall.adapters.HomepageGridViewAdapter;
-import com.skymall.bean.BannerImages;
-import com.skymall.bean.HomePageHotItems;
-import com.skymall.widgets.MyGridView;
-import com.skymall.bean.Items;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hss01248.slider.Animations.DescriptionAnimation;
 import com.hss01248.slider.SliderLayout;
 import com.hss01248.slider.SliderTypes.BaseSliderView;
 import com.hss01248.slider.SliderTypes.TextSliderView;
 import com.skymall.R;
-import com.skymall.adapters.Adapter_GridView;
+import com.skymall.adapters.HomepageGridViewAdapter;
 import com.skymall.bean.BannerImages;
 import com.skymall.bean.HomePageHotItems;
 import com.skymall.bean.Items;
@@ -154,12 +147,12 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
             }
         });
 
-        topbar.setSearchView(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                main_view.openDrawer(GravityCompat.START);
-            }
-        });
+//        topbar.setSearchView(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                main_view.openDrawer(GravityCompat.START);
+//            }
+//        });
 
         drawer_view.setOnClickSearch(new ICallBack() {
             @Override
