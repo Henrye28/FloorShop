@@ -7,9 +7,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -45,6 +46,7 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
 
     private static final String CLOUD_AK = "amAh75f3xf7TTgwgSm3hKq56LOv7S6Gh";
     private static final String LTAG = NearbyMapPage.class.getSimpleName();
+    private static final String RESULT_GET = "result_get";
 
     private MapView mMapView;
     private BaiduMap mBaiduMap;
@@ -59,7 +61,23 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
     private double mCurrentLat = 0.0;
     private double mCurrentLon = 0.0;
     private float mCurrentAccracy;
-    private TextView goMap;
+    Handler myHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            Log.d("GETTTTTTTT", "GGGGG222GG");
+            switch (msg.obj.toString()){
+                case RESULT_GET:
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d("GETTTTTTTT", "GGGGGGG");
+                    nearByhopsOnClick();
+                    break;
+            }
+        }
+    };
 
     private MyLocationData locData;
 
@@ -92,8 +110,13 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         mBaiduMap.setMyLocationEnabled(true);
 
-        nearByhopsOnClick();
-
+//
+//        findViewById(R.id.testbutton).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                nearByhopsOnClick();
+//            }
+//        });
     }
 
 
@@ -102,8 +125,8 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
         info.ak = CLOUD_AK;
         info.geoTableId = 178788;
         info.radius = 30000;
-        info.tags = "test";
-        // info.location = mCurrentLon + "," + mCurrentLat;
+        //info.tags = "test";
+        info.location = mCurrentLon + "," + mCurrentLat;
         mCloudManager.nearbySearch(info);
     }
 
@@ -154,6 +177,10 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
         //为系统的方向传感器注册监听器
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
                 SensorManager.SENSOR_DELAY_UI);
+        Log.d("GETTTTTTTT", "222222");
+        Message msg = new Message();
+        msg.obj = RESULT_GET;
+        myHandler.sendMessage(msg);
     }
 
     public String[] getResult(){
@@ -174,7 +201,6 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
             mCurrentLat = location.getLatitude();
             mCurrentLon = location.getLongitude();
             mCurrentAccracy = location.getRadius();
-            Log.d(" --------received llll ", " latitude " + mCurrentLat + " longitude " + mCurrentLon);
             locData = new MyLocationData.Builder()
                     .accuracy(location.getRadius())
                             // 此处设置开发者获取到的方向信息，顺时针0-360
