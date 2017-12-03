@@ -64,15 +64,8 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
     Handler myHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            Log.d("GETTTTTTTT", "GGGGG222GG");
             switch (msg.obj.toString()){
                 case RESULT_GET:
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Log.d("GETTTTTTTT", "GGGGGGG");
                     nearByhopsOnClick();
                     break;
             }
@@ -110,24 +103,29 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         mBaiduMap.setMyLocationEnabled(true);
 
-//
-//        findViewById(R.id.testbutton).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                nearByhopsOnClick();
-//            }
-//        });
+
     }
 
 
     private void nearByhopsOnClick(){
-        NearbySearchInfo info = new NearbySearchInfo();
-        info.ak = CLOUD_AK;
-        info.geoTableId = 178788;
-        info.radius = 30000;
-        //info.tags = "test";
-        info.location = mCurrentLon + "," + mCurrentLat;
-        mCloudManager.nearbySearch(info);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                    NearbySearchInfo info = new NearbySearchInfo();
+                    info.ak = CLOUD_AK;
+                    info.geoTableId = 178788;
+                    info.radius = 30000;
+                    //info.tags = "test";
+                    info.location = mCurrentLon + "," + mCurrentLat;
+                    mCloudManager.nearbySearch(info);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
     }
 
     @Override
@@ -177,7 +175,6 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
         //为系统的方向传感器注册监听器
         mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
                 SensorManager.SENSOR_DELAY_UI);
-        Log.d("GETTTTTTTT", "222222");
         Message msg = new Message();
         msg.obj = RESULT_GET;
         myHandler.sendMessage(msg);
@@ -224,7 +221,7 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
     @Override
     public void onGetSearchResult(CloudSearchResult cloudSearchResult, int i) {
 
-        Log.d(LTAG, "onGetSearchResult11, result length: " + cloudSearchResult.poiList );
+        Log.d(LTAG, "onGetSearchResult11, result length: " + cloudSearchResult.poiList);
         if (cloudSearchResult != null && cloudSearchResult.poiList != null
                 && cloudSearchResult.poiList.size() > 0) {
             Log.d(LTAG, "onGetSearchResult, result length: " + cloudSearchResult.poiList.size());
@@ -261,6 +258,7 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
             LatLngBounds bounds = builder.build();
             MapStatusUpdate u = MapStatusUpdateFactory.newLatLngBounds(bounds);
             mBaiduMap.animateMapStatus(u);
+
         }
     }
 
