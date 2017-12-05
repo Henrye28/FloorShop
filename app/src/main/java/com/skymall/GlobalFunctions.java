@@ -132,6 +132,7 @@ public class GlobalFunctions {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0:
+                        Log.d("TTTTTEST",latlng + " " + address + " " );
                         GlobalFunctions.goByBaidu(latlng, address, activity);
                         break;
                     case 1:

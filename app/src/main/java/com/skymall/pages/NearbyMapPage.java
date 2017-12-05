@@ -54,6 +54,7 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
     private String picURL;
     private String title;
     private String address;
+    private String storeLatlng;
     private LocationClient mLocClient;
     private SensorManager mSensorManager;
     private Double lastX = 0.0;
@@ -66,6 +67,11 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
         public void handleMessage(Message msg) {
             switch (msg.obj.toString()){
                 case RESULT_GET:
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     nearByhopsOnClick();
                     break;
             }
@@ -103,7 +109,10 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         mBaiduMap.setMyLocationEnabled(true);
 
+    }
 
+    public String getLatLng(){
+        return mCurrentLat + "," + mCurrentLon;
     }
 
 
@@ -146,6 +155,7 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
                    picURL = marker.getExtraInfo().getString("storepic");
                    address = marker.getExtraInfo().getString("address");
                    title = marker.getTitle();
+                   storeLatlng = marker.getPosition().latitude + "," +marker.getPosition().longitude;
                    return false;
                }
            }
@@ -181,7 +191,7 @@ public class NearbyMapPage extends AppCompatActivity implements CloudListener, S
     }
 
     public String[] getResult(){
-        return new String[]{picURL,address,title};
+        return new String[]{picURL,address,title, storeLatlng};
     }
 
     /**
