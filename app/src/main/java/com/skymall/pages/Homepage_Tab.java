@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +40,11 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
 
-public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderClickListener{
+public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderClickListener {
+
 
     private HomepageGridViewAdapter gradViewAdapter;
     private MyGridView myGridView;
-    private ArrayList<View> allListView;
     private SliderLayout viewPager ;
 
     @BindView(R.id.homepage_topbar)
@@ -82,15 +83,17 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
         query.findObjects(new FindListener<HomePageHotItems>() {
             @Override
             public void done(List<HomePageHotItems> list, BmobException e) {
-
+                Log.d("test ------ ", " page pppppppp "  );
                 if (e == null) {
                     if (list.size() != 0) {
+                        Log.d("test ------ ", " page pppppppp 2" + list.get(0).getBitmap().getFileUrl() );
                         hotItem0.setImageURI(Uri.parse(list.get(0).getBitmap().getFileUrl()));
                         hotItem1.setImageURI(Uri.parse(list.get(1).getBitmap().getFileUrl()));
                         hotItem2.setImageURI(Uri.parse(list.get(2).getBitmap().getFileUrl()));
                         hotItem3.setImageURI(Uri.parse(list.get(3).getBitmap().getFileUrl()));
                     }
                 } else {
+                    Log.d("test ------ ", " page pppppppp e" + e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -142,8 +145,18 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
 
         myGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
+            public void onItemClick(AdapterView<?> adapterView, View v, int position, long id) {
+                switch (position) {
+                    case 0:
+                        Intent intent = new Intent();
+                        intent.setClass(Homepage_Tab.this.getActivity(), NearbyMapPage.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
             }
         });
 
@@ -177,4 +190,5 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
         intent.putExtra("itemID", clickedItem.getObjectId());
         startActivity(intent);
     }
+
 }
