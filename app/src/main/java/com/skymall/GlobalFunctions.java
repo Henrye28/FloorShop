@@ -14,9 +14,6 @@ import java.util.regex.Pattern;
 
 import de.mrapp.android.dialog.MaterialDialog;
 
-/**
- * Created by henryye on 5/28/17.
- */
 public class GlobalFunctions {
 
     public static final String PASSWORD_PATTERN = "^(?![^a-zA-Z]+$)(?!\\D+$)[0-9a-zA-Z]{8,16}$";
@@ -132,7 +129,6 @@ public class GlobalFunctions {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0:
-                        Log.d("TTTTTEST",latlng + " " + address + " " );
                         GlobalFunctions.goByBaidu(latlng, address, activity);
                         break;
                     case 1:
