@@ -1,0 +1,13 @@
+<resources>    <!-- Default screen margins, per the Android Design guidelines. -->    <dimen name="buttonCornerSize">5.12dp</dimen>
+    <dimen name="smallButtonHeight">81.92dp</dimen>
+    <dimen name="smallButtonWidth">122.88dp</dimen>
+    <dimen name="normalButtonHeight">122.88dp</dimen>
+    <dimen name="smallPadding">20.48dp</dimen>
+    <dimen name="largePadding">40.96dp</dimen>
+    <dimen name="bigButtonTextSize">46.08dp</dimen>
+    <dimen name="smallButtonTextSize">35.84dp</dimen>
+    <!--homepage size-->    <dimen name="homepage_search_top_padding">50.688dp</dimen>
+    <dimen name="homepage_banner_search_padding">50.432dp</dimen>
+    <dimen name="homepage_banner_height">512.0dp</dimen>
+    <dimen name="homepage_grid_vertical_space">51.2dp</dimen>
+</resources>

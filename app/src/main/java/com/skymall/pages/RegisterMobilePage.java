@@ -93,7 +93,7 @@ public class RegisterMobilePage extends AppCompatActivity{
 
         toolbar.setRegisterNextButton(getResources().getDrawable(R.drawable.icon_next));
 
-        toolbar.setRegisterNextButton(new View.OnClickListener() {
+        toolbar.setRegisterNextButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user = new User();

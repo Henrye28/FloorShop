@@ -30,13 +30,27 @@ public class PageTopBar extends Toolbar{
     @BindView(R.id.topbar_searching_view)
     ImageView searchView;
 
-    private LinearLayout communityLayout;
-    private TextView communityFollow;
-    private TextView communityDiscovery;
-    private ImageView commentButton;
-    private ImageView meShareButton;
-    private TextView meTitle;
-    private ImageView registerNextButton;
+    @BindView(R.id.topbar_community_title)
+    LinearLayout communityLayout;
+
+    @BindView(R.id.topbar_community_follow)
+    TextView communityFollow;
+
+    @BindView(R.id.topbar_community_discovery)
+    TextView communityDiscovery;
+
+    @BindView(R.id.topbar_comment)
+    ImageView commentButton;
+
+    @BindView(R.id.topbar_me_share)
+    ImageView meShareButton;
+
+    @BindView(R.id.topbar_me_title)
+    TextView meTitle;
+
+    @BindView(R.id.topbar_register_next)
+    ImageView registerNextButton;
+
     private Typeface textTypeFace;
 
     public PageTopBar(Context context) {
@@ -103,15 +117,15 @@ public class PageTopBar extends Toolbar{
 
             ButterKnife.bind(this,mView);
 
-            communityLayout = (LinearLayout) mView.findViewById(R.id.topbar_community_title);
-            communityFollow = (TextView) mView.findViewById(R.id.topbar_community_follow);
+//            communityLayout = (LinearLayout) mView.findViewById(R.id.topbar_community_title);
+//            communityFollow = (TextView) mView.findViewById(R.id.topbar_community_follow);
             communityFollow.setTypeface(textTypeFace);
-            communityDiscovery = (TextView) mView.findViewById(R.id.topbar_community_discovery);
+//            communityDiscovery = (TextView) mView.findViewById(R.id.topbar_community_discovery);
             communityDiscovery.setTypeface(textTypeFace);
-            commentButton = (ImageView) mView.findViewById(R.id.topbar_comment);
-            meShareButton = (ImageView) mView.findViewById(R.id.topbar_me_share);
-            meTitle = (TextView) mView.findViewById(R.id.topbar_me_title);
-            registerNextButton = (ImageView) mView.findViewById(R.id.topbar_register_next);
+//            commentButton = (ImageView) mView.findViewById(R.id.topbar_comment);
+//            meShareButton = (ImageView) mView.findViewById(R.id.topbar_me_share);
+//            meTitle = (TextView) mView.findViewById(R.id.topbar_me_title);
+//            registerNextButton = (ImageView) mView.findViewById(R.id.topbar_register_next);
 
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
             addView(mView, lp);
@@ -227,7 +241,7 @@ public class PageTopBar extends Toolbar{
         meShareButton.setOnClickListener(clickListener);
     }
 
-    public void setRegisterNextButton(OnClickListener clickListener) {
+    public void setRegisterNextButtonListener(OnClickListener clickListener) {
         registerNextButton.setOnClickListener(clickListener);
     }
 }
