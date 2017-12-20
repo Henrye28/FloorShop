@@ -12,10 +12,11 @@
             android:id="@+id/topbar_searching_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/view_search"
-            android:paddingLeft="8dp"
-            android:paddingRight="20dp"
-            android:visibility="invisible"/>
+            android:src="@drawable/icon_searching_box"
+            android:clickable="true"
+            android:paddingLeft="@dimen/x20"
+            android:paddingRight="@dimen/x20"
+            />
 
         <ImageView
             android:id="@+id/topbar_me_share"
@@ -31,7 +32,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/icon_left"
             android:paddingLeft="20dp"
-            android:paddingTop="12.8dp"/>
+            android:paddingTop="12.8dp"
+            android:visibility="invisible"/>
 
         <LinearLayout
             android:id="@+id/topbar_community_title"
@@ -109,6 +111,7 @@
             android:textColor="#FF5024"
             android:paddingRight="20dp"
             android:paddingTop="10dp"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"/>
     </RelativeLayout>
 </android.support.v7.widget.Toolbar>

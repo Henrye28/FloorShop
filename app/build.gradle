@@ -9,7 +9,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.example.henryye.floorshop"
+        applicationId "com.skymall"
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
