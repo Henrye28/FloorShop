@@ -2,7 +2,9 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:contentInsetStart="0.0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,10 +15,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_searching_box"
-            android:clickable="true"
             android:paddingLeft="@dimen/x20"
             android:paddingRight="@dimen/x20"
-            />
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/topbar_searching_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x67"
+            android:text="Anything you want"
+            android:textColor="#0f16172d"
+            android:textSize="@dimen/x17" />
 
         <ImageView
             android:id="@+id/topbar_me_share"

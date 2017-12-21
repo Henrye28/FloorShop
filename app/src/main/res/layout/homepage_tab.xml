@@ -17,130 +17,36 @@
             <com.hss01248.slider.SliderLayout
                 android:id="@+id/homepage_view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/homepage_banner_height"
-                android:clickable="true" />
+                android:layout_height="@dimen/x200"
+                android:clickable="true"/>
 
             <GridView
-                android:id="@+id/homepage_gridview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:horizontalSpacing="10dp"
-                android:numColumns="3"
-                android:verticalSpacing="10dp"/>
-
-            <View
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="@color/gray" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="horizontal" >
-
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:id="@+id/hotItem0"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:scaleType="fitXY"
-                    fresco:placeholderImage="@drawable/icon_add"/>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/gray" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical" >
-
-                    <com.facebook.drawee.view.SimpleDraweeView
-                        android:id="@+id/hotItem1"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:scaleType="fitXY"
-                        fresco:placeholderImage="@drawable/icon_add"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/gray" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal" >
-
-                        <com.facebook.drawee.view.SimpleDraweeView
-                            android:id="@+id/hotItem2"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:scaleType="fitXY"
-                            fresco:placeholderImage="@drawable/icon_add"/>
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/gray" />
-
-                        <com.facebook.drawee.view.SimpleDraweeView
-                            android:id="@+id/hotItem3"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:scaleType="fitXY"
-                            fresco:placeholderImage="@drawable/icon_add" />
-
-                        <!--<ImageView-->
-                            <!--android:id="@+id/hotItem3"-->
-                            <!--android:layout_width="0dp"-->
-                            <!--android:layout_height="match_parent"-->
-                            <!--android:layout_weight="1"-->
-                            <!--android:scaleType="fitXY"-->
-                            <!--android:src="@drawable/menu_1_3" />-->
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@color/gray" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@color/gray" />
-
-            <LinearLayout
+                android:id="@+id/homepage_grid_tag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:paddingTop="@dimen/x23"
+                android:numColumns="3"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="Hot Items"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/x20"
+                android:background="@color/gray" />
 
-                <GridView
-                    android:id="@+id/my_gridview_hot"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:horizontalSpacing="5dp"
-                    android:numColumns="3"
-                    android:verticalSpacing="5dp" >
-                </GridView>
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hot"
+                android:textColor="#24253D"
+                android:textSize="@dimen/x24"
+                android:paddingTop="@dimen/x30"
+                android:paddingLeft="@dimen/x20"/>
+
+            <GridView
+                android:id="@+id/homepage_grid_hot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="2"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

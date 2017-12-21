@@ -13,7 +13,7 @@
             android:id="@+id/mainpage_topbar"
             android:paddingTop="@dimen/x20"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x47"/>
+            android:layout_height="wrap_content"/>
 
         <RelativeLayout
             android:id="@+id/mainpage_show_layout"

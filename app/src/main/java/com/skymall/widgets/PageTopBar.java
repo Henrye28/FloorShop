@@ -30,6 +30,9 @@ public class PageTopBar extends Toolbar{
     @BindView(R.id.topbar_searching_view)
     ImageView searchView;
 
+    @BindView(R.id.topbar_searching_text)
+    TextView searchText;
+
     @BindView(R.id.topbar_community_title)
     LinearLayout communityLayout;
 
