@@ -1,7 +1,10 @@
 package com.skymall.pages;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +19,9 @@ import com.hss01248.slider.SliderLayout;
 import com.hss01248.slider.SliderTypes.BaseSliderView;
 import com.hss01248.slider.SliderTypes.TextSliderView;
 import com.skymall.R;
+import com.skymall.adapters.HomepageHotGridAdapter;
 import com.skymall.bean.BannerImages;
+import com.skymall.bean.HomePageHotItems;
 import com.skymall.bean.Items;
 
 import java.util.ArrayList;
@@ -30,25 +35,29 @@ import cn.bmob.v3.listener.FindListener;
 
 public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderClickListener{
 
+    private final static int LOAD_SUCCESS = 0;
+
     private GridView gridViewTag;
     private SliderLayout viewPager;
     private GridView gridViewHot;
-
-    private ImageView hotItem0;
-    private ImageView hotItem1;
-    private ImageView hotItem2;
-    private ImageView hotItem3;
+    private HomepageHotGridAdapter mHomepageHotGridAdapter = null;
 
     private List<Items> viewPagerItems = new ArrayList<Items>();
     
     private int[] gridTagImages = {R.drawable.icon_shop, R.drawable.icon_coupon, R.drawable.icon_recommend};
     private String[] gridTagText = {"Hot Store", "Discount", "Recommend"};
     private ArrayList<HashMap<String, Object>> gridTagItems = new ArrayList<>();
+    private ArrayList<HomePageHotItems> gridHotItems = new ArrayList<>();
 
-    private int[] gridHotImages = {};
-    private String[] gridHotText = {};
-    private ArrayList<HashMap<String, Object>> gridHotItems = new ArrayList<>();
-
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case LOAD_SUCCESS:
+                    mHomepageHotGridAdapter.notifyDataSetChanged();
+            }
+        }
+    };
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.homepage_tab, null);
         initView(view);
@@ -115,8 +124,29 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
     }
 
     private void initView(View view) {
-        gridViewTag = (GridView) view.findViewById(R.id.homepage_grid_tag);
+        gridViewHot = (GridView) view.findViewById(R.id.homepage_grid_hot);
+        mHomepageHotGridAdapter = new HomepageHotGridAdapter(getContext(), R.layout.homepage_tab_grid_hot, gridHotItems);
+        BmobQuery<HomePageHotItems> query = new BmobQuery<HomePageHotItems>();
+        query.findObjects(new FindListener<HomePageHotItems>() {
+            @Override
+            public void done(List<HomePageHotItems> list, BmobException e) {
+                if (e == null) {
+                    if (list.size() != 0) {
+                        for (int i=0; i<list.size(); i++)
+                            gridHotItems.add(list.get(i));
+                    }
 
+                    Message msg = new Message();
+                    msg.what = LOAD_SUCCESS;
+                    handler.sendMessage(msg);
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+        gridViewHot.setAdapter(mHomepageHotGridAdapter);
+
+        gridViewTag = (GridView) view.findViewById(R.id.homepage_grid_tag);
         for (int i = 0; i< gridTagText.length; i++) {
             HashMap<String, Object> map = new HashMap<>();
             map.put("img", gridTagImages[i]);
@@ -135,8 +165,6 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
 
             }
         });
-
-        gridViewHot = (GridView) view.findViewById(R.id.homepage_grid_hot);
     }
 
     @Override
