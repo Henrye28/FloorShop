@@ -93,21 +93,21 @@ public class RegisterMobilePage extends AppCompatActivity{
 
         toolbar.setRightCornerButton(getResources().getDrawable(R.drawable.icon_next));
 
-        toolbar.setRightCornerButton(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                user = new User();
-                user.setUsername(mobileStr);
-                user.setMobilePhoneNumber(mobileStr);
-                user.setPassword(pwdStr);
-
-                if (verifyCodeInput.getText().toString().equals("") || verifyCodeInput.getText().toString() == null) {
-                    GlobalFunctions.createDialogWithAlertMsg(RegisterMobilePage.this, R.string.verify_code_format_alert);
-                } else {
-                    codeVerifying(mobileStr, verifyCodeInput.getText().toString());
-                }
-            }
-        });
+//        toolbar.setRightCornerButton(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                user = new User();
+//                user.setUsername(mobileStr);
+//                user.setMobilePhoneNumber(mobileStr);
+//                user.setPassword(pwdStr);
+//
+//                if (verifyCodeInput.getText().toString().equals("") || verifyCodeInput.getText().toString() == null) {
+//                    GlobalFunctions.createDialogWithAlertMsg(RegisterMobilePage.this, R.string.verify_code_format_alert);
+//                } else {
+//                    codeVerifying(mobileStr, verifyCodeInput.getText().toString());
+//                }
+//            }
+//        });
 
         country.setOnClickListener(new View.OnClickListener() {
             @Override

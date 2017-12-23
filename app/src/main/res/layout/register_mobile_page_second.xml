@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.skymall.widgets.PageTopBar
+        android:id="@+id/homepage_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Verify your phone"
+        android:textColor="#FF16172D"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="We sent a 6-digits code to"
+        android:textColor="@color/grey"
+        android:textSize="17sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/mobile_number"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="+86 13169288182"
+        android:textColor="@color/grey"
+        android:textSize="17sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/selector_view_block"
+        android:padding="@dimen/largePadding">
+
+        <com.tuo.customview.VerificationCodeView
+            android:id="@+id/icv_1"
+            app:icv_et_number="6"
+            app:icv_et_width="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Next"
+        android:background="@drawable/main_btn_style_green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.skymall.widgets.CountDownButton
+        android:layout_marginTop="10dp"
+        android:id="@+id/btn_reSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Resend"
+        />
+</LinearLayout>

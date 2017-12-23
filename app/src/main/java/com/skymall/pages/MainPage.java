@@ -13,12 +13,6 @@ import android.widget.ImageView;
 
 import com.skymall.R;
 import com.skymall.interfaces.IBtnCallListener;
-import com.skymall.fragments.searchDrawer.DrawerView;
-import com.skymall.fragments.searchDrawer.ICallBack;
-import com.skymall.fragments.searchDrawer.bCallBack;
-import com.skymall.interfaces.IBtnCallListener;
-import com.skymall.widgets.PageTopBar;
-import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.HashMap;
 
@@ -171,7 +165,6 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
         }
         bt_menu[3].setImageResource(select_off[3]);
         bt_menu[0].setImageResource(select_on[0]);
-
     }
 
 }

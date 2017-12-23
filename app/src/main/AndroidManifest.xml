@@ -35,19 +35,33 @@
         <activity android:name="com.skymall.pages.MainPage">
 
         </activity>
-        <activity android:name="com.skymall.pages.LoginWithMobilePage"></activity>
+        <activity android:name="com.skymall.pages.LoginWithMobilePage">
+
+        </activity>
+
         <activity android:name="com.skymall.pages.StorePage">
         </activity>
         <activity android:name="com.skymall.pages.ItemsPage"></activity>
         <activity android:name="com.skymall.pages.RegisterEmailPage">
+
+        </activity>
+        <activity android:name="com.skymall.pages.RegisterMobilePage">
+
+        </activity>
+        <activity android:name="com.skymall.pages.WelcomeActivity">
+
+        </activity>
+        <activity android:name=".pages.RegisterMobilePageFirst">
+
+        </activity>
+        <activity android:name=".pages.RegisterMobilePageSecond">
+
+        </activity>a
+        <activity android:name=".pages.RegisterMobilePageThird">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="com.skymall.pages.RegisterMobilePage"></activity>
-        <activity android:name="com.skymall.pages.WelcomeActivity">
-
         </activity>
         <activity android:name="com.skymall.pages.SearchingResultPage"></activity>
         <activity android:name="com.skymall.pages.LoginWithEmailPage"></activity>

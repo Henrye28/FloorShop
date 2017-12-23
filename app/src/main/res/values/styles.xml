@@ -72,15 +72,15 @@
     </style>
 
     <style name="smallGreenButton" parent="@style/smallButton">
-        <item name="android:background">@drawable/bg_btn_style_green</item>
+        <item name="android:background">@drawable/main_btn_style_green</item>
     </style>
 
     <style name="bigGreenButton" parent="@style/bigButton">
-        <item name="android:background">@drawable/bg_btn_style_green</item>
+        <item name="android:background">@drawable/main_btn_style_green</item>
     </style>
 
     <style name="countdownButton" parent="@style/smallButton">
-        <item name="android:background">@drawable/bg_btn_style_green</item>
+        <item name="android:background">@drawable/main_btn_style_green</item>
     </style>
 
     <style name="editText_base">

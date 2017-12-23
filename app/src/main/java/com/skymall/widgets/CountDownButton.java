@@ -5,15 +5,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * Created by henryye on 5/21/17.
- */
-public class CountDownButton extends Button implements View.OnClickListener{
+public class CountDownButton extends TextView implements View.OnClickListener{
 
     private Context mContext;
     private OnClickListener mOnClickListener;

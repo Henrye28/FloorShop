@@ -44,14 +44,14 @@
 
         <com.dd.processbutton.FlatButton
             android:id="@+id/follow"
-            android:textSize="8sp"
+            android:textSize="5sp"
             android:layout_gravity="center_vertical|right"
             android:layout_margin="3dp"
             android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:textAlignment="center"
-            android:text="@string/following_store"
+            android:text="following"
             custom:pb_colorNormal="@color/colorPrimary"
             custom:pb_colorPressed="@color/colorButtonClicked"
             custom:pb_textComplete="@string/followed_store" />
