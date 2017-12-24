@@ -7,11 +7,6 @@
     <string name="AlertBox_title_register"></string>
     <string name="AlertBox_title_Login">登录失败，请检查密码以及电话号码</string>
     <string name="AlertBox_title">提示</string>
-    <string name="home">主页</string>
-    <string name="hot">热卖</string>
-    <string name="catagory">分类</string>
-    <string name="cart">购物车</string>
-    <string name="mine">我的</string>
     <string name="title_activity_ware_detail">WareDetailActivity</string>
     <string name="share">分享</string>
     <string name="my_orders">我的订单</string>
@@ -39,4 +34,11 @@
     <string name="searching_sliding_store">店铺</string>
     <string name="searching_dropdown_confirm">确认</string>
     <string name="topbar_sign">注册</string>
+    <string name="homepage_tag_hot_store">热门商户</string>
+    <string name="homepage_tag_discount">折扣</string>
+    <string name="homepage_tag_recommend">推荐</string>
+    <string name="mainpage_tab_home">首页</string>
+    <string name="mainpage_tab_discover">发现</string>
+    <string name="mainpage_tab_profile">我的</string>
+    <string name="drawer_search_title">搜索</string>
 </resources>

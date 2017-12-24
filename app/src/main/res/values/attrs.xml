@@ -3,12 +3,10 @@
 
     <declare-styleable name="PageTopBar">
         <attr name="searchView" format="reference"/>
-        <attr name="communityFollow" format="string"/>
-        <attr name="communityDiscovery" format="string"/>
-        <attr name="communityComment" format="reference"/>
-        <attr name="meShare" format="reference"/>
-        <attr name="meTitle" format="string"/>
         <attr name="registerNext" format="reference"/>
+        <attr name="searchText" format="string"/>
+        <attr name="backArrow" format="reference"/>
+        <attr name="signUp" format="string"/>
     </declare-styleable>
 
     <declare-styleable name="MaterialCircleView">
@@ -23,15 +21,15 @@
         <attr name="bg_alpha" format="integer"></attr>
     </declare-styleable>
 
-    <declare-styleable name="Search_View">
+    <declare-styleable name="DrawerSearchView">
         <attr name="textSizeSearch" format="dimension"  />
         <attr name="textColorSearch" format="color" />
         <attr name="textHintSearch" format="string" />
-        <attr name="searchBlockHeight" format="integer" />
+        <attr name="searchBlockHeight" format="dimension" />
         <attr name="searchBlockColor" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="SearchHistoryView">
+    <declare-styleable name="DrawerSearchHistoryView">
         <attr name="linkedView" format="reference"/>
     </declare-styleable>
 </resources>

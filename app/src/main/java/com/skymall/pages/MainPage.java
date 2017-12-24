@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.skymall.R;
 import com.skymall.fragments.searchDrawer.DrawerView;
@@ -27,12 +30,13 @@ import butterknife.ButterKnife;
 
 public class MainPage extends AppCompatActivity implements OnClickListener,IBtnCallListener {
 
-    private ImageView[] bt_menu = new ImageView[5];
-    private int[] bt_menu_id = { R.id.home_tab, R.id.store_tab, R.id.cart_tab, R.id.myself_tab};
-    private int[] select_on = { R.drawable.homepagetab, R.drawable.storetab, R.drawable.carttab, R.drawable.myselftab };
-    private int[] select_off = { R.drawable.homepagetab, R.drawable.storetab, R.drawable.carttab, R.drawable.myselftab };
+    private ImageView[] switchImage;
+    private TextView[] switchText;
 
-    private Homepage_Tab home_F;
+    private HomepageTab homepageTab;
+    private MyInfo_Tab myInfoTab;
+
+    private FragmentManager manager = getSupportFragmentManager();
 
     @BindView(R.id.mainpage_topbar)
     PageTopBar topBar;
@@ -43,7 +47,32 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
     @BindView(R.id.mainpage_drawer_view)
     DrawerView drawer_view;
 
-    private MyInfo_Tab myInfo_tab;
+    @BindView(R.id.mainpage_tab_home)
+    LinearLayout homeButton;
+
+    @BindView(R.id.mainpage_tab_discover)
+    LinearLayout discoverButton;
+
+    @BindView(R.id.mainpage_tab_profile)
+    LinearLayout profileButton;
+
+    @BindView(R.id.mainpage_tab_home_img)
+    ImageView homeButtonImg;
+
+    @BindView(R.id.mainpage_tab_home_text)
+    TextView homeButtonText;
+
+    @BindView(R.id.mainpage_tab_discover_img)
+    ImageView discoverButtonImg;
+
+    @BindView(R.id.mainpage_tab_discover_text)
+    TextView discoverButtonText;
+
+    @BindView(R.id.mainpage_tab_profile_img)
+    ImageView profileButtonImg;
+
+    @BindView(R.id.mainpage_tab_profile_text)
+    TextView profileButtonText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,26 +96,29 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
     private void initView() {
 
         ButterKnife.bind(this);
-
         setSupportActionBar(topBar);
         topBar.showHomepageView();
+
 //        topBar.showCommunityView();
 //        topBar.showMeView();
 
-        if (home_F == null) {
-            home_F = new Homepage_Tab();
-            addFragment(home_F);
-            showFragment(home_F);
-        } else {
-            showFragment(home_F);
+        switchImage = new ImageView[]{homeButtonImg, discoverButtonImg, profileButtonImg};
+        switchText = new TextView[] {homeButtonText, discoverButtonText, profileButtonText};
 
-//        if (myInfo_tab == null) {
-//            myInfo_tab = new MyInfo_Tab();
-//            addFragment(myInfo_tab);
-//            showFragment(myInfo_tab);
-//        } else {
-//            showFragment(myInfo_tab);
-        }
+        if (homepageTab == null)
+            homepageTab = new HomepageTab();
+        if (myInfoTab == null)
+            myInfoTab = new MyInfo_Tab();
+
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.mainpage_show_layout, homepageTab);
+        transaction.add(R.id.mainpage_show_layout, myInfoTab);
+        transaction.show(homepageTab);
+        transaction.hide(myInfoTab);
+        transaction.commit();
+        switchImage[0].setImageResource(R.drawable.icon_home_filled);
+        switchImage[1].setImageResource(R.drawable.icon_discover);
+        switchImage[2].setImageResource(R.drawable.icon_profile);
 
         topBar.setSearchViewListener(new OnClickListener() {
             @Override
@@ -108,75 +140,38 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
                 mainView.closeDrawer(drawer_view);
             }
         });
+
+        homeButton.setOnClickListener(this);
+        discoverButton.setOnClickListener(this);
+        profileButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.home_tab:
-                if (home_F == null) {
-                    home_F = new Homepage_Tab();
-                    addFragment(home_F);
-                    showFragment(home_F);
-                } else {
-                    if (home_F.isHidden()) {
-
-//                if (myInfo_tab == null) {
-//                    myInfo_tab = new MyInfo_Tab();
-//                    addFragment(home_F);
-//                    showFragment(home_F);
-//                } else {
-//                    if (myInfo_tab.isHidden()) {
-//                        showFragment(home_F);
-                    }
-                }
-
+            case R.id.mainpage_tab_home:
+                if (homepageTab == null)
+                    homepageTab = new HomepageTab();
+                FragmentTransaction transaction_home = manager.beginTransaction();
+                transaction_home.show(homepageTab);
+                transaction_home.hide(myInfoTab);
+                transaction_home.commit();
+                switchImage[0].setImageResource(R.drawable.icon_home_filled);
+                switchImage[1].setImageResource(R.drawable.icon_discover);
+                switchImage[2].setImageResource(R.drawable.icon_profile);
+                break;
+            case R.id.mainpage_tab_profile:
+                if (myInfoTab == null)
+                    myInfoTab = new MyInfo_Tab();
+                FragmentTransaction transaction_discover = manager.beginTransaction();
+                transaction_discover.show(myInfoTab);
+                transaction_discover.hide(homepageTab);
+                transaction_discover.commit();
+                switchImage[0].setImageResource(R.drawable.icon_home);
+                switchImage[1].setImageResource(R.drawable.icon_discover);
+                switchImage[2].setImageResource(R.drawable.icon_profile_filled);
                 break;
         }
-
-        for (int i = 0; i < bt_menu.length; i++) {
-            bt_menu[i].setImageResource(select_off[i]);
-            if (v.getId() == bt_menu_id[i]) {
-                bt_menu[i].setImageResource(select_on[i]);
-            }
-        }
-    }
-
-    public void addFragment(Fragment fragment) {
-        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.mainpage_show_layout, fragment);
-        ft.commit();
-    }
-
-    public void removeFragment(Fragment fragment) {
-        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
-        ft.remove(fragment);
-        ft.commit();
-    }
-
-    public void showFragment(Fragment fragment) {
-        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
-        ft.setCustomAnimations(R.anim.cu_push_right_in, R.anim.cu_push_left_out);
-
-        if (home_F != null) {
-            ft.hide(home_F);
-        }
-//        if (tao_F != null) {
-//            ft.hide(tao_F);
-//        }
-//        if (discover_F != null) {
-//            ft.hide(discover_F);
-//        }
-//        if (cart_F != null) {
-//            ft.hide(cart_F);
-//        }
-//        if (user_F != null) {
-//            ft.hide(user_F);
-//        }
-
-        ft.show(fragment);
-        ft.commitAllowingStateLoss();
-
     }
 
     @Override
@@ -202,16 +197,5 @@ public class MainPage extends AppCompatActivity implements OnClickListener,IBtnC
 
     @Override
     public void transferMsg() {
-        if (home_F == null) {
-            home_F = new Homepage_Tab();
-            addFragment(home_F);
-            showFragment(home_F);
-        } else {
-            showFragment(home_F);
-        }
-        bt_menu[3].setImageResource(select_off[3]);
-        bt_menu[0].setImageResource(select_on[0]);
-
     }
-
 }

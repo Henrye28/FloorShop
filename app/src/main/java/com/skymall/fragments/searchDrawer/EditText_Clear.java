@@ -1,7 +1,6 @@
 package com.skymall.fragments.searchDrawer;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -15,16 +14,14 @@ import com.skymall.R;
 
 public class EditText_Clear extends android.support.v7.widget.AppCompatEditText {
 
-    private Drawable clearDrawable,searchDrawable;
+    private Drawable clearDrawable;
 
     public EditText_Clear(Context context) {
-        super(context);
-        init();
+        this(context, null);
     }
 
     public EditText_Clear(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context, attrs, 0);
     }
 
     public EditText_Clear(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -34,11 +31,7 @@ public class EditText_Clear extends android.support.v7.widget.AppCompatEditText 
 
     private void init() {
         clearDrawable = getResources().getDrawable(R.drawable.icon_cross);
-        searchDrawable = getResources().getDrawable(R.drawable.icon_searchbtn);
-
-        setTextColor(Color.BLACK);
-        setCompoundDrawablesWithIntrinsicBounds(searchDrawable, null,
-                null, null);
+        this.setBackground(getResources().getDrawable(R.drawable.shape_edittext));
     }
 
     @Override
@@ -54,7 +47,7 @@ public class EditText_Clear extends android.support.v7.widget.AppCompatEditText 
     }
 
     private void setClearIconVisible(boolean visible) {
-        setCompoundDrawablesWithIntrinsicBounds(searchDrawable, null,
+        setCompoundDrawablesWithIntrinsicBounds(null, null,
                 visible ? clearDrawable : null, null);
     }
 
@@ -72,5 +65,6 @@ public class EditText_Clear extends android.support.v7.widget.AppCompatEditText 
         }
         return super.onTouchEvent(event);
     }
+
 }
 

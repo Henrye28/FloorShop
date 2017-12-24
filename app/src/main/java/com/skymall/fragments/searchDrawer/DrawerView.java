@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.skymall.R;
+import com.skymall.widgets.PageTopBar;
 
 import java.util.ArrayList;
 
@@ -29,17 +30,14 @@ public class DrawerView extends LinearLayout {
 
     private Context context;
 
+    @BindView(R.id.drawer_top_bar)
+    PageTopBar topBar;
+
     @BindView(R.id.drawer_et_search)
     EditText et_search;
 
     @BindView(R.id.drawer_tv_clear)
     TextView tv_clear;
-
-    @BindView(R.id.drawer_search_block)
-    LinearLayout search_block;
-
-    @BindView(R.id.drawer_search_back)
-    ImageView searchBack;
 
     @BindView(R.id.drawer_history_view)
     SearchHistoryView historyView;
@@ -57,20 +55,15 @@ public class DrawerView extends LinearLayout {
     private int textColorSearch;
     private String textHintSearch;
 
-    private int searchBlockHeight;
+    private Float searchBlockHeight;
     private int searchBlockColor;
 
     public DrawerView(Context context) {
-        super(context);
-        this.context = context;
-        init();
+        this(context, null);
     }
 
     public DrawerView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        initAttrs(context, attrs);
-        init();
+        this(context, attrs, 0);
     }
 
     public DrawerView(Context context, AttributeSet attrs, int defStyle) {
@@ -91,18 +84,17 @@ public class DrawerView extends LinearLayout {
 
     private void initAttrs(Context context, AttributeSet attrs) {
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Search_View);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DrawerSearchView);
 
-        textSizeSearch = typedArray.getDimension(R.styleable.Search_View_textSizeSearch, 20);
+        textSizeSearch = typedArray.getDimension(R.styleable.DrawerSearchView_textSizeSearch, getResources().getDimension(R.dimen.x17));
 
-        textColorSearch = typedArray.getColor(R.styleable.Search_View_textColorSearch, Color.BLACK);
+        textColorSearch = typedArray.getColor(R.styleable.DrawerSearchView_textColorSearch, Color.rgb(22, 23, 45));
 
-        textHintSearch = typedArray.getString(R.styleable.Search_View_textHintSearch);
+        textHintSearch = typedArray.getString(R.styleable.DrawerSearchView_textHintSearch);
 
-        searchBlockHeight = typedArray.getInteger(R.styleable.Search_View_searchBlockHeight, 150);
+        searchBlockHeight = typedArray.getDimension(R.styleable.DrawerSearchView_searchBlockHeight, getResources().getDimension(R.dimen.x46));
 
-        int defaultColor2 = context.getResources().getColor(R.color.bg_color);
-        searchBlockColor = typedArray.getColor(R.styleable.Search_View_searchBlockColor, defaultColor2);
+        searchBlockColor = typedArray.getColor(R.styleable.DrawerSearchView_searchBlockColor, Color.argb(3, 22, 23, 45));
 
         typedArray.recycle();
     }
@@ -110,7 +102,6 @@ public class DrawerView extends LinearLayout {
     private void init() {
 
         layoutParams = new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(30, 30, 10, 10);
 
         initView();
 
@@ -176,30 +167,13 @@ public class DrawerView extends LinearLayout {
 //                Toast.makeText(context, name, Toast.LENGTH_SHORT).show();
 //            }
 //        });
-
-        searchBack.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (bCallBack != null){
-                    bCallBack.BackAciton();
-                }
-            }
-        });
     }
 
     private void initView(){
-
         LayoutInflater.from(context).inflate(R.layout.fragment_drawer, this);
         ButterKnife.bind(this);
 
-        et_search.setTextSize(textSizeSearch);
-        et_search.setTextColor(textColorSearch);
-        et_search.setHint(textHintSearch);
-
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) search_block.getLayoutParams();
-        params.height = searchBlockHeight;
-        search_block.setBackgroundColor(searchBlockColor);
-        search_block.setLayoutParams(params);
+        topBar.showBackView();
 
         historyView = (SearchHistoryView) findViewById(R.id.drawer_history_view);
 

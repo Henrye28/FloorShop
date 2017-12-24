@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="@dimen/x20"
-                android:background="@color/gray" />
+                android:background="@color/gray"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -42,11 +42,14 @@
                 android:paddingTop="@dimen/x30"
                 android:paddingLeft="@dimen/x20"/>
 
-            <GridView
+            <com.skymall.pages.HomePageHotItemsGridView
                 android:id="@+id/homepage_grid_hot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:numColumns="2"/>
+                android:paddingTop="@dimen/x10"
+                android:numColumns="2"
+                android:horizontalSpacing="@dimen/x21"
+                android:verticalSpacing="@dimen/x20"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

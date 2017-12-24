@@ -1,17 +1,17 @@
 package com.skymall.pages;
 
+import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 
 import com.hss01248.slider.Animations.DescriptionAnimation;
@@ -33,19 +33,19 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
 
-public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderClickListener{
+public class HomepageTab extends Fragment implements BaseSliderView.OnSliderClickListener{
 
     private final static int LOAD_SUCCESS = 0;
 
     private GridView gridViewTag;
     private SliderLayout viewPager;
-    private GridView gridViewHot;
+    private HomePageHotItemsGridView gridViewHot;
     private HomepageHotGridAdapter mHomepageHotGridAdapter = null;
 
     private List<Items> viewPagerItems = new ArrayList<Items>();
     
     private int[] gridTagImages = {R.drawable.icon_shop, R.drawable.icon_coupon, R.drawable.icon_recommend};
-    private String[] gridTagText = {"Hot Store", "Discount", "Recommend"};
+    private String[] gridTagText = null;
     private ArrayList<HashMap<String, Object>> gridTagItems = new ArrayList<>();
     private ArrayList<HomePageHotItems> gridHotItems = new ArrayList<>();
 
@@ -58,53 +58,27 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
             }
         }
     };
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.homepage_tab, null);
         initView(view);
-//        initHotItemsBlock(view);
-        initViewPager(view);
+        initData();
         return view;
     }
 
-//    public void initHotItemsBlock(View view) {
-//        hotItem0 = (SimpleDraweeView)view.findViewById(R.id.hotItem0);
-//        hotItem1 = (SimpleDraweeView)view.findViewById(R.id.hotItem1);
-//        hotItem2 = (SimpleDraweeView)view.findViewById(R.id.hotItem2);
-//        hotItem3 = (SimpleDraweeView)view.findViewById(R.id.hotItem3);
-//
-//        BmobQuery<HomePageHotItems> query = new BmobQuery<HomePageHotItems>();
-//        query.findObjects(new FindListener<HomePageHotItems>() {
-//            @Override
-//            public void done(List<HomePageHotItems> list, BmobException e) {
-//
-//                if (e == null) {
-//                    if (list.size() != 0) {
-//                        hotItem0.setImageURI(Uri.parse(list.get(0).getBitmap().getFileUrl()));
-//                        hotItem1.setImageURI(Uri.parse(list.get(1).getBitmap().getFileUrl()));
-//                        hotItem2.setImageURI(Uri.parse(list.get(2).getBitmap().getFileUrl()));
-//                        hotItem3.setImageURI(Uri.parse(list.get(3).getBitmap().getFileUrl()));
-//                    }
-//                } else {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    };
-
-    private void initViewPager(final View view){
-        viewPager = (SliderLayout)view.findViewById(R.id.homepage_view_pager);
-        BmobQuery<BannerImages> query = new BmobQuery<BannerImages>();
-        query.findObjects(new FindListener<BannerImages>() {
+    private void initData() {
+        BmobQuery<BannerImages> queryBanner = new BmobQuery<BannerImages>();
+        queryBanner.findObjects(new FindListener<BannerImages>() {
             @Override
             public void done(List<BannerImages> list, BmobException e) {
                 if (e == null) {
                     for (BannerImages banner : list) {
                         if (banner.getPage().equals("homepage")) {
-                            TextSliderView textSliderView = new TextSliderView(view.getContext());
+                            TextSliderView textSliderView = new TextSliderView(getContext());
                             textSliderView
                                     .image(banner.getPic().getUrl())
                                     .setScaleType(BaseSliderView.ScaleType.Fit)
-                                    .setOnSliderClickListener(Homepage_Tab.this);
+                                    .setOnSliderClickListener(HomepageTab.this);
                             viewPager.addSlider(textSliderView);
                             viewPagerItems.add(banner.getItem());
                         }
@@ -114,20 +88,9 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
                 }
             }
         });
-        //Set viewPager transform animation
-        viewPager.setClickable(true);
-        viewPager.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
-        viewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        viewPager.setCustomAnimation(new DescriptionAnimation());
-        viewPager.setDuration(3000);
 
-    }
-
-    private void initView(View view) {
-        gridViewHot = (GridView) view.findViewById(R.id.homepage_grid_hot);
-        mHomepageHotGridAdapter = new HomepageHotGridAdapter(getContext(), R.layout.homepage_tab_grid_hot, gridHotItems);
-        BmobQuery<HomePageHotItems> query = new BmobQuery<HomePageHotItems>();
-        query.findObjects(new FindListener<HomePageHotItems>() {
+        BmobQuery<HomePageHotItems> queryHotItems = new BmobQuery<HomePageHotItems>();
+        queryHotItems.findObjects(new FindListener<HomePageHotItems>() {
             @Override
             public void done(List<HomePageHotItems> list, BmobException e) {
                 if (e == null) {
@@ -144,6 +107,22 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
                 }
             }
         });
+    }
+
+    private void initView(View view) {
+        viewPager = (SliderLayout)view.findViewById(R.id.homepage_view_pager);
+
+        //Set viewPager transform animation
+        viewPager.setClickable(true);
+        viewPager.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
+        viewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        viewPager.setCustomAnimation(new DescriptionAnimation());
+        viewPager.setDuration(3000);
+
+        gridTagText = new String[]{getActivity().getString(R.string.homepage_tag_hot_store), getActivity().getString(R.string.homepage_tag_discount),
+                getActivity().getString(R.string.homepage_tag_recommend)};
+        gridViewHot = (HomePageHotItemsGridView) view.findViewById(R.id.homepage_grid_hot);
+        mHomepageHotGridAdapter = new HomepageHotGridAdapter(getContext(), gridHotItems);
         gridViewHot.setAdapter(mHomepageHotGridAdapter);
 
         gridViewTag = (GridView) view.findViewById(R.id.homepage_grid_tag);
@@ -171,8 +150,23 @@ public class Homepage_Tab extends Fragment implements BaseSliderView.OnSliderCli
     public void onSliderClick(BaseSliderView baseSliderView) {
         Items clickedItem = viewPagerItems.get(viewPager.getCurrentPosition());
         Intent intent = new Intent();
-        intent.setClass(Homepage_Tab.this.getActivity(), ItemsPage.class);
+        intent.setClass(HomepageTab.this.getActivity(), ItemsPage.class);
         intent.putExtra("itemID", clickedItem.getObjectId());
         startActivity(intent);
     }
 }
+
+class HomePageHotItemsGridView extends GridView {
+
+    public HomePageHotItemsGridView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int expandSpec=MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+                MeasureSpec.AT_MOST);
+        super.onMeasure(widthMeasureSpec, expandSpec);
+    }
+}
+

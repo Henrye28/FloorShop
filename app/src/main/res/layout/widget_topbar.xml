@@ -17,7 +17,8 @@
             android:src="@drawable/icon_searching_box"
             android:paddingLeft="@dimen/x20"
             android:paddingRight="@dimen/x20"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/topbar_searching_text"
@@ -27,80 +28,16 @@
             android:layout_marginLeft="@dimen/x67"
             android:text="Anything you want"
             android:textColor="#0f16172d"
-            android:textSize="@dimen/x17" />
-
-        <ImageView
-            android:id="@+id/topbar_me_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/icon_share"
+            android:textSize="@dimen/x17"
             android:visibility="invisible"/>
 
         <ImageView
-            android:id="@+id/topbar_left_arrow"
+            android:id="@+id/topbar_back_arrow"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/x20"
             android:src="@drawable/icon_left"
-            android:paddingLeft="20dp"
-            android:paddingTop="12.8dp"
-            android:visibility="invisible"/>
-
-        <LinearLayout
-            android:id="@+id/topbar_community_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:paddingLeft="@dimen/x20"
             android:layout_centerVertical="true"
-            android:orientation="horizontal"
-            android:visibility="invisible">
-
-            <TextView
-                android:id="@+id/topbar_community_follow"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Follow"
-                android:textColor="@color/defaultTextColor"
-                android:textSize="15sp"
-                android:layout_gravity="center_vertical"/>
-
-            <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/icon_verticalline"
-                style="@style/line_vertical"/>
-
-            <TextView
-                android:id="@+id/topbar_community_discovery"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Discovery"
-                android:textColor="@color/defaultTextColor"
-                android:textSize="15sp"
-                android:layout_gravity="center_vertical"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/topbar_me_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:paddingTop="5dp"
-            android:text="ME"
-            android:textSize="25sp"
-            android:textColor="@color/defaultTextColor"
-            android:visibility="invisible"/>
-
-        <ImageView
-            android:id="@+id/topbar_comment"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:src="@drawable/icon_message"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:paddingRight="10dp"
             android:visibility="invisible"/>
 
         <ImageView
@@ -118,10 +55,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/topbar_sign"
-            android:textSize="17sp"
+            android:textSize="@dimen/x17"
             android:textColor="#FF5024"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
+            android:paddingRight="@dimen/x20"
+            android:paddingTop="@dimen/x10"
             android:layout_alignParentRight="true"
             android:visibility="invisible"/>
     </RelativeLayout>
