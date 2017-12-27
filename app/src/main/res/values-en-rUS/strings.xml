@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">FloorShop</string>
+    <string name="app_name">Skymall</string>
 
     <string name="action_settings">Settings</string>
 
@@ -26,6 +26,9 @@
     <string name="email_verify_send">Send Email</string>
     <string name="signup_with_email">Sign up with email</string>
     <string name="signup_with_mobile">Sign up with mobile</string>
+    <string name="baidumap">baidumap</string>
+    <string name="gaodemap">gaodemap</string>
+    <string name="googlemap">googlemap</string>
     <string name="sign_up">Sign up</string>
     <string name="login_alert">Login failed,Please Check your phone number and password</string>
     <string name="logining">Logining...</string>
@@ -47,4 +50,11 @@
     <string name="mainpage_tab_discover">Discover</string>
     <string name="mainpage_tab_profile">Me</string>
     <string name="drawer_search_title">Search</string>
+    <string name="follow_store">Follow</string>
+    <string name="following_store">Following</string>
+    <string name="followed_store">Followed</string>
+    <string name="amap_not_installed">Amap is not installed in this phone</string>
+    <string name="baidumap_not_installed">Baidumap is not installed in this phone</string>
+    <string name="Googlemap_not_installed">Googlemap is not installed in this phone</string>
+
 </resources>

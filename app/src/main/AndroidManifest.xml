@@ -11,6 +11,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+
+
+
+
+
     <application
         android:name="com.skymall.GlobalApplication"
         android:allowBackup="true"
@@ -18,23 +23,32 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="6iQNWHLPFal8rN3wWgYD7njnMwgg5mXu" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
         <activity android:name="com.skymall.pages.MainPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name="com.skymall.pages.LoginWithMobilePage"></activity>
+        <activity android:name="com.skymall.pages.StorePage">
+        </activity>
         <activity android:name="com.skymall.pages.ItemsPage"></activity>
         <activity android:name="com.skymall.pages.RegisterEmailPage"></activity>
         <activity android:name="com.skymall.pages.RegisterMobilePage"></activity>
         <activity android:name="com.skymall.pages.WelcomeActivity"></activity>
-        <activity android:name="com.skymall.pages.SearchingResultPage">
-
-        </activity>
+        <activity android:name="com.skymall.pages.SearchingResultPage"></activity>
         <activity android:name="com.skymall.pages.LoginWithEmailPage"></activity>
+        <activity android:name="com.skymall.pages.NearbyMapPage">
+        </activity>
 
     </application>
 

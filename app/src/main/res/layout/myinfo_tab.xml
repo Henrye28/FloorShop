@@ -5,36 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <RelativeLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:layout_marginBottom="30dp">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/default_user"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="4dp"
+            app:civ_shadow="true"
+            app:civ_shadow_radius="5"
+            app:civ_shadow_color="#8BC34A"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:text="HENRY YE"
+            android:textAlignment="center"
+            android:id="@+id/username"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_gravity="center"
-            android:background="@color/colorPrimary"
-            android:layout_marginBottom="30dp">
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentBottom="true" />
 
-            <com.mikhaellopez.circularimageview.CircularImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/default_user"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="4dp"
-                app:civ_shadow="true"
-                app:civ_shadow_radius="5"
-                app:civ_shadow_color="#8BC34A"/>
-
-            <TextView
-                android:textSize="20sp"
-                android:text="HENRY YE"
-                android:textAlignment="center"
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#ffffff"
-                android:layout_marginBottom="30dp"
-                android:layout_alignParentBottom="true" />
-
-        </RelativeLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:paddingLeft="5dp"
@@ -60,8 +60,6 @@
             android:layout_height="60dp"
             android:background="@drawable/share_box"/>
 
-
     </LinearLayout>
-
 
 </LinearLayout>
