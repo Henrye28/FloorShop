@@ -86,6 +86,7 @@ public class RegisterMobilePage extends AppCompatActivity{
 
         toolbar = (PageTopBar)findViewById(R.id.mainpage_topbar);
         setSupportActionBar(toolbar);
+
         countDownButton.setOnClickListener(countDownButton);
         ccf = new TempCountryChoosingFragment();
 
