@@ -1,6 +1,7 @@
 package com.skymall.fragments.searchDrawer;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -12,20 +13,24 @@ import com.skymall.R;
  * Created by dan on 17/9/10.
  */
 
-public class EditText_Clear extends android.support.v7.widget.AppCompatEditText {
+public class EditTextClear extends android.support.v7.widget.AppCompatEditText {
 
     private Drawable clearDrawable;
 
-    public EditText_Clear(Context context) {
+    private Paint mPaint;
+    private int width;
+    private int height;
+
+    public EditTextClear(Context context) {
         this(context, null);
     }
 
-    public EditText_Clear(Context context, AttributeSet attrs) {
+    public EditTextClear(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public EditText_Clear(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public EditTextClear(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, android.support.v7.appcompat.R.attr.editTextStyle);
         init();
     }
 
@@ -65,6 +70,5 @@ public class EditText_Clear extends android.support.v7.widget.AppCompatEditText 
         }
         return super.onTouchEvent(event);
     }
-
 }
 

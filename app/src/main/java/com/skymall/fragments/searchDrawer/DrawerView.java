@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,9 +35,6 @@ public class DrawerView extends LinearLayout {
 
     @BindView(R.id.drawer_et_search)
     EditText et_search;
-
-    @BindView(R.id.drawer_tv_clear)
-    TextView tv_clear;
 
     @BindView(R.id.drawer_history_view)
     SearchHistoryView historyView;
@@ -108,14 +106,14 @@ public class DrawerView extends LinearLayout {
 
         queryData("");
 
-        tv_clear.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                deleteData();
-                queryData("");
-            }
-        });
+//        tv_clear.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                deleteData();
+//                queryData("");
+//            }
+//        });
 
         et_search.setOnKeyListener(new OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -130,31 +128,13 @@ public class DrawerView extends LinearLayout {
                     boolean hasData = hasData(et_search.getText().toString().trim());
                     if (!hasData) {
                         insertData(et_search.getText().toString().trim());
+                        historySearch.add(et_search.getText().toString().trim());
                         addTextView(historySearch.size() - 1);
                     }
                 }
                 return false;
             }
         });
-
-
-//        et_search.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                String tempName = et_search.getText().toString();
-//                queryData(tempName);
-//            }
-//        });
 
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -176,7 +156,7 @@ public class DrawerView extends LinearLayout {
 
         historyView = (SearchHistoryView) findViewById(R.id.drawer_history_view);
 
-        tv_clear.setVisibility(INVISIBLE);
+        et_search.requestFocus();
     }
 
     private void queryData(String tempName) {
@@ -195,13 +175,6 @@ public class DrawerView extends LinearLayout {
         for (int i = 0; i < historySearch.size(); i++) {
             addTextView(i);
         }
-
-        if (tempName.equals("") && cursor.getCount() != 0){
-            tv_clear.setVisibility(VISIBLE);
-        }
-        else {
-            tv_clear.setVisibility(INVISIBLE);
-        };
     }
 
     private void deleteData() {
@@ -209,7 +182,6 @@ public class DrawerView extends LinearLayout {
         db = helper.getWritableDatabase();
         db.execSQL("delete from records");
         db.close();
-        tv_clear.setVisibility(INVISIBLE);
     }
 
     private boolean hasData(String tempName) {
@@ -227,11 +199,10 @@ public class DrawerView extends LinearLayout {
     private void addTextView(int index) {
         final TextView textView = new TextView(context);
         textView.setTag(index);
-        textView.setTextSize(15);
+        textView.setTextSize(getResources().getDimension(R.dimen.x15));
         textView.setText(historySearch.get(index));
-        textView.setPadding(24, 11, 24, 11);
-        textView.setTextColor(Color.BLACK);
-        textView.setBackgroundResource(R.drawable.icon_item_background);
+        textView.setPadding((int) getResources().getDimension(R.dimen.x20), 0, 8, 0);
+        textView.setBackgroundResource(R.drawable.shape_search_history);
         historyView.addView(textView, layoutParams);
 
         textView.setOnClickListener(new OnClickListener() {

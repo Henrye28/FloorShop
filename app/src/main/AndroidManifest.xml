@@ -11,11 +11,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
-
-
-
-
     <application
         android:name="com.skymall.GlobalApplication"
         android:allowBackup="true"
@@ -32,7 +27,8 @@
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name="com.skymall.pages.MainPage">
+        <activity android:name="com.skymall.pages.MainPage"
+            android:windowSoftInputMode="stateAlwaysVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
