@@ -2,93 +2,42 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:contentInsetStart="0.0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="41dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/topbar_searching_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_searching"
-            android:visibility="invisible"/>
-
-        <ImageView
-            android:id="@+id/topbar_me_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/icon_share"
+            android:src="@drawable/icon_searching_box"
+            android:paddingLeft="@dimen/x20"
+            android:paddingRight="@dimen/x20"
+            android:scaleType="fitXY"
             android:visibility="invisible"/>
 
         <TextView
-            android:id="@+id/topbar_homepage_title"
+            android:id="@+id/topbar_searching_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:textSize="37sp"
-            android:textColor="@color/defaultTextColor"
-            android:text="FloorShop"
-            android:visibility="invisible"/>
-
-        <LinearLayout
-            android:id="@+id/topbar_community_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal"
-            android:visibility="invisible">
-
-            <TextView
-                android:id="@+id/topbar_community_follow"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Follow"
-                android:textColor="@color/defaultTextColor"
-                android:textSize="15sp"
-                android:layout_gravity="center_vertical"/>
-
-            <ImageView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:src="@drawable/icon_verticalline"
-                style="@style/line_vertical"/>
-
-            <TextView
-                android:id="@+id/topbar_community_discovery"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Discovery"
-                android:textColor="@color/defaultTextColor"
-                android:textSize="15sp"
-                android:layout_gravity="center_vertical"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/topbar_me_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:paddingTop="5dp"
-            android:text="ME"
-            android:textSize="25sp"
-            android:textColor="@color/defaultTextColor"
+            android:layout_marginLeft="@dimen/x67"
+            android:text="Anything you want"
+            android:textColor="#0f16172d"
+            android:textSize="@dimen/x17"
             android:visibility="invisible"/>
 
         <ImageView
-            android:id="@+id/topbar_comment"
-            android:layout_height="wrap_content"
+            android:id="@+id/topbar_back_arrow"
             android:layout_width="wrap_content"
-            android:src="@drawable/icon_message"
+            android:layout_height="@dimen/x20"
+            android:src="@drawable/icon_left"
+            android:paddingLeft="@dimen/x20"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:paddingRight="10dp"
             android:visibility="invisible"/>
 
         <ImageView
@@ -99,6 +48,18 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:paddingRight="10dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/topbar_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/topbar_sign"
+            android:textSize="@dimen/x17"
+            android:textColor="#FF5024"
+            android:paddingRight="@dimen/x20"
+            android:paddingTop="@dimen/x10"
+            android:layout_alignParentRight="true"
             android:visibility="invisible"/>
     </RelativeLayout>
 </android.support.v7.widget.Toolbar>

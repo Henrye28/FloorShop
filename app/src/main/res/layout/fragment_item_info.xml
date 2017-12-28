@@ -30,7 +30,7 @@
 
                         <!-- Third party automatically scroll view pager-->
                         <com.hss01248.slider.SliderLayout
-                            android:id="@+id/view_pager"
+                            android:id="@+id/homepage_view_pager"
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             />

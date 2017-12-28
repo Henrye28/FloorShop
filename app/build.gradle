@@ -13,12 +13,12 @@ android {
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
 
-    signingConfigs {
-        // your debug keystore
-        debug{
-            storeFile file("debug.keystore")
-        }
-    }
+//    signingConfigs {
+//        // your debug keystore
+//        debug{
+//            storeFile file("debug.keystore")
+//        }
+//    }
 
     sourceSets {
         main {

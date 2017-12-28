@@ -2,7 +2,6 @@ package com.skymall.widgets;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
@@ -14,26 +13,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.skymall.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class PageTopBar extends Toolbar{
 
-    private LayoutInflater mInflater;
-
     private View mView;
-    private ImageView searchButton;
-    private TextView homepageTitle;
-    private LinearLayout communityLayout;
-    private TextView communityFollow;
-    private TextView communityDiscovery;
-    private ImageView rightCornerButton;
-    private ImageView meShareButton;
-    private TextView meTitle;
-    private Typeface homeTypeFace;
-    private Typeface communityTypeFace;
+
+    @BindView(R.id.topbar_searching_view)
+    ImageView searchView;
+
+    @BindView(R.id.topbar_searching_text)
+    TextView searchText;
+
+    @BindView(R.id.topbar_back_arrow)
+    ImageView backArrowButton;
+
+    @BindView(R.id.topbar_register_next)
+    ImageView registerNextButton;
+
+    @BindView(R.id.topbar_sign)
+    TextView signUpButton;
 
     public PageTopBar(Context context) {
         this(context, null);
@@ -46,70 +50,41 @@ public class PageTopBar extends Toolbar{
     public PageTopBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        homeTypeFace = Typeface.createFromAsset(context.getAssets(),"fonts/billabong.ttf");
-        communityTypeFace = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Condensed.ttf");
         initView();
-        setContentInsetsRelative(0, 0);
 
         if(attrs !=null) {
-            final TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
+            TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
                     R.styleable.PageTopBar, defStyleAttr, 0);
 
-//            final Drawable searchButton = a.getDrawable(R.styleable.PageTopBar_searchButton);
-//            if (searchButton != null) {
-//                setSearchButtonIcon(searchButton);
-//            }
+            Drawable attrSearchView = a.getDrawable(R.styleable.PageTopBar_searchView);
+            if (attrSearchView != null)
+                setSearchView(attrSearchView);
 
-//            final CharSequence homepageTitle = a.getText(R.styleable.PageTopBar_homepageTitle);
-//            if (homepageTitle != null) {
-//                setHomepageTitle(homepageTitle);
-//            }
+            CharSequence attrSearchText = a.getText(R.styleable.PageTopBar_searchText);
+            if (attrSearchText != null)
+                setSearchText(attrSearchText);
 
-            final CharSequence communityFollow = a.getText(R.styleable.PageTopBar_communityFollow);
-            if (communityFollow != null) {
-                setCommunityFollow(communityFollow);
-            }
+            Drawable attrRegisterNext = a.getDrawable(R.styleable.PageTopBar_registerNext);
+            if (attrRegisterNext != null)
+                setRegisterNextButton(attrRegisterNext);
 
-            final CharSequence communityDiscovery = a.getText(R.styleable.PageTopBar_communityDiscovery);
-            if (communityDiscovery != null) {
-                setCommunityDiscovery(communityDiscovery);
-            }
+            Drawable attrBackArrow = a.getDrawable(R.styleable.PageTopBar_backArrow);
+            if (attrBackArrow != null)
+                setBackArrowButton(attrBackArrow);
 
-            final Drawable communityComment = a.getDrawable(R.styleable.PageTopBar_communityComment);
-            if (communityComment != null) {
-                setRightCornerButton(communityComment);
-            }
+            CharSequence attrSignUp = a.getText(R.styleable.PageTopBar_signUp);
+            if (attrSignUp != null)
+                setSignUpButton(attrSignUp);
 
-            final Drawable meShare = a.getDrawable(R.styleable.PageTopBar_meShare);
-            if (meShare != null) {
-                setMeShareButton(meShare);
-            }
-
-            final CharSequence meTitle = a.getText(R.styleable.PageTopBar_meTitle);
-            if (meTitle != null) {
-                setMeTitle(meTitle);
-            }
             a.recycle();
         }
     }
 
     private void initView() {
         if(mView == null) {
-            mInflater = LayoutInflater.from(getContext());
-            mView = mInflater.inflate(R.layout.widget_topbar, null);
+            mView = LayoutInflater.from(getContext()).inflate(R.layout.widget_topbar, null);
 
-//            searchButton = (ImageView) mView.findViewById(R.id.topbar_search);
-            homepageTitle = (TextView) mView.findViewById(R.id.topbar_homepage_title);
-            homepageTitle.setTypeface(homeTypeFace);
-            communityLayout = (LinearLayout) mView.findViewById(R.id.topbar_community_title);
-            communityFollow = (TextView) mView.findViewById(R.id.topbar_community_follow);
-            communityFollow.setTypeface(communityTypeFace);
-            communityDiscovery = (TextView) mView.findViewById(R.id.topbar_community_discovery);
-            communityDiscovery.setTypeface(communityTypeFace);
-//            rightCornerButton = (ImageView) mView.findViewById(R.id.topbar_rightcorner);
-            meShareButton = (ImageView) mView.findViewById(R.id.topbar_me_share);
-            meTitle = (TextView) mView.findViewById(R.id.topbar_me_title);
-            meTitle.setTypeface(homeTypeFace);
+            ButterKnife.bind(this,mView);
 
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
             addView(mView, lp);
@@ -117,101 +92,77 @@ public class PageTopBar extends Toolbar{
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setSearchButtonIcon(Drawable icon) {
-
-        if(searchButton !=null){
-            searchButton.setBackground(icon);
-            searchButton.setVisibility(VISIBLE);
+    public void setSearchView(Drawable icon) {
+        if(searchView !=null){
+            searchView.setBackground(icon);
+            searchView.setVisibility(VISIBLE);
         }
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setHomepageTitle(CharSequence text) {
-
-        if(homepageTitle !=null){
-            homepageTitle.setText(text);
-            homepageTitle.setVisibility(VISIBLE);
+    public void setSearchText(CharSequence text) {
+        if (searchText != null) {
+            searchText.setText(text);
+            searchText.setVisibility(VISIBLE);
         }
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setCommunityFollow(CharSequence text) {
-
-        if (communityFollow != null) {
-            communityFollow.setText(text);
-            communityFollow.setVisibility(VISIBLE);
+    public void setSignUpButton(CharSequence text) {
+        if (signUpButton != null) {
+            signUpButton.setText(text);
+            signUpButton.setVisibility(VISIBLE);
         }
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setCommunityDiscovery(CharSequence text) {
-
-        if (communityDiscovery != null) {
-            communityDiscovery.setText(text);
-            communityDiscovery.setVisibility(VISIBLE);
+    public void setBackArrowButton(Drawable icon) {
+        if (backArrowButton != null) {
+            backArrowButton.setBackground(icon);
+            backArrowButton.setVisibility(VISIBLE);
         }
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setRightCornerButton(Drawable icon) {
+    public void setRegisterNextButton(Drawable icon) {
 
-        if (rightCornerButton != null) {
-            rightCornerButton.setBackground(icon);
-            rightCornerButton.setVisibility(VISIBLE);
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setMeShareButton(Drawable icon) {
-
-        if (meShareButton != null) {
-            meShareButton.setBackground(icon);
-            meShareButton.setVisibility(VISIBLE);
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void setMeTitle(CharSequence text) {
-
-        if (meTitle != null) {
-            meTitle.setText(text);
-            meTitle.setVisibility(VISIBLE);
+        if (registerNextButton != null) {
+            registerNextButton.setBackground(icon);
+            registerNextButton.setVisibility(VISIBLE);
         }
     }
 
     public void showHomepageView() {
-        if (searchButton != null)
-            searchButton.setVisibility(VISIBLE);
-
-        if (homepageTitle != null)
-            homepageTitle.setVisibility(VISIBLE);
-    }
-
-    public void showCommunityView() {
-        if (searchButton != null)
-            searchButton.setVisibility(VISIBLE);
-
-        if (communityLayout != null)
-            communityLayout.setVisibility(VISIBLE);
-
-        if (rightCornerButton != null)
-            rightCornerButton.setVisibility(VISIBLE);
-    }
-
-    public void showMeView() {
-        if (meShareButton != null)
-            meShareButton.setVisibility(VISIBLE);
-
-        if (meTitle != null)
-            meTitle.setVisibility(VISIBLE);
-
-        if (rightCornerButton != null) {
-            rightCornerButton.setVisibility(VISIBLE);
+        if (searchView != null && searchText != null) {
+            searchView.setVisibility(VISIBLE);
+            searchText.setVisibility(VISIBLE);
         }
     }
 
-    public void setRightCornerButton(OnClickListener clickListener){
-        rightCornerButton.setOnClickListener(clickListener);
+    public void showBackView() {
+        if (backArrowButton != null)
+            backArrowButton.setVisibility(VISIBLE);
     }
 
+    public void showRegisterView() {
+        if (registerNextButton != null ){
+            registerNextButton.setVisibility(VISIBLE);
+        }
+    }
+
+    public void setSearchViewListener(OnClickListener clickListener) {
+        searchView.setOnClickListener(clickListener);
+    }
+
+    public void setRegisterNextButtonListener(OnClickListener clickListener) {
+        registerNextButton.setOnClickListener(clickListener);
+    }
+
+    public void setSignUpButtonListener(OnClickListener clickListener) {
+        signUpButton.setOnClickListener(clickListener);
+    }
+
+    public void setBackArrowButtonListener(OnClickListener clickListener) {
+        backArrowButton.setOnClickListener(clickListener);
+    }
 }

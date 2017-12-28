@@ -13,19 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--<com.skymall.widgets.PageTopBar-->
-            <!--android:id="@+id/homepage_topbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"/>-->
+        <com.skymall.widgets.PageTopBar
+            android:id="@+id/mainpage_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:text="Register By Email"
             android:textColor="#FF16172D"
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textSize="30sp"/>
+
 
 
         <!--android:background="@drawable/selector_view_block"-->

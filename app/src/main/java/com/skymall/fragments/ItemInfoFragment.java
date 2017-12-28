@@ -172,7 +172,7 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
         commentCountTv = (TextView)rootView.findViewById(R.id.comment_count);
         commentEmptyTv = (TextView)rootView.findViewById(R.id.comment_empty);
 
-        viewPager = (SliderLayout)rootView.findViewById(R.id.view_pager);
+        viewPager = (SliderLayout)rootView.findViewById(R.id.homepage_view_pager);
         itemNameTv = (TextView)rootView.findViewById(R.id.item_name);
         itemPriceTv = (TextView) rootView.findViewById(R.id.item_price);
         sv_goods_info = (ScrollView) rootView.findViewById(R.id.sv_goods_info);
@@ -188,7 +188,7 @@ public class ItemInfoFragment extends Fragment implements View.OnClickListener{
 
     //getting pics from ItemPics table based on itemId
     private void initViewPager(final View view) {
-        viewPager = (SliderLayout) view.findViewById(R.id.view_pager);
+        viewPager = (SliderLayout) view.findViewById(R.id.homepage_view_pager);
         BmobQuery<ItemPics> query = new BmobQuery<ItemPics>();
         Items item = new Items();
         item.setObjectId(itemID);

@@ -22,8 +22,8 @@ public class SearchHistoryView extends ViewGroup {
 
     public SearchHistoryView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SearchHistoryView);
-        int id = typedArray.getResourceId(R.styleable.SearchHistoryView_linkedView, 0);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DrawerSearchHistoryView);
+        int id = typedArray.getResourceId(R.styleable.DrawerSearchHistoryView_linkedView, 0);
     }
 
     @Override
